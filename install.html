@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Install App – Auntie Margie Memorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root{--gold:#c8a84b;--dark:#111;--charcoal:#1c1c1c;--cream:#f8f4ec;--border:rgba(200,168,75,.25);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 60px;}
+
+header{width:100%;background:rgba(17,17,17,.97);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
+.hdr-icon{width:44px;height:44px;background:rgba(200,168,75,.15);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;}
+.hdr-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);}
+.hdr-sub{font-size:.75rem;color:rgba(245,233,196,.5);margin-top:2px;}
+.back-btn{margin-left:auto;color:rgba(200,168,75,.6);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px;}
+.back-btn:hover{color:var(--gold);}
+
+.hero-band{width:100%;background:linear-gradient(135deg,#1a1a10,#111);padding:40px 24px;text-align:center;border-bottom:1px solid var(--border);}
+.hero-band h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--cream);margin-bottom:8px;}
+.hero-band p{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(200,168,75,.7);font-size:1.05rem;max-width:480px;margin:0 auto;}
+.app-preview{
+  width:90px;height:90px;background:var(--charcoal);border:2px solid var(--gold);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;
+  color:var(--gold);margin:0 auto 20px;box-shadow:0 0 30px rgba(200,168,75,.2);
+}
+
+.tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:32px auto 0;max-width:340px;width:90%;}
+.tab{flex:1;padding:11px 8px;background:transparent;border:none;color:rgba(245,233,196,.5);font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-right:1px solid var(--border);}
+.tab:last-child{border-right:none;}
+.tab.active{background:var(--gold);color:var(--dark);font-weight:700;}
+.tab i{display:block;font-size:1.1rem;margin-bottom:4px;}
+
+.content{width:100%;max-width:640px;padding:32px 24px 0;}
+
+.panel{display:none;}
+.panel.active{display:block;}
+
+.device-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,168,75,.1);border:1px solid var(--border);
+  border-radius:4px;padding:7px 16px;margin-bottom:28px;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+}
+
+.steps{display:flex;flex-direction:column;gap:20px;}
+.step{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;padding:18px 20px;}
+.step-num{
+  width:36px;height:36px;flex-shrink:0;border-radius:50%;
+  background:var(--gold);color:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.9rem;margin-top:2px;
+}
+.step-body{}
+.step-title{font-weight:700;font-size:.95rem;color:var(--cream);margin-bottom:5px;}
+.step-desc{font-size:.88rem;color:rgba(245,233,196,.55);line-height:1.6;}
+.step-desc strong{color:var(--gold);}
+.step-img{
+  width:100%;background:rgba(255,255,255,.04);border:1px dashed rgba(200,168,75,.25);
+  border-radius:4px;padding:14px;text-align:center;margin-top:10px;
+  font-size:.75rem;color:rgba(200,168,75,.5);letter-spacing:.1em;
+}
+.step-icon{font-size:1.4rem;margin-bottom:6px;display:block;color:var(--gold);}
+
+.android-btn-demo{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--dark);border-radius:3px;
+  padding:8px 16px;font-size:.82rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;margin-top:8px;
+}
+
+.notice{
+  background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.25);
+  border-radius:4px;padding:14px 18px;margin-top:24px;
+  font-size:.85rem;color:rgba(245,233,196,.6);line-height:1.6;
+  display:flex;gap:10px;
+}
+.notice i{color:var(--gold);flex-shrink:0;margin-top:2px;}
+.notice strong{color:var(--gold);}
+
+.share-section{margin-top:32px;text-align:center;padding:28px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;}
+.share-section h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:8px;}
+.share-section p{font-size:.85rem;color:rgba(245,233,196,.5);margin-bottom:16px;}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.share-btn{
+  display:flex;align-items:center;gap:8px;padding:10px 20px;
+  border:1px solid var(--border);border-radius:4px;background:var(--charcoal);
+  color:var(--cream);font-size:.82rem;cursor:pointer;text-decoration:none;
+  transition:border-color .2s,color .2s;
+}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+.divider{width:100%;height:1px;background:var(--border);margin:28px 0;}
+
+footer{
+  width:100%;max-width:640px;padding:0 24px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.9rem;color:rgba(245,233,196,.2);text-align:center;margin-top:32px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-icon"><i class="fa-solid fa-cross"></i></div>
+  <div>
+    <div class="hdr-title">Auntie Margie Memorial</div>
+    <div class="hdr-sub">Install Guide</div>
+  </div>
+  <a href="/index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+</header>
+
+<div class="hero-band">
+  <div class="app-preview">✝</div>
+  <h1>Install on Your Phone</h1>
+  <p>Add the Auntie Margie memorial app to your home screen for quick access — no App Store needed.</p>
+</div>
+
+<div class="content">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('android')" id="tab-android">
+      <i class="fa-brands fa-android"></i>Android
+    </button>
+    <button class="tab" onclick="switchTab('iphone')" id="tab-iphone">
+      <i class="fa-brands fa-apple"></i>iPhone
+    </button>
+    <button class="tab" onclick="switchTab('share')" id="tab-share">
+      <i class="fa-solid fa-share-nodes"></i>Share
+    </button>
+  </div>
+
+  <!-- ── ANDROID ── -->
+  <div class="panel active" id="panel-android">
+    <br/>
+    <div class="device-badge"><i class="fa-brands fa-android"></i> Android · Chrome / Samsung Internet</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open the site in Chrome</div>
+          <div class="step-desc">Visit the memorial site in <strong>Google Chrome</strong> on your Android phone. Other browsers like Samsung Internet also work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Look for the Install Banner</div>
+          <div class="step-desc">After a few seconds, Chrome will automatically show a popup at the bottom of the screen:<br/><br/>
+          <div class="android-btn-demo"><i class="fa-solid fa-plus"></i> Add Auntie Margie to Home Screen</div></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Tap "Install" or "Add"</div>
+          <div class="step-desc">Tap the button and confirm. The app icon will appear on your home screen immediately.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">If the banner doesn't appear…</div>
+          <div class="step-desc">Tap the <strong>three-dot menu ⋮</strong> in Chrome's top-right corner, then tap <strong>"Add to Home Screen"</strong> or <strong>"Install App"</strong>.</div>
+          <div class="step-img">
+            <span class="step-icon">⋮</span>
+            Chrome Menu → <strong style="color:var(--gold);">Add to Home Screen</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>Once installed, the app works <strong>offline</strong>. You can view the programme, tributes and condolences even without internet.</div>
+    </div>
+  </div>
+
+  <!-- ── IPHONE ── -->
+  <div class="panel" id="panel-iphone">
+    <br/>
+    <div class="device-badge"><i class="fa-brands fa-apple"></i> iPhone & iPad · Safari</div>
+
+    <div class="notice" style="margin-bottom:20px;margin-top:0;">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div><strong>Important:</strong> This only works in <strong>Safari</strong>. If you're using Chrome or another browser on iPhone, switch to Safari first.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open in Safari</div>
+          <div class="step-desc">Open <strong>Safari</strong> on your iPhone and navigate to the memorial site URL.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Tap the Share button</div>
+          <div class="step-desc">At the bottom of Safari, tap the <strong>Share button</strong> — it looks like a box with an arrow pointing up: <strong style="font-size:1.1rem;">⬆</strong></div>
+          <div class="step-img">
+            <span class="step-icon">⬆</span>
+            Bottom toolbar → <strong style="color:var(--gold);">Share button</strong>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Scroll down and tap "Add to Home Screen"</div>
+          <div class="step-desc">In the share menu, scroll down until you see <strong>"Add to Home Screen"</strong> and tap it.</div>
+          <div class="step-img">
+            <span class="step-icon"><i class="fa-solid fa-plus-square"></i></span>
+            Share menu → <strong style="color:var(--gold);">Add to Home Screen</strong>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Tap "Add" to confirm</div>
+          <div class="step-desc">You'll see a preview with the app name. Tap <strong>"Add"</strong> in the top-right corner to confirm. The app icon will appear on your home screen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>On iPhone, the app opens in full screen, just like a native app — no Safari address bar.</div>
+    </div>
+  </div>
+
+  <!-- ── SHARE ── -->
+  <div class="panel" id="panel-share">
+    <br/>
+    <div class="device-badge"><i class="fa-solid fa-share-nodes"></i> Share with Family &amp; Friends</div>
+
+    <div class="share-section">
+      <h3>Send the App to Others</h3>
+      <p>Share the link so others can also install the memorial app on their phones.</p>
+      <div class="share-btns">
+        <a class="share-btn" onclick="shareWA()"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a>
+        <a class="share-btn" onclick="shareFB()"><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook</a>
+        <a class="share-btn" onclick="copyLink()"><i class="fa-solid fa-link" style="color:var(--gold);"></i> Copy Link</a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"><i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i></div>
+        <div class="step-body">
+          <div class="step-title">Share via WhatsApp (Recommended)</div>
+          <div class="step-desc">Tap "WhatsApp" above to share the link directly to your family group or individual contacts. Works on both Android and iPhone.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"><i class="fa-solid fa-qrcode" style="font-size:1rem;"></i></div>
+        <div class="step-body">
+          <div class="step-title">Or share the URL directly</div>
+          <div class="step-desc">Copy the link and paste it in any chat, SMS, or email. Anyone who opens it can install the app on their device using the steps above.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>In Loving Memory of Margaret Darkwaa Owusu · "Auntie Margie" · 1966 – 2026</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// Auto-detect device on load
+window.addEventListener('DOMContentLoaded', () => {
+  const ua = navigator.userAgent.toLowerCase();
+  if (/iphone|ipad|ipod/.test(ua)) switchTab('iphone');
+  else switchTab('android');
+});
+
+function shareWA() {
+  const msg = `📱 Install the Auntie Margie Memorial App on your phone!\n\nVisit the link, then:\n• Android: tap "Add to Home Screen" in Chrome\n• iPhone: tap Share → "Add to Home Screen" in Safari\n\n${window.location.origin}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+function shareFB() {
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.origin), '_blank');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.origin).then(() => {
+    alert('Link copied! Paste it in any chat to share.');
+  });
+}
+</script>
+</body>
+</html>
