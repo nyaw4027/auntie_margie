@@ -1,0 +1,20 @@
+{
+  "name": "Auntie Margie – In Loving Memory",
+  "short_name": "Auntie Margie",
+  "description": "In Loving Memory of Margaret Darkwaa Owusu – Auntie Margie. One Week Observation 12th May 2026.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#c8a84b",
+  "orientation": "portrait-primary",
+  "lang": "en-GB",
+  "categories": ["lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png",          "sizes": "192x192", "type": "image/png", "purpose": "any"      },
+    { "src": "icons/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512.png",          "sizes": "512x512", "type": "image/png", "purpose": "any"      },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/apple-touch-icon.png",  "sizes": "180x180", "type": "image/png", "purpose": "any"      }
+  ]
+}
