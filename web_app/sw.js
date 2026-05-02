@@ -1,57 +1,67 @@
-/* ═══════════════════════════════════════════════════════
-   SERVICE WORKER – Auntie Margie Memorial
-   Caches all core assets for offline use
-═══════════════════════════════════════════════════════ */
-const CACHE_NAME = 'auntie-margie-v1';
+const CACHE_NAME = "auntie-margie-v1";
 
+/* IMPORTANT: use correct base path for Firebase hosting */
+const BASE = "";
+
+/* Precache ONLY real static files */
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/icon-192-maskable.png',
-  '/icons/icon-512-maskable.png',
-  '/icons/apple-touch-icon.png'
+  `${BASE}/index.html`,
+  `${BASE}/manifest.json`,
+  `${BASE}/icons/icon-192.png`,
+  `${BASE}/icons/icon-512.png`,
+  `${BASE}/icons/icon-192-maskable.png`,
+  `${BASE}/icons/icon-512-maskable.png`,
+  `${BASE}/icons/apple-touch-icon.png`
 ];
 
-/* ── INSTALL: cache core assets ── */
-self.addEventListener('install', event => {
+/* INSTALL */
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(PRECACHE_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_ASSETS))
   );
+  self.skipWaiting();
 });
 
-/* ── ACTIVATE: remove old caches ── */
-self.addEventListener('activate', event => {
+/* ACTIVATE */
+self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+      Promise.all(
+        keys
+          .filter(k => k !== CACHE_NAME)
+          .map(k => caches.delete(k))
+      )
+    )
   );
+  self.clients.claim();
 });
 
-/* ── FETCH: network-first, fallback to cache ── */
-self.addEventListener('fetch', event => {
+/* FETCH (safe offline fallback) */
+self.addEventListener("fetch", event => {
   const req = event.request;
 
-  // Skip non-GET and cross-origin requests (Firebase, Google Fonts, CDN)
-  if (req.method !== 'GET') return;
+  if (req.method !== "GET") return;
+
   const url = new URL(req.url);
+
+  /* only handle same-origin */
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
     fetch(req)
       .then(res => {
-        // Cache successful same-origin responses
-        if (res && res.status === 200) {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(req, clone));
-        }
+        const copy = res.clone();
+
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(req, copy);
+        });
+
         return res;
       })
-      .catch(() => caches.match(req).then(cached => cached || caches.match('/index.html')))
+      .catch(() => {
+        return caches.match(req).then(res => {
+          return res || caches.match("/index.html");
+        });
+      })
   );
 });
