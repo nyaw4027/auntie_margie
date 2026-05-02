@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>In Loving Memory – Margaret Darkwaa Owusu "Auntie Margie"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Auntie Margie"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#c8a84b"/>
+<meta property="og:title" content="In Loving Memory – Margaret Darkwaa Owusu &quot;Auntie Margie&quot;"/>
+<meta property="og:description" content="Join us to celebrate the life of Auntie Margie. One Week Observation – 12th May 2026. Leave condolences, view the programme, and register your attendance."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="icons/icon-512.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="In Loving Memory – Auntie Margie"/>
+<meta name="twitter:description" content="Memorial page for Margaret Darkwaa Owusu. One Week Observation – 12th May 2026."/>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════════════════════ */
+:root {
+  --charcoal:   #1c1c1c;
+  --dark:       #111111;
+  --gold:       #c8a84b;
+  --gold-light: #e2c97a;
+  --gold-pale:  #f5e9c4;
+  --cream:      #f8f4ec;
+  --ivory:      #fdfaf4;
+  --text-dark:  #2a2a2a;
+  --text-mid:   #555550;
+  --text-light: #888880;
+  --border:     rgba(200,168,75,.25);
+  --shadow:     0 8px 40px rgba(0,0,0,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text-dark);overflow-x:hidden;}
+
+/* ── LOADING ── */
+#loading-screen{
+  position:fixed;inset:0;background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;transition:opacity .8s,visibility .8s;
+}
+#loading-screen.fade-out{opacity:0;visibility:hidden;}
+.loading-cross{position:relative;width:40px;height:40px;margin-bottom:24px;animation:pulse-cross 1.5s ease-in-out infinite;}
+.loading-cross::before,.loading-cross::after{content:'';position:absolute;background:var(--gold);border-radius:2px;}
+.loading-cross::before{width:4px;height:100%;top:0;left:50%;transform:translateX(-50%);}
+.loading-cross::after{width:100%;height:4px;top:50%;left:0;transform:translateY(-50%);}
+@keyframes pulse-cross{0%,100%{opacity:.4;transform:scale(.95);}50%{opacity:1;transform:scale(1.05);}}
+.loading-text{font-family:'Cormorant Garamond',serif;color:var(--gold-pale);font-size:1.1rem;letter-spacing:.3em;text-transform:uppercase;}
+
+/* ── NAVIGATION ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;
+  background:rgba(17,17,17,.97);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  z-index:1000;border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:64px;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;color:var(--gold);
+  font-size:1.05rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{
+  color:rgba(245,233,196,.7);text-decoration:none;
+  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 11px;border-radius:4px;cursor:pointer;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(200,168,75,.1);}
+.hamburger{display:none;background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:8px;}
+.mobile-menu{display:none;background:rgba(17,17,17,.98);border-top:1px solid var(--border);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{
+  display:block;color:rgba(245,233,196,.75);padding:14px 28px;
+  font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  cursor:pointer;text-decoration:none;transition:color .2s,background .2s;
+}
+.mobile-menu a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:64px;background:var(--ivory);animation:fadeInPage .45s ease forwards;}
+.page.active{display:block;}
+@keyframes fadeInPage{from{opacity:0;}to{opacity:1;}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:calc(100vh - 64px);background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,160,160,.05) 0%,transparent 60%),
+    linear-gradient(180deg,#111 0%,#1a1a15 60%,#111 100%);
+}
+.hero-pattern{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px);
+}
+.hero-content{position:relative;z-index:1;max-width:700px;padding:60px 24px;}
+.hero-ornament{color:var(--gold);font-size:1.6rem;letter-spacing:.6em;margin-bottom:20px;opacity:.6;display:block;}
+.hero-sub{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:16px;opacity:.85;}
+.hero-name{font-family:'Playfair Display',serif;color:var(--cream);font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;margin-bottom:8px;}
+.hero-name em{display:block;font-style:italic;color:var(--gold-light);font-size:.55em;font-weight:400;letter-spacing:.06em;margin-top:6px;}
+.hero-dates{font-family:'Cormorant Garamond',serif;color:rgba(245,233,196,.6);font-size:1.1rem;letter-spacing:.2em;margin:20px 0 8px;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-pale);font-size:1.25rem;margin:28px 0 40px;opacity:.8;line-height:1.6;}
+.hero-photo-ring{width:175px;height:175px;border-radius:50%;margin:0 auto 36px;position:relative;}
+.hero-photo-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--gold);opacity:.5;}
+.hero-photo-ring::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(200,168,75,.2);}
+.hero-photo-placeholder{
+  width:100%;height:100%;border-radius:50%;
+  background:linear-gradient(135deg,#2a2a20,#1e1e18);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.hero-photo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+.hero-photo-placeholder .hero-initials{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);opacity:.5;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,168,75,.1);border:1px solid var(--border);
+  border-radius:2px;padding:7px 18px;
+  font-family:'Cormorant Garamond',serif;font-size:.85rem;
+  color:var(--gold);letter-spacing:.12em;margin-bottom:16px;
+}
+.hero-scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  color:rgba(200,168,75,.4);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bounceDown 2s ease-in-out infinite;
+}
+@keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+
+/* ── COUNTDOWN ── */
+.countdown-strip{background:var(--dark);padding:36px 24px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.countdown-label{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:20px;display:block;}
+.countdown-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.countdown-box{background:var(--charcoal);border:1px solid var(--border);border-radius:4px;padding:18px 22px;min-width:80px;}
+.countdown-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--gold);display:block;line-height:1;}
+.countdown-unit{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-top:6px;display:block;}
+.countdown-done{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);font-style:italic;}
+
+/* ── STRIPS ── */
+.verse-strip{background:var(--charcoal);padding:40px 24px;text-align:center;}
+.verse-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--gold-pale);max-width:640px;margin:0 auto 12px;line-height:1.7;opacity:.85;}
+.verse-ref{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.6;}
+.about-strip{background:var(--charcoal);padding:56px 24px;text-align:center;}
+.about-strip p{font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.8;color:rgba(245,233,196,.75);max-width:680px;margin:0 auto;font-style:italic;}
+.about-strip strong{color:var(--gold);}
+
+/* ── SECTIONS ── */
+.section{padding:80px 24px;background:var(--ivory);}
+.section-alt{background:var(--cream);}
+.section-dark{background:var(--dark);color:var(--cream);}
+.section-header{text-align:center;margin-bottom:56px;}
+.section-eyebrow{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.2;color:var(--text-dark);}
+.section-title--cream{color:var(--cream);}
+.section-ornament{display:flex;align-items:center;gap:16px;justify-content:center;margin-top:20px;}
+.section-ornament span{width:40px;height:1px;background:var(--gold);opacity:.5;}
+.section-ornament i{color:var(--gold);font-size:.7rem;opacity:.7;}
+.container{max-width:1100px;margin:0 auto;}
+.container-sm{max-width:720px;margin:0 auto;}
+.container-md{max-width:900px;margin:0 auto;}
+
+/* ── EVENT CARDS ── */
+.quick-events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:8px;}
+.event-card{background:var(--ivory);border:1px solid var(--border);border-top:3px solid var(--gold);padding:28px 24px;border-radius:2px;transition:transform .2s,box-shadow .2s;}
+.event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.event-card-icon{width:40px;height:40px;background:rgba(200,168,75,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;margin-bottom:16px;}
+.event-card-type{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.event-card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.event-card-detail{font-size:.85rem;color:var(--text-mid);line-height:1.6;}
+.event-card-detail i{color:var(--gold);margin-right:5px;width:14px;}
+
+/* ── STATS ── */
+.stats-row{display:flex;flex-wrap:wrap;justify-content:center;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.stat-item{flex:1;min-width:140px;padding:28px 20px;text-align:center;border-right:1px solid var(--border);background:var(--ivory);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);display:block;margin-bottom:6px;}
+.stat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-light);}
+
+/* ── SHARE ── */
+.share-section{text-align:center;}
+.share-section p{color:rgba(245,233,196,.6);margin:24px auto;max-width:480px;line-height:1.8;font-size:.92rem;}
+.share-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px;}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 24px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
+.btn-outline:hover{background:var(--gold);color:var(--dark);}
+
+/* ── ANNOUNCEMENTS ── */
+.announcement-list{display:flex;flex-direction:column;gap:20px;}
+.announcement-item{background:var(--ivory);border-left:4px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s;}
+.announcement-item:hover{transform:translateX(4px);}
+.ann-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.ann-tag{background:var(--gold);color:var(--dark);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;font-weight:700;}
+.ann-date{font-size:.8rem;color:var(--text-light);}
+.ann-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text-dark);margin-bottom:8px;}
+.ann-body{font-size:.9rem;color:var(--text-mid);line-height:1.7;}
+
+/* ── PROGRAMME ── */
+.program-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
+.program-tab{padding:10px 22px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;}
+.program-tab.active,.program-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+.program-panel{display:none;}
+.program-panel.active{display:block;}
+.program-day-header{background:var(--charcoal);color:var(--gold-pale);padding:20px 28px;border-radius:4px 4px 0 0;}
+.program-day-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;}
+.program-day-header p{font-size:.85rem;opacity:.6;margin-top:4px;}
+.program-items{background:var(--ivory);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;}
+.program-item{display:flex;align-items:flex-start;padding:18px 28px;border-bottom:1px solid rgba(200,168,75,.1);transition:background .2s;}
+.program-item:last-child{border-bottom:none;}
+.program-item:hover{background:rgba(200,168,75,.03);}
+.program-item-num{width:32px;height:32px;flex-shrink:0;background:rgba(200,168,75,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--gold);margin-right:18px;margin-top:2px;}
+.program-item-body{flex:1;}
+.program-item-title{font-weight:700;font-size:.92rem;color:var(--text-dark);margin-bottom:3px;}
+.program-item-detail{font-size:.82rem;color:var(--text-mid);}
+.program-item-time{font-size:.75rem;color:var(--gold);font-weight:700;letter-spacing:.05em;margin-left:12px;flex-shrink:0;}
+
+/* ── FORMS ── */
+.form-wrap-dark{background:var(--charcoal);padding:40px;border-radius:4px;border:1px solid rgba(200,168,75,.15);margin-bottom:48px;}
+.form-wrap-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:24px;font-size:1.25rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:700;}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);
+  color:var(--cream);padding:12px 16px;border-radius:2px;
+  font-family:'Lato',sans-serif;font-size:.92rem;transition:border-color .2s;outline:none;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(245,233,196,.3);}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-group select option{background:var(--charcoal);}
+.checkbox-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+.checkbox-label{display:flex;align-items:center;gap:8px;color:var(--cream);font-size:.88rem;cursor:pointer;}
+.checkbox-label input[type="checkbox"]{accent-color:var(--gold);width:16px;height:16px;}
+.btn-gold{
+  background:var(--gold);color:var(--dark);border:none;
+  padding:14px 36px;font-family:'Lato',sans-serif;font-size:.8rem;
+  letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  cursor:pointer;border-radius:2px;transition:background .2s,transform .1s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
+.btn-gold:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.btn-gold--sm{padding:10px 24px;font-size:.75rem;}
+
+/* ── CONDOLENCES ── */
+.cond-status-bar{display:flex;align-items:center;gap:10px;padding:11px 18px;border-radius:4px;margin-bottom:28px;font-size:.82rem;}
+.cond-status-bar.live{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
+.cond-status-bar.offline{background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.2);}
+.live-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.live-dot.green{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:pulseDot 1.8s ease-in-out infinite;}
+.live-dot.amber{background:var(--gold);}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2);}50%{box-shadow:0 0 0 8px rgba(34,197,94,.04);}}
+.status-text{color:var(--text-mid);}
+.status-count{margin-left:auto;color:var(--text-light);font-weight:700;}
+.condolence-cards{display:flex;flex-direction:column;gap:20px;}
+.condolence-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;padding:24px 28px;position:relative;transition:box-shadow .2s;}
+.condolence-card.new-card{animation:slideIn .5s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0);}}
+.condolence-card:hover{box-shadow:var(--shadow);}
+.condolence-card::before{content:'\201C';position:absolute;top:16px;left:20px;font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);opacity:.15;line-height:1;pointer-events:none;}
+.condolence-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-left:8px;}
+.condolence-name{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;color:var(--text-dark);}
+.condolence-relation{font-size:.75rem;color:var(--gold);letter-spacing:.08em;}
+.condolence-date{font-size:.75rem;color:var(--text-light);white-space:nowrap;flex-shrink:0;margin-left:12px;}
+.condolence-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:var(--text-mid);line-height:1.75;padding-left:8px;}
+.condolences-heading{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:20px;color:var(--text-dark);}
+.cond-empty{text-align:center;padding:52px 20px;color:var(--text-light);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;border:1px dashed rgba(200,168,75,.2);border-radius:4px;}
+.cond-empty i{display:block;font-size:2rem;color:var(--gold);opacity:.2;margin-bottom:12px;}
+
+/* ── AI WRITER ── */
+.ai-writer-box{background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:24px 28px;margin-bottom:28px;}
+.ai-writer-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.ai-writer-sub{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
+.ai-result-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--gold-pale);line-height:1.75;margin-top:14px;display:none;min-height:80px;}
+.ai-result-box.show{display:block;}
+.ai-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.btn-secondary{background:transparent;color:rgba(200,168,75,.7);border:1px solid rgba(200,168,75,.3);padding:9px 20px;font-family:'Lato',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
+.btn-secondary:hover{background:rgba(200,168,75,.1);color:var(--gold);border-color:var(--gold);}
+
+/* ── WA CARD ── */
+.wa-card{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);border-radius:4px;padding:20px 24px;margin-top:20px;display:none;flex-direction:column;gap:14px;}
+.wa-card.show{display:flex;}
+.wa-card-title{color:#25d366;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:10px;}
+.wa-card-body{font-size:.88rem;color:var(--gold-pale);line-height:1.6;}
+.wa-card-body strong{color:#25d366;}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:13px 28px;font-family:'Lato',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;display:inline-flex;align-items:center;gap:10px;transition:background .2s;align-self:flex-start;}
+.btn-whatsapp:hover{background:#1ebe5d;}
+
+/* ── SKELETON ── */
+.skeleton-wrap{display:flex;flex-direction:column;gap:18px;}
+.skeleton-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;padding:24px 28px;}
+.skel{background:linear-gradient(90deg,rgba(200,168,75,.07) 25%,rgba(200,168,75,.14) 50%,rgba(200,168,75,.07) 75%);background-size:400% 100%;animation:shimmer 1.4s infinite;border-radius:3px;margin-bottom:10px;}
+@keyframes shimmer{0%{background-position:100% 0;}100%{background-position:-100% 0;}}
+.skel.s{height:11px;width:35%;}
+.skel.m{height:11px;width:60%;}
+.skel.l{height:11px;width:88%;}
+.skel.xl{height:44px;}
+
+/* ── TRIBUTES ── */
+.tribute-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:52px;}
+.tribute-tab{padding:11px 26px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;display:flex;align-items:center;gap:8px;}
+.tribute-tab.active,.tribute-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+.tribute-panel{display:none;}
+.tribute-panel.active{display:block;}
+.tribute-text-block{background:var(--ivory);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:40px 44px;position:relative;margin-bottom:40px;}
+.tribute-text-block::before{content:'\201C';position:absolute;top:12px;left:22px;font-family:'Playfair Display',serif;font-size:6rem;color:var(--gold);opacity:.09;line-height:1;pointer-events:none;}
+.tribute-text-body{font-family:'Cormorant Garamond',serif;font-size:1.22rem;line-height:2;color:var(--text-mid);font-style:italic;padding-left:14px;white-space:pre-line;}
+.tribute-signoff{display:flex;align-items:center;gap:16px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border);}
+.tribute-signoff-icon{width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0;}
+.tribute-signoff-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);}
+.tribute-signoff-role{font-size:.78rem;color:var(--text-light);margin-top:3px;}
+.tribute-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:20px;}
+.member-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-align:center;}
+.member-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.member-photo-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--charcoal);cursor:pointer;}
+.member-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s;}
+.member-card:hover .member-photo-wrap img{transform:scale(1.05);}
+.member-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e1e18,#2a2a22);color:var(--gold);gap:10px;text-align:center;border-radius:4px;}
+.member-photo-placeholder i{font-size:2.8rem;opacity:.4;}
+.member-photo-placeholder span{font-size:.68rem;letter-spacing:.12em;color:var(--text-light);text-transform:uppercase;}
+.member-info{padding:16px 12px 18px;}
+.member-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:5px;}
+.member-occupation{font-size:.78rem;color:var(--gold);letter-spacing:.05em;line-height:1.4;}
+.tribute-empty{text-align:center;padding:48px 20px;color:var(--text-light);font-size:.9rem;border:1px dashed rgba(200,168,75,.2);border-radius:4px;}
+.tribute-empty i{display:block;font-size:2.4rem;color:var(--gold);opacity:.2;margin-bottom:14px;}
+.tribute-page-sub{margin:16px auto 0;color:var(--text-mid);font-size:.9rem;max-width:540px;text-align:center;line-height:1.7;}
+
+/* ── GALLERY ── */
+.slideshow-wrap{position:relative;max-width:720px;margin:0 auto;}
+.slideshow-stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:8px;background:var(--charcoal);border:1px solid var(--border);}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
+.slide.active{opacity:1;}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:28px 20px 16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-pale);font-size:1rem;text-align:center;}
+.slide-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;}
+.slide-btn{width:40px;height:40px;border-radius:50%;background:var(--charcoal);border:1px solid var(--border);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s;}
+.slide-btn:hover{background:var(--gold);color:var(--dark);}
+.slide-dots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:300px;}
+.slide-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:background .2s;}
+.slide-dot.active{background:var(--gold);}
+.slide-counter{font-size:.78rem;color:var(--text-light);letter-spacing:.1em;min-width:50px;text-align:center;}
+.gallery-placeholder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:32px;}
+.gallery-ph-item{aspect-ratio:3/4;background:var(--charcoal);border:1px solid var(--border);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-light);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;gap:10px;}
+.gallery-ph-item i{font-size:1.8rem;color:var(--gold);opacity:.25;}
+
+/* ── FAMILY CHAT ── */
+.chat-wrap{display:flex;height:calc(100vh - 64px);overflow:hidden;background:var(--dark);}
+.chat-sidebar{width:280px;flex-shrink:0;background:#161610;border-right:1px solid rgba(200,168,75,.12);display:flex;flex-direction:column;}
+.chat-sidebar-head{padding:16px 18px;border-bottom:1px solid rgba(200,168,75,.1);background:#111108;}
+.chat-sidebar-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:.95rem;font-weight:600;}
+.chat-sidebar-sub{font-size:.72rem;color:var(--text-light);margin-top:3px;}
+.online-list{padding:10px 14px;flex:1;overflow-y:auto;}
+.online-item{display:flex;align-items:center;gap:10px;padding:8px 6px;border-bottom:1px solid rgba(200,168,75,.06);font-size:.82rem;}
+.online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+.online-name{color:var(--gold-pale);}
+.chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.chat-header{padding:16px 20px;border-bottom:1px solid rgba(200,168,75,.12);background:#111108;display:flex;align-items:center;gap:12px;}
+.chat-header-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1rem;font-weight:600;}
+.chat-header-sub{font-size:.72rem;color:var(--text-light);}
+.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;}
+.chat-messages::-webkit-scrollbar{width:3px;}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(200,168,75,.2);}
+.chat-bubble{max-width:68%;border-radius:12px;padding:12px 16px;font-size:.9rem;line-height:1.55;}
+.chat-bubble.other{background:rgba(255,255,255,.06);color:var(--cream);align-self:flex-start;border-bottom-left-radius:2px;}
+.chat-bubble.mine{background:rgba(200,168,75,.18);color:var(--gold-pale);align-self:flex-end;border-bottom-right-radius:2px;}
+.bubble-name{font-size:.68rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em;}
+.bubble-time{font-size:.65rem;color:var(--text-light);margin-top:5px;text-align:right;}
+.chat-input-bar{padding:14px 16px;border-top:1px solid rgba(200,168,75,.12);background:#111108;display:flex;gap:10px;}
+.chat-input-bar input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:20px;font-size:.88rem;outline:none;font-family:'Lato',sans-serif;}
+.chat-input-bar input::placeholder{color:rgba(245,233,196,.25);}
+.chat-input-bar input:focus{border-color:rgba(200,168,75,.5);}
+.chat-send-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;}
+.chat-send-btn:hover{background:var(--gold-light);}
+.chat-auth{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px;}
+.chat-auth-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1.4rem;text-align:center;}
+.chat-auth-sub{color:var(--text-light);font-size:.88rem;text-align:center;max-width:320px;line-height:1.7;}
+.chat-auth-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.chat-auth-tab{padding:9px 22px;background:transparent;border:none;color:var(--text-mid);font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.chat-auth-tab.active{background:var(--gold);color:var(--dark);}
+.chat-auth-form{width:100%;max-width:360px;display:flex;flex-direction:column;gap:12px;}
+.chat-auth-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:12px 16px;border-radius:2px;font-size:.9rem;outline:none;font-family:'Lato',sans-serif;}
+.chat-auth-input:focus{border-color:var(--gold);}
+.chat-auth-input::placeholder{color:rgba(245,233,196,.3);}
+@media(max-width:640px){.chat-sidebar{display:none;}.chat-wrap{height:calc(100vh - 64px);}}
+
+/* ── LIVESTREAM ── */
+.livestream-embed{position:relative;padding-bottom:56.25%;height:0;background:#000;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;}
+.livestream-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
+.livestream-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--charcoal);color:var(--gold-pale);gap:16px;text-align:center;padding:24px;}
+.livestream-placeholder i{font-size:3rem;color:var(--gold);opacity:.6;}
+.livestream-placeholder h3{font-family:'Playfair Display',serif;font-size:1.4rem;}
+.livestream-placeholder p{font-size:.88rem;color:var(--text-light);max-width:340px;line-height:1.6;}
+.livestream-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px;}
+.stream-link{display:flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);text-decoration:none;font-size:.88rem;background:var(--charcoal);transition:all .2s;}
+.stream-link:hover{border-color:var(--gold);color:var(--gold);}
+.stream-link i{font-size:1.2rem;}
+.ic-fb{color:#1877f2;}.ic-yt{color:#ff0000;}.ic-zm{color:#2d8cff;}
+.admin-panel{background:var(--charcoal);border:1px solid rgba(200,168,75,.18);border-radius:4px;padding:24px;}
+.admin-panel--mt{margin-top:24px;}
+.admin-panel-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:12px;font-size:1rem;display:flex;align-items:center;gap:8px;}
+.admin-panel-title i{color:var(--gold);}
+.admin-panel-note{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
+.admin-input{width:100%;padding:10px 14px;border:1px solid rgba(200,168,75,.2);border-radius:2px;font-family:'Lato',sans-serif;font-size:.88rem;background:rgba(255,255,255,.05);color:var(--cream);outline:none;}
+.admin-input::placeholder{color:rgba(245,233,196,.3);}
+.admin-input:focus{border-color:var(--gold);}
+.admin-row{display:flex;gap:12px;flex-wrap:wrap;}
+.admin-row .admin-input{flex:1;min-width:200px;}
+.admin-links-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.admin-field-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;font-weight:700;}
+.admin-mt{margin-top:14px;}
+
+/* ── ATTEND ── */
+.attend-intro{background:var(--charcoal);border:1px solid rgba(200,168,75,.15);border-left:4px solid var(--gold);padding:20px 24px;border-radius:0 4px 4px 0;margin-bottom:36px;color:var(--gold-pale);font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.6;}
+.attend-intro strong{color:var(--gold);}
+.sms-notice{background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:14px 18px;margin-top:20px;font-size:.82rem;color:var(--gold-pale);display:flex;gap:10px;align-items:flex-start;}
+.sms-notice i{color:var(--gold);flex-shrink:0;margin-top:2px;}
+.attendees-section{margin-top:48px;}
+.attendees-heading{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:20px;color:var(--text-dark);display:flex;align-items:baseline;gap:10px;}
+.attendees-count{font-size:.85rem;font-weight:400;color:var(--text-light);}
+.attendees-table{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.attendees-empty{padding:40px;text-align:center;color:var(--text-light);font-size:.9rem;}
+.attendance-item{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border);font-size:.9rem;transition:background .2s;}
+.attendance-item:hover{background:rgba(200,168,75,.03);}
+.attendance-item:last-child{border-bottom:none;}
+.attendee-avatar{width:36px;height:36px;border-radius:50%;background:rgba(200,168,75,.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.85rem;font-weight:700;flex-shrink:0;}
+.attendee-info{flex:1;min-width:0;}
+.attendee-name{font-weight:700;color:var(--text-dark);}
+.attendee-meta{font-size:.78rem;color:var(--text-light);}
+.attendee-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
+.attendee-badge{font-size:.7rem;padding:3px 9px;background:rgba(200,168,75,.1);color:var(--gold);border-radius:2px;letter-spacing:.08em;text-transform:uppercase;}
+
+/* ── MUSIC PLAYER ── */
+.music-player{position:fixed;bottom:24px;right:20px;z-index:4000;display:flex;align-items:center;gap:10px;background:var(--charcoal);border:1px solid var(--border);border-radius:50px;padding:10px 18px 10px 12px;box-shadow:0 4px 20px rgba(0,0,0,.4);}
+.music-btn{width:38px;height:38px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;}
+.music-btn:hover{background:var(--gold-light);}
+.music-info{display:flex;flex-direction:column;max-width:150px;}
+.music-title{font-family:'Playfair Display',serif;font-size:.72rem;color:var(--gold-pale);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.music-sub{font-size:.62rem;color:var(--text-light);letter-spacing:.06em;margin-top:2px;}
+.music-vol{width:60px;accent-color:var(--gold);cursor:pointer;}
+
+/* ── INSTALL BANNER ── */
+.install-banner{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;
+  padding:14px 20px;display:none;align-items:center;gap:14px;z-index:3000;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);max-width:360px;width:90%;
+}
+.install-banner.show{display:flex;}
+.install-banner-text{flex:1;font-size:.85rem;color:var(--gold-pale);line-height:1.5;}
+.install-banner-text strong{color:var(--gold);display:block;margin-bottom:2px;font-size:.9rem;}
+.install-btn{background:var(--gold);color:var(--dark);border:none;padding:9px 18px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;white-space:nowrap;}
+.install-close{background:none;border:none;color:var(--text-light);font-size:1.1rem;cursor:pointer;padding:4px;}
+
+/* ── LIGHTBOX ── */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:2000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:78vh;object-fit:contain;border-radius:2px;}
+.lightbox-caption{color:var(--gold-pale);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;opacity:.8;text-align:center;}
+.lightbox-close{position:absolute;top:24px;right:28px;color:var(--gold);font-size:1.8rem;cursor:pointer;opacity:.7;background:none;border:none;transition:opacity .2s;}
+.lightbox-close:hover{opacity:1;}
+
+/* ── TOAST ── */
+#toast{
+  position:fixed;bottom:28px;left:28px;
+  background:var(--charcoal);border:1px solid var(--gold);color:var(--cream);
+  padding:14px 22px;border-radius:4px;font-size:.88rem;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:5000;
+  transform:translateY(80px);opacity:0;transition:all .35s;
+  display:flex;align-items:center;gap:10px;max-width:320px;
+}
+#toast.show{transform:translateY(0);opacity:1;}
+#toast i{color:var(--gold);}
+
+/* ── FOOTER ── */
+.site-footer{background:var(--dark);border-top:1px solid rgba(200,168,75,.18);font-family:'Lato',sans-serif;color:rgba(245,233,196,.4);font-size:.82rem;}
+.footer-top{display:flex;align-items:center;justify-content:center;gap:14px;padding:28px 24px 22px;border-bottom:1px solid rgba(200,168,75,.09);flex-wrap:wrap;text-align:center;}
+.footer-memorial{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(245,233,196,.5);line-height:1.5;}
+.footer-memorial strong{color:var(--gold);font-style:normal;}
+.footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;padding:18px 24px;border-bottom:1px solid rgba(200,168,75,.09);}
+.footer-nav a{color:rgba(245,233,196,.3);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;padding:5px 11px;border-radius:2px;transition:color .2s,background .2s;}
+.footer-nav a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:16px 32px;flex-wrap:wrap;}
+.footer-left{font-size:.76rem;color:rgba(245,233,196,.25);letter-spacing:.04em;}
+.footer-copy{text-align:center;padding:13px 24px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:rgba(245,233,196,.18);letter-spacing:.06em;border-top:1px solid rgba(200,168,75,.06);}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+  .section{padding:60px 16px;}
+  .form-wrap-dark{padding:24px 20px;}
+  .form-row{grid-template-columns:1fr;}
+  .hero-content{padding:40px 16px;}
+  .admin-links-grid{grid-template-columns:1fr;}
+  .tribute-text-block{padding:28px 22px 28px 26px;}
+  .tribute-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+  .condolence-header{flex-wrap:wrap;gap:6px;}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;padding:16px 20px;}
+  .music-player{bottom:16px;right:12px;}
+  .music-vol{width:44px;}
+}
+@media(max-width:480px){
+  .tribute-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOADING SCREEN ══ -->
+<div id="loading-screen">
+  <div class="loading-cross"></div>
+  <div class="loading-text">In Loving Memory</div>
+</div>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" onclick="showPage('home')">
+      <i class="fa-solid fa-cross" style="font-size:.8rem;opacity:.7;"></i>
+      Auntie Margie
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" class="active">Home</a></li>
+      <li><a onclick="showPage('announcements')">Announcements</a></li>
+      <li><a onclick="showPage('programme')">Programme</a></li>
+      <li><a onclick="showPage('condolences')">Condolences</a></li>
+      <li><a onclick="showPage('tributes')">Tributes</a></li>
+      <li><a onclick="showPage('chat')">Family Chat</a></li>
+      <li><a onclick="showPage('gallery')">Gallery</a></li>
+      <li><a onclick="showPage('livestream')">Livestream</a></li>
+      <li><a onclick="showPage('attend')">Attend</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMobile()"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home');toggleMobile()">Home</a>
+    <a onclick="showPage('announcements');toggleMobile()">Announcements</a>
+    <a onclick="showPage('programme');toggleMobile()">Programme</a>
+    <a onclick="showPage('condolences');toggleMobile()">Condolences</a>
+    <a onclick="showPage('tributes');toggleMobile()">Tributes</a>
+    <a onclick="showPage('chat');toggleMobile()">Family Chat</a>
+    <a onclick="showPage('gallery');toggleMobile()">Gallery</a>
+    <a onclick="showPage('livestream');toggleMobile()">Livestream</a>
+    <a onclick="showPage('attend');toggleMobile()">Attend &amp; Register</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: HOME
+═══════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <span class="hero-ornament">✦ ✦ ✦</span>
+      <div class="hero-photo-ring">
+        <div class="hero-photo-placeholder">
+          <span class="hero-initials">M</span>
+        </div>
+      </div>
+      <p class="hero-sub">In Loving Memory of</p>
+      <h1 class="hero-name">
+        Margaret Darkwaa Owusu
+        <em>"Auntie Margie"</em>
+      </h1>
+      <p class="hero-dates"><span style="opacity:.4">—</span>&nbsp; 1966 &nbsp;·&nbsp; 2026 &nbsp;<span style="opacity:.4">—</span></p>
+      <p class="hero-tagline">"A life so beautifully lived, a love so deeply felt.<br/>Gone from our sight, but never from our hearts."</p>
+      <div class="hero-badge"><i class="fa-solid fa-church" style="font-size:.75rem;"></i> One Week – 12th May 2026</div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-strip">
+    <span class="countdown-label" id="cdLabel">⛪ One Week Observation begins in</span>
+    <div class="countdown-grid" id="cdGrid">
+      <div class="countdown-box"><span class="countdown-num" id="cdDays">--</span><span class="countdown-unit">Days</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdHours">--</span><span class="countdown-unit">Hours</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdMins">--</span><span class="countdown-unit">Minutes</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdSecs">--</span><span class="countdown-unit">Seconds</span></div>
+    </div>
+  </div>
+
+  <!-- VERSE -->
+  <div class="verse-strip">
+    <p class="verse-text">"I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live, and everyone who lives and believes in me shall never die."</p>
+    <p class="verse-ref">John 11:25–26</p>
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <div class="about-strip">
+    <p><strong>Auntie Margie</strong> was a woman of extraordinary grace, faith, and warmth. For 60 beautiful years, she touched every life she encountered with love, wisdom, and an unwavering devotion to God and family. Her laughter was a gift, her prayers a shelter, and her legacy — eternal.</p>
+  </div>
+
+  <!-- EVENTS -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Schedule of Events</span>
+        <h2 class="section-title">Funeral Programme</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="quick-events-grid">
+        <div class="event-card reveal reveal-delay-1">
+          <div class="event-card-icon"><i class="fa-solid fa-sun"></i></div>
+          <div class="event-card-type">Day 1</div>
+          <div class="event-card-name">One Week Observation</div>
+          <div class="event-card-detail">
+            <div><i class="fa-regular fa-calendar"></i> Tuesday, 12th May 2026</div>
+            <div><i class="fa-regular fa-clock"></i> 7:00 AM onwards</div>
+            <div><i class="fa-solid fa-location-dot"></i> Family Residence</div>
+          </div>
+        </div>
+        <div class="event-card reveal reveal-delay-2">
+          <div class="event-card-icon"><i class="fa-solid fa-moon"></i></div>
+          <div class="event-card-type">Day 2</div>
+          <div class="event-card-name">Wake Keeping</div>
+          <div class="event-card-detail">
+            <div><i class="fa-regular fa-calendar"></i> Date to be announced</div>
+            <div><i class="fa-regular fa-clock"></i> 8:00 PM</div>
+            <div><i class="fa-solid fa-location-dot"></i> Family Residence</div>
+          </div>
+        </div>
+        <div class="event-card reveal reveal-delay-3">
+          <div class="event-card-icon"><i class="fa-solid fa-church"></i></div>
+          <div class="event-card-type">Day 3</div>
+          <div class="event-card-name">Burial Service</div>
+          <div class="event-card-detail">
+            <div><i class="fa-regular fa-calendar"></i> Date to be announced</div>
+            <div><i class="fa-regular fa-clock"></i> 9:00 AM</div>
+            <div><i class="fa-solid fa-location-dot"></i> Venue to be announced</div>
+          </div>
+        </div>
+        <div class="event-card reveal reveal-delay-4">
+          <div class="event-card-icon"><i class="fa-solid fa-hands-praying"></i></div>
+          <div class="event-card-type">Day 4</div>
+          <div class="event-card-name">Thanksgiving Service</div>
+          <div class="event-card-detail">
+            <div><i class="fa-regular fa-calendar"></i> Date to be announced</div>
+            <div><i class="fa-regular fa-clock"></i> 9:00 AM</div>
+            <div><i class="fa-solid fa-location-dot"></i> Church Venue TBA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="section section-alt">
+    <div class="container-md reveal">
+      <div class="stats-row">
+        <div class="stat-item"><span class="stat-num">60</span><span class="stat-label">Years of Life</span></div>
+        <div class="stat-item"><span class="stat-num" id="statCond">0</span><span class="stat-label">Condolences</span></div>
+        <div class="stat-item"><span class="stat-num" id="statAtt">0</span><span class="stat-label">Registered Attendees</span></div>
+        <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Events</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE -->
+  <div class="section section-dark">
+    <div class="container-md reveal share-section">
+      <span class="section-eyebrow">Spread the Word</span>
+      <h2 class="section-title section-title--cream">Share This Memorial</h2>
+      <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      <p>Share this page with family and friends anywhere in the world. They can view the programme, leave condolences, register attendance, and watch the livestream from any device.</p>
+      <div class="share-btns">
+        <button class="btn-outline" onclick="shareWA()"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+        <button class="btn-outline" onclick="shareFB()"><i class="fa-brands fa-facebook"></i> Facebook</button>
+        <button class="btn-outline" onclick="copyLink()"><i class="fa-solid fa-link"></i> Copy Link</button>
+      </div>
+      <!-- INSTALL CARD -->
+      <div style="margin-top:36px;background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.25);border-radius:8px;padding:24px 28px;max-width:480px;margin-left:auto;margin-right:auto;">
+        <p style="font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">📱 Install the App</p>
+        <p style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin-bottom:10px;">Add to Your Home Screen</p>
+        <p style="font-size:.88rem;color:rgba(245,233,196,.5);line-height:1.65;margin-bottom:18px;">Install this memorial as an app on your phone for instant access — no App Store required.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:9px 16px;font-size:.82rem;color:rgba(245,233,196,.7);">
+            <i class="fa-brands fa-android" style="color:#3ddc84;font-size:1.1rem;"></i>
+            Chrome menu → <strong style="color:var(--gold);">Add to Home Screen</strong>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:9px 16px;font-size:.82rem;color:rgba(245,233,196,.7);">
+            <i class="fa-brands fa-apple" style="color:rgba(245,233,196,.6);font-size:1.1rem;"></i>
+            Safari Share ⬆ → <strong style="color:var(--gold);">Add to Home Screen</strong>
+          </div>
+        </div>
+        <a href="/install.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--dark);border:none;padding:11px 26px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;text-decoration:none;transition:background .2s;">
+          <i class="fa-solid fa-mobile-screen-button"></i> Step-by-Step Install Guide
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: ANNOUNCEMENTS
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-announcements">
+  <div class="section">
+    <div class="container-md">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Updates</span>
+        <h2 class="section-title">Announcements</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="announcement-list reveal">
+        <div class="announcement-item">
+          <div class="ann-meta"><span class="ann-tag">Important</span><span class="ann-date">May 2026</span></div>
+          <div class="ann-title">One Week Observation – 12th May 2026</div>
+          <div class="ann-body">The One Week Observation for our beloved Margaret Darkwaa Owusu will be held on Tuesday, 12th May 2026 from 7:00 AM at the Family Residence. All family members and friends are warmly invited to come and celebrate her life and honour her memory. Please register your attendance on the Attend page.</div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-meta"><span class="ann-tag">Notice</span><span class="ann-date">May 2026</span></div>
+          <div class="ann-title">Wake Keeping, Burial & Thanksgiving Dates Pending</div>
+          <div class="ann-body">The dates and venues for the Wake Keeping, Burial Service and Thanksgiving Service are yet to be confirmed. Kindly check this page regularly for updates or follow the family's social media handles for real-time announcements.</div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-meta"><span class="ann-tag">Livestream</span><span class="ann-date">May 2026</span></div>
+          <div class="ann-title">Online Streaming Will Be Available</div>
+          <div class="ann-body">For those who cannot attend in person, a livestream will be made available on the Livestream page during the events. Links to Facebook Live and YouTube will be activated on the day. Please check back closer to the event dates.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: PROGRAMME
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-programme">
+  <div class="section">
+    <div class="container-md">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Order of Service</span>
+        <h2 class="section-title">Funeral Programme</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="program-tabs">
+        <button class="program-tab active" onclick="switchProgram('one-week',this)">One Week</button>
+        <button class="program-tab" onclick="switchProgram('wake',this)">Wake Keeping</button>
+        <button class="program-tab" onclick="switchProgram('burial',this)">Burial Service</button>
+        <button class="program-tab" onclick="switchProgram('thanksgiving',this)">Thanksgiving</button>
+      </div>
+
+      <div class="program-panel active" id="prog-one-week">
+        <div class="program-day-header">
+          <h3>One Week Observation</h3>
+          <p>Tuesday, 12th May 2026 &nbsp;·&nbsp; Family Residence</p>
+        </div>
+        <div class="program-items">
+          <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Arrival of Family & Friends</div><div class="program-item-detail">Guests begin arriving at the family residence</div></div><div class="program-item-time">7:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Opening Prayers & Devotion</div><div class="program-item-detail">Led by the Family Pastor &amp; Church Elders</div></div><div class="program-item-time">7:30 AM</div></div>
+          <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Hymns & Praise Worship</div><div class="program-item-detail">Congregational singing and worship</div></div><div class="program-item-time">8:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">4</div><div class="program-item-body"><div class="program-item-title">Scripture Reading & Sermon</div><div class="program-item-detail">Message of hope and comfort from God's Word</div></div><div class="program-item-time">8:30 AM</div></div>
+          <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Tributes & Sharing of Memories</div><div class="program-item-detail">Family members, friends and church share memories of Auntie Margie</div></div><div class="program-item-time">9:30 AM</div></div>
+          <div class="program-item"><div class="program-item-num">6</div><div class="program-item-body"><div class="program-item-title">Closing Prayer & Benediction</div><div class="program-item-detail">Final prayers and blessing over the family</div></div><div class="program-item-time">11:30 AM</div></div>
+          <div class="program-item"><div class="program-item-num">7</div><div class="program-item-body"><div class="program-item-title">Communal Lunch & Fellowship</div><div class="program-item-detail">Family and guests share a meal together</div></div><div class="program-item-time">12:00 PM</div></div>
+        </div>
+      </div>
+
+      <div class="program-panel" id="prog-wake">
+        <div class="program-day-header"><h3>Wake Keeping</h3><p>Date to be announced &nbsp;·&nbsp; Family Residence</p></div>
+        <div class="program-items">
+          <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Reception of Guests</div><div class="program-item-detail">Family residence</div></div><div class="program-item-time">8:00 PM</div></div>
+          <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Praise &amp; Worship, Hymns</div><div class="program-item-detail">Congregational singing throughout the night</div></div><div class="program-item-time">8:30 PM</div></div>
+          <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Tributes, Readings &amp; Prayers</div><div class="program-item-detail">Open tributes from all who attend</div></div><div class="program-item-time">9:30 PM</div></div>
+          <div class="program-item"><div class="program-item-num">4</div><div class="program-item-body"><div class="program-item-title">Night of Prayers &amp; Fellowship</div><div class="program-item-detail">Continuous overnight worship and prayer</div></div><div class="program-item-time">Midnight</div></div>
+        </div>
+      </div>
+
+      <div class="program-panel" id="prog-burial">
+        <div class="program-day-header"><h3>Burial Service</h3><p>Date to be announced &nbsp;·&nbsp; Venue to be announced</p></div>
+        <div class="program-items">
+          <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Arrival &amp; Seating of Guests</div><div class="program-item-detail">Venue to be announced</div></div><div class="program-item-time">9:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Processional &amp; Opening Hymn</div><div class="program-item-detail">Cortège enters the venue</div></div><div class="program-item-time">9:30 AM</div></div>
+          <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Funeral Service &amp; Sermon</div><div class="program-item-detail">Led by the officiating clergy</div></div><div class="program-item-time">10:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">4</div><div class="program-item-body"><div class="program-item-title">Tributes &amp; Biography</div><div class="program-item-detail">Life story and tributes read</div></div><div class="program-item-time">11:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Committal &amp; Interment</div><div class="program-item-detail">Final rites and burial</div></div><div class="program-item-time">12:00 PM</div></div>
+        </div>
+      </div>
+
+      <div class="program-panel" id="prog-thanksgiving">
+        <div class="program-day-header"><h3>Thanksgiving Service</h3><p>Date to be announced &nbsp;·&nbsp; Church Venue TBA</p></div>
+        <div class="program-items">
+          <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Opening Prayer &amp; Praise</div><div class="program-item-detail">Church service of thanksgiving</div></div><div class="program-item-time">9:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Thanksgiving Sermon</div><div class="program-item-detail">A message of gratitude for a life well lived</div></div><div class="program-item-time">10:00 AM</div></div>
+          <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Final Hymn &amp; Benediction</div><div class="program-item-detail">Closing of service</div></div><div class="program-item-time">11:30 AM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: CONDOLENCES
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-condolences">
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Share Your Love</span>
+        <h2 class="section-title">Condolence Messages</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" id="condGrid">
+
+        <!-- FORM SIDE -->
+        <div>
+          <!-- AI WRITER -->
+          <div class="ai-writer-box reveal">
+            <div class="ai-writer-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--gold);"></i> AI Condolence Writer</div>
+            <div class="ai-writer-sub">Not sure what to write? Let our AI craft a heartfelt, personalised message for you in seconds.</div>
+            <div class="form-row">
+              <div class="form-group" style="margin-bottom:0;"><label>Your Name</label><input type="text" id="aiName" placeholder="Your name" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/></div>
+              <div class="form-group" style="margin-bottom:0;"><label>Your Relationship</label><input type="text" id="aiRel" placeholder="e.g. Church friend" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/></div>
+            </div>
+            <div class="ai-actions" style="margin-top:14px;">
+              <button class="btn-gold btn-gold--sm" onclick="generateAIMessage()" id="aiBtnGen"><i class="fa-solid fa-sparkles"></i> Generate Message</button>
+            </div>
+            <div class="ai-result-box" id="aiResultBox"></div>
+            <div class="ai-actions" id="aiUseActions" style="display:none;">
+              <button class="btn-gold btn-gold--sm" onclick="useAIMessage()"><i class="fa-solid fa-check"></i> Use This Message</button>
+              <button class="btn-secondary" onclick="generateAIMessage()"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+            </div>
+          </div>
+
+          <div class="form-wrap-dark reveal">
+            <div class="form-wrap-title">Leave a Condolence</div>
+            <div class="form-row">
+              <div class="form-group"><label>Your Name *</label><input type="text" id="cName" placeholder="Your full name"/></div>
+              <div class="form-group"><label>Relationship</label><input type="text" id="cRel" placeholder="e.g. Friend, Colleague…"/></div>
+            </div>
+            <div class="form-group"><label>Your Message *</label><textarea id="cMsg" rows="5" placeholder="Share your thoughts, prayers, and memories of Auntie Margie…"></textarea></div>
+            <button class="btn-gold" onclick="submitCondolence()" id="condBtn"><i class="fa-solid fa-paper-plane"></i> Send Condolence</button>
+          </div>
+          <div class="wa-card" id="condWaCard">
+            <div class="wa-card-title"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Message Sent Successfully</div>
+            <div class="wa-card-body">Your condolence has been saved. Tap below to send a <strong>free WhatsApp notification</strong> to the family.</div>
+            <button class="btn-whatsapp" onclick="notifyFamilyWA('condolence')"><i class="fa-brands fa-whatsapp"></i> Notify Family via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- MESSAGES SIDE -->
+        <div>
+          <div class="cond-status-bar offline" id="condStatusBar">
+            <div class="live-dot amber"></div>
+            <span class="status-text">Messages are saved locally</span>
+            <span class="status-count" id="condCountBadge">0 messages</span>
+          </div>
+          <div class="condolences-heading">Messages from the Community</div>
+          <div id="condolenceList"><div class="cond-empty"><i class="fa-regular fa-heart"></i>No messages yet. Be the first to share your love for Auntie Margie.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: TRIBUTES
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-tributes">
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Words of Love</span>
+        <h2 class="section-title">Tributes</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+        <p class="tribute-page-sub">Heartfelt tributes from those whose lives were touched by Margaret Darkwaa Owusu — "Auntie Margie".</p>
+      </div>
+
+      <div class="tribute-tabs">
+        <button class="tribute-tab active" onclick="switchTribute('widower',this)"><i class="fa-solid fa-ring"></i> Widower</button>
+        <button class="tribute-tab" onclick="switchTribute('children',this)"><i class="fa-solid fa-people-group"></i> Children</button>
+        <button class="tribute-tab" onclick="switchTribute('family',this)"><i class="fa-solid fa-house"></i> Family</button>
+        <button class="tribute-tab" onclick="switchTribute('grandchildren',this)"><i class="fa-solid fa-star"></i> Grandchildren</button>
+        <button class="tribute-tab" onclick="switchTribute('inlaws',this)"><i class="fa-solid fa-handshake"></i> In-Laws</button>
+        <button class="tribute-tab" onclick="switchTribute('church',this)"><i class="fa-solid fa-church"></i> Church</button>
+      </div>
+
+      <!-- WIDOWER -->
+      <div class="tribute-panel active" id="tribute-widower">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">My dearest Margie,
+
+Forty years ago you walked into my life and made it complete. Every morning with you was a blessing I never took for granted. You were not just my wife — you were my prayer partner, my best friend, my home.
+
+Your laughter filled every room. Your faith anchored our family through every storm. You cooked, you prayed, you loved — with everything you had.
+
+They say time heals all things, but how does one heal from losing their very heartbeat? I do not grieve as one without hope, for I know the God you served has received you into His arms. And until we meet again, I will carry you — every single day — in my heart.
+
+Rest well, my love. You ran your race faithfully. Well done.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-ring"></i></div>
+            <div>
+              <div class="tribute-signoff-name">Mr. Emmanuel Owusu</div>
+              <div class="tribute-signoff-role">Husband — Widower</div>
+            </div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Mr. Emmanuel Owusu</div><div class="member-occupation">Husband</div></div></div>
+        </div>
+      </div>
+
+      <!-- CHILDREN -->
+      <div class="tribute-panel" id="tribute-children">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">Mum, you were more than a mother — you were our foundation.
+
+You taught us to pray before we knew what prayer meant. You taught us to work hard, love freely, and trust God completely. Every sacrifice you made, every late night, every quiet prayer whispered when you thought we were asleep — we felt it all.
+
+The world is quieter without your voice. The kitchen feels different without the smell of your cooking. But your love — that is something that does not fade.
+
+We carry you forward, Mum. Into everything we do. Forever your children.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-people-group"></i></div>
+            <div><div class="tribute-signoff-name">The Children of Auntie Margie</div><div class="tribute-signoff-role">Sons &amp; Daughters</div></div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Son / Daughter 1</div><div class="member-occupation">Child</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Son / Daughter 2</div><div class="member-occupation">Child</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Son / Daughter 3</div><div class="member-occupation">Child</div></div></div>
+        </div>
+      </div>
+
+      <!-- FAMILY -->
+      <div class="tribute-panel" id="tribute-family">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">She was the one who kept us together.
+
+Every family gathering, every reunion, every celebration — Margie was at the centre of it. She remembered every birthday, every anniversary, every little detail that mattered. She was the thread woven through our family tapestry.
+
+To lose her is to feel the fabric loosen. But her love has been stitched so deeply into each of us that it will never come undone.
+
+We will honour her by loving one another the way she loved us — fiercely, unconditionally, and with grace.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-house"></i></div>
+            <div><div class="tribute-signoff-name">The Darkwaa &amp; Owusu Family</div><div class="tribute-signoff-role">Brothers, Sisters &amp; Extended Family</div></div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Family Member 1</div><div class="member-occupation">Sibling</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Family Member 2</div><div class="member-occupation">Sibling</div></div></div>
+        </div>
+      </div>
+
+      <!-- GRANDCHILDREN -->
+      <div class="tribute-panel" id="tribute-grandchildren">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">Grandma, you smelled like love.
+
+Every time you hugged us, the whole world felt safe. You had a way of making each of us feel like we were your favourite — and somehow, I think we all were.
+
+Your stories, your prayers over us, the way you called our names — we will carry all of it.
+
+Until we meet again, Grandma. Save us a seat.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-star"></i></div>
+            <div><div class="tribute-signoff-name">The Grandchildren</div><div class="tribute-signoff-role">Loving Grandchildren</div></div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-child"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Grandchild 1</div><div class="member-occupation">Grandchild</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-child"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Grandchild 2</div><div class="member-occupation">Grandchild</div></div></div>
+        </div>
+      </div>
+
+      <!-- IN-LAWS -->
+      <div class="tribute-panel" id="tribute-inlaws">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">From the moment she joined our family, she became family — not just by marriage, but by heart.
+
+She never treated us as in-laws. She treated us as her own. Her hospitality was endless, her respect genuine, and her love for our brother — the kind you pray your child finds.
+
+She leaves behind a standard of love and character that we will forever measure ourselves against. We are the better for having known her.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div><div class="tribute-signoff-name">The In-Laws</div><div class="tribute-signoff-role">Owusu Family In-Laws</div></div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">In-Law 1</div><div class="member-occupation">In-Law</div></div></div>
+        </div>
+      </div>
+
+      <!-- CHURCH -->
+      <div class="tribute-panel" id="tribute-church">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">Sister Margaret was a pillar in our congregation.
+
+She served quietly, faithfully, and without expectation of recognition. She prayed for the sick, supported the weak, and encouraged the young. She was always the first to arrive and the last to leave.
+
+Her faith was not a Sunday faith — it was a daily, living, breathing devotion to the God she loved. She led by example in ways that no sermon could replicate.
+
+The Church has lost a warrior, but heaven has gained a saint. We are grateful to God for the years He gave her to us.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-church"></i></div>
+            <div><div class="tribute-signoff-name">The Church Family</div><div class="tribute-signoff-role">Pastor, Elders &amp; Congregation</div></div>
+          </div>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Pastor / Elder</div><div class="member-occupation">Church Leader</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap"><div class="member-photo-placeholder"><i class="fa-solid fa-user"></i><span>Add Photo</span></div></div><div class="member-info"><div class="member-name">Church Member</div><div class="member-occupation">Congregation</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: FAMILY CHAT
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-chat" style="padding-top:64px;">
+  <div class="chat-wrap">
+    <div class="chat-sidebar">
+      <div class="chat-sidebar-head">
+        <div class="chat-sidebar-title">🙏 Family Chat</div>
+        <div class="chat-sidebar-sub">Auntie Margie Memorial</div>
+      </div>
+      <div class="online-list" id="onlineList">
+        <p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>
+      </div>
+    </div>
+    <div class="chat-main">
+      <!-- AUTH SCREEN -->
+      <div class="chat-auth" id="chatAuth">
+        <div class="chat-auth-title">Family Chat</div>
+        <div class="chat-auth-sub">A private space for the family of Margaret Darkwaa Owusu to connect, share memories and support one another.</div>
+        <div class="chat-auth-tabs">
+          <button class="chat-auth-tab active" onclick="switchAuthTab('signin')">Sign In</button>
+          <button class="chat-auth-tab" onclick="switchAuthTab('register')">Register</button>
+        </div>
+        <div class="chat-auth-form" id="signinForm">
+          <input class="chat-auth-input" type="email" id="signEmail" placeholder="Email Address"/>
+          <input class="chat-auth-input" type="password" id="signPass" placeholder="Password"/>
+          <button class="btn-gold" onclick="chatSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+        </div>
+        <div class="chat-auth-form" id="registerForm" style="display:none;">
+          <input class="chat-auth-input" type="text" id="regName" placeholder="Full Name"/>
+          <input class="chat-auth-input" type="email" id="regEmail" placeholder="Email Address"/>
+          <input class="chat-auth-input" type="password" id="regPass" placeholder="Password (min 6 chars)"/>
+          <input class="chat-auth-input" type="text" id="regRel" placeholder="Relationship to Auntie Margie"/>
+          <button class="btn-gold" onclick="chatRegister()"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+        </div>
+      </div>
+      <!-- CHAT SCREEN -->
+      <div id="chatScreen" style="display:none;flex:1;flex-direction:column;overflow:hidden;display:none;">
+        <div class="chat-header">
+          <div>
+            <div class="chat-header-title">Family Group</div>
+            <div class="chat-header-sub" id="chatOnlineCount">Loading…</div>
+          </div>
+          <button class="btn-secondary" style="margin-left:auto;" onclick="chatSignOut()">Sign Out</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <p style="text-align:center;color:var(--text-light);font-size:.82rem;font-style:italic;margin:auto;">Send a message to start the conversation…</p>
+        </div>
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" placeholder="Type a message…" onkeypress="if(event.key==='Enter')sendChatMsg()"/>
+          <button class="chat-send-btn" onclick="sendChatMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: GALLERY
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-gallery">
+  <div class="section">
+    <div class="container-md">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Cherished Moments</span>
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="slideshow-wrap reveal">
+        <div class="slideshow-stage" id="slideshowStage">
+          <div class="slide active" style="display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;color:var(--text-light);">
+              <i class="fa-solid fa-images" style="font-size:3rem;color:var(--gold);opacity:.3;display:block;margin-bottom:12px;"></i>
+              <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;">Photos will appear here as they are added by the family.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-controls">
+          <button class="slide-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="slide-dots" id="slideDots"></div>
+          <span class="slide-counter" id="slideCounter">1 / 1</span>
+          <button class="slide-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="gallery-placeholder-grid reveal" style="margin-top:40px;">
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Portrait</div>
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Family</div>
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Church</div>
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Celebration</div>
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Youth</div>
+        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Golden Years</div>
+      </div>
+      <div style="text-align:center;margin-top:32px;" class="reveal">
+        <p style="color:var(--text-light);font-size:.85rem;margin-bottom:16px;">Family members can upload photos to be displayed here. Contact the family admin to add photos.</p>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: LIVESTREAM
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-livestream">
+  <div class="section section-dark">
+    <div class="container-md">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Watch Online</span>
+        <h2 class="section-title section-title--cream">Livestream</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="livestream-embed reveal">
+        <div class="livestream-placeholder" id="streamPlaceholder">
+          <i class="fa-solid fa-satellite-dish"></i>
+          <h3>Livestream Not Yet Active</h3>
+          <p>The livestream will go live during the funeral events. Check back on the event day or follow one of the links below.</p>
+        </div>
+        <iframe id="streamFrame" src="" style="display:none;" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="livestream-links reveal">
+        <a class="stream-link" id="fbStreamLink" href="#" target="_blank"><i class="fa-brands fa-facebook ic-fb"></i> Facebook Live</a>
+        <a class="stream-link" id="ytStreamLink" href="#" target="_blank"><i class="fa-brands fa-youtube ic-yt"></i> YouTube Live</a>
+        <a class="stream-link" id="zmStreamLink" href="#" target="_blank"><i class="fa-solid fa-video ic-zm"></i> Zoom Meeting</a>
+      </div>
+      <div class="admin-panel admin-panel--mt reveal">
+        <div class="admin-panel-title"><i class="fa-solid fa-gear"></i> Activate Livestream (Admin)</div>
+        <div class="admin-panel-note">Paste a YouTube or Facebook embed URL to activate the livestream player above.</div>
+        <div class="admin-row">
+          <input class="admin-input" id="streamEmbedUrl" placeholder="https://www.youtube.com/embed/…"/>
+          <button class="btn-gold btn-gold--sm" onclick="activateStream()">Activate</button>
+          <button class="btn-secondary" onclick="deactivateStream()">Deactivate</button>
+        </div>
+      </div>
+      <div class="admin-panel admin-panel--mt reveal">
+        <div class="admin-panel-title"><i class="fa-solid fa-link"></i> Set Platform Links (Admin)</div>
+        <div class="admin-links-grid">
+          <div><label class="admin-field-label">Facebook</label><input class="admin-input" id="fbLink" placeholder="Facebook Live URL"/></div>
+          <div><label class="admin-field-label">YouTube</label><input class="admin-input" id="ytLink" placeholder="YouTube Live URL"/></div>
+          <div><label class="admin-field-label">Zoom</label><input class="admin-input" id="zmLink" placeholder="Zoom Meeting URL"/></div>
+        </div>
+        <button class="btn-gold btn-gold--sm admin-mt" onclick="saveStreamLinks()">Save Links</button>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  PAGE: ATTEND
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-attend">
+  <div class="section">
+    <div class="container-md">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Register Your Presence</span>
+        <h2 class="section-title">Attend &amp; Register</h2>
+        <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
+      </div>
+      <div class="attend-intro reveal">
+        <strong>Dear Family &amp; Friends,</strong><br/>
+        Please register below to indicate which event(s) you will be attending. Upon registration, <strong>WhatsApp will open</strong> so you can send a quick notification to the family admin — completely free.
+      </div>
+      <div class="form-wrap-dark reveal">
+        <div class="form-wrap-title">Register Your Attendance</div>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input type="text" id="aName" placeholder="Your full name"/></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="aPhone" placeholder="+233 …"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Location / Town</label><input type="text" id="aLocation" placeholder="Where are you coming from?"/></div>
+          <div class="form-group"><label>Relationship to Deceased</label><input type="text" id="aRel" placeholder="e.g. Friend, Church member…"/></div>
+        </div>
+        <div class="form-group">
+          <label>Events You Will Attend *</label>
+          <div class="checkbox-row">
+            <label class="checkbox-label"><input type="checkbox" class="evtChk" value="One Week (12 May)"/> One Week (12 May)</label>
+            <label class="checkbox-label"><input type="checkbox" class="evtChk" value="Wake Keeping"/> Wake Keeping</label>
+            <label class="checkbox-label"><input type="checkbox" class="evtChk" value="Burial Service"/> Burial Service</label>
+            <label class="checkbox-label"><input type="checkbox" class="evtChk" value="Thanksgiving"/> Thanksgiving</label>
+          </div>
+        </div>
+        <div class="form-group"><label>Additional Notes</label><textarea id="aNotes" rows="3" placeholder="Any additional information for the family…"></textarea></div>
+        <button class="btn-gold" onclick="submitAttendance()" id="attendBtn"><i class="fa-solid fa-check"></i> Register Attendance</button>
+        <div class="sms-notice" style="margin-top:16px;">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>After registering, tap the green <strong>Notify via WhatsApp</strong> button that appears to alert the family admin. <strong>Free &amp; instant.</strong></div>
+        </div>
+      </div>
+      <div class="wa-card" id="attendWaCard">
+        <div class="wa-card-title"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Registration Saved!</div>
+        <div class="wa-card-body">Your attendance has been recorded. Tap below to send a <strong>free WhatsApp message</strong> to the family admin so they know you're coming.</div>
+        <button class="btn-whatsapp" onclick="notifyFamilyWA('attendance')"><i class="fa-brands fa-whatsapp"></i> Notify Family via WhatsApp</button>
+      </div>
+      <div class="attendees-section reveal">
+        <div class="attendees-heading">Registered Attendees <span class="attendees-count" id="attCountLabel">(0)</span></div>
+        <div class="attendees-table" id="attendeeTable"><div class="attendees-empty">No registrations yet. Be the first to register!</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+</div>
+
+<!-- HOME FOOTER -->
+<footer class="site-footer" id="homeFooter" style="display:none;">
+  <div class="footer-top">
+    <i class="fa-solid fa-cross" style="color:var(--gold);opacity:.3;"></i>
+    <div class="footer-memorial">In Loving Memory of <strong>Margaret Darkwaa Owusu</strong><br/>"Auntie Margie" · 1966 – 2026</div>
+    <i class="fa-solid fa-cross" style="color:var(--gold);opacity:.3;"></i>
+  </div>
+  <div class="footer-nav">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('announcements')">Announcements</a>
+    <a onclick="showPage('programme')">Programme</a>
+    <a onclick="showPage('condolences')">Condolences</a>
+    <a onclick="showPage('tributes')">Tributes</a>
+    <a onclick="showPage('livestream')">Livestream</a>
+    <a onclick="showPage('attend')">Attend</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-left">© 2026 Margaret Darkwaa Owusu Memorial. All Rights Reserved.</div>
+  </div>
+  <div class="footer-copy">Celebrating a life well lived · Forever in our hearts</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <img id="lightboxImg" src="" alt=""/>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+  <div class="install-banner-text"><strong>📱 Install App</strong>Add Auntie Margie's memorial to your home screen for quick access.</div>
+  <button class="install-btn" id="installBtn">Install</button>
+  <button class="install-close" onclick="document.getElementById('installBanner').classList.remove('show')">✕</button>
+</div>
+
+<!-- iOS INSTALL HINT (shown only on iPhone/iPad since beforeinstallprompt doesn't fire) -->
+<div class="install-banner" id="iosInstallBanner" style="flex-direction:column;align-items:flex-start;gap:10px;">
+  <div style="display:flex;align-items:center;gap:10px;width:100%;">
+    <div class="install-banner-text"><strong>📱 iPhone? Add to Home Screen</strong>Tap Share ⬆ in Safari, then "Add to Home Screen".</div>
+    <button class="install-close" onclick="document.getElementById('iosInstallBanner').classList.remove('show');localStorage.setItem('margie_ios_dismissed','1')">✕</button>
+  </div>
+  <a href="/install.html" style="background:var(--gold);color:var(--dark);border:none;padding:8px 16px;font-family:'Lato',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;text-decoration:none;">View Full Guide</a>
+</div>
+
+<!-- MUSIC PLAYER -->
+<div class="music-player">
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()"><i class="fa-solid fa-play" id="musicIcon"></i></button>
+  <div class="music-info">
+    <div class="music-title">Abide With Me</div>
+    <div class="music-sub">Funeral Hymn · In Memory</div>
+  </div>
+  <input class="music-vol" type="range" min="0" max="1" step=".05" value=".5" oninput="setVol(this.value)" title="Volume"/>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+  FIREBASE SDK
+═══════════════════════════════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   FIREBASE CONFIG
+   ➜ Replace with your own Firebase project config from:
+     console.firebase.google.com → Your Project → Project Settings → Web App
+═══════════════════════════════════════════════════════════ */
+const FIREBASE_CONFIG = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT.firebaseapp.com",
+  databaseURL:       "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+
+/* Admin WhatsApp number (include country code, no +) */
+const ADMIN_WA = "233XXXXXXXXX";
+
+/* ── FIREBASE INIT ── */
+let db = null, auth = null, fbReady = false;
+try {
+  firebase.initializeApp(FIREBASE_CONFIG);
+  auth = firebase.auth();
+  db   = firebase.database();
+  fbReady = true;
+} catch(e) { console.warn('Firebase not configured:', e.message); }
+
+/* ═══════════════════════════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('fade-out');
+    startCountdown();
+    loadCondolences();
+    loadAttendees();
+    initReveal();
+    updateStats();
+    initSlideshow();
+    if (fbReady) listenChatMessages();
+  }, 1800);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   PWA – SERVICE WORKER + INSTALL PROMPT
+═══════════════════════════════════════════════════════════ */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+
+/* Android / Chrome – native install prompt */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  setTimeout(() => document.getElementById('installBanner').classList.add('show'), 4000);
+});
+document.getElementById('installBtn').onclick = async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBanner').classList.remove('show');
+  if (outcome === 'accepted') showToast('App installed! 🎉');
+};
+
+/* iOS Safari – show manual hint (Safari never fires beforeinstallprompt) */
+(function checkiOS() {
+  const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const isStandalone = window.navigator.standalone === true;
+  const dismissed = localStorage.getItem('margie_ios_dismissed');
+  if (isIOS && !isStandalone && !dismissed) {
+    setTimeout(() => document.getElementById('iosInstallBanner').classList.add('show'), 5000);
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════ */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  const hf = document.getElementById('homeFooter');
+  hf.style.display = id === 'home' ? 'block' : 'none';
+  const link = [...document.querySelectorAll('.nav-links a')].find(a => a.getAttribute('onclick') && a.getAttribute('onclick').includes("'"+id+"'"));
+  if (link) link.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  initReveal();
+}
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COUNTDOWN TIMER – 12th May 2026, 7:00 AM
+═══════════════════════════════════════════════════════════ */
+function startCountdown() {
+  const target = new Date('2026-05-12T07:00:00');
+  function tick() {
+    const now  = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cdGrid').innerHTML = '<p class="countdown-done">🙏 The One Week Observation is today. May God be with the family.</p>';
+      document.getElementById('cdLabel').textContent = '';
+      return;
+    }
+    const d = Math.floor(diff / 864e5);
+    const h = Math.floor((diff % 864e5) / 36e5);
+    const m = Math.floor((diff % 36e5) / 6e4);
+    const s = Math.floor((diff % 6e4) / 1e3);
+    document.getElementById('cdDays').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROGRAMME TABS
+═══════════════════════════════════════════════════════════ */
+function switchProgram(id, btn) {
+  document.querySelectorAll('.program-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('prog-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TRIBUTE TABS
+═══════════════════════════════════════════════════════════ */
+function switchTribute(id, btn) {
+  document.querySelectorAll('.tribute-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tribute-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tribute-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AI CONDOLENCE WRITER
+═══════════════════════════════════════════════════════════ */
+async function generateAIMessage() {
+  const name = document.getElementById('aiName').value.trim() || 'a mourner';
+  const rel  = document.getElementById('aiRel').value.trim()  || 'a friend of the family';
+  const box  = document.getElementById('aiResultBox');
+  const acts = document.getElementById('aiUseActions');
+  const btn  = document.getElementById('aiBtnGen');
+  box.className = 'ai-result-box show';
+  box.innerHTML = '<span style="font-family:\'Lato\';font-style:normal;font-size:.85rem;color:var(--text-light);">✦ Crafting your message…</span>';
+  acts.style.display = 'none';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `Write a heartfelt, sincere condolence message for the family of Margaret Darkwaa Owusu, affectionately known as "Auntie Margie". She was a 60-year-old Ghanaian woman of great faith who has passed away. The message is written from the perspective of ${name}, who is ${rel}. Write in first person. Keep it between 60–90 words. Make it warm, comforting, and faith-filled. Reference her warmth, grace, or her love for God and family in a natural way. No quotation marks around the message. Just the plain message text.`
+        }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Unable to generate message. Please write your own heartfelt words.';
+    box.style.fontStyle = 'italic';
+    box.textContent = text;
+    acts.style.display = 'flex';
+    btn.dataset.lastMsg = text;
+  } catch(e) {
+    box.innerHTML = '<span style="font-family:\'Lato\';font-style:normal;font-size:.85rem;color:#ef4444;">Could not generate message. Please check your connection and try again.</span>';
+  }
+  btn.disabled = false;
+}
+function useAIMessage() {
+  const msg  = document.getElementById('aiResultBox').textContent;
+  const name = document.getElementById('aiName').value.trim();
+  const rel  = document.getElementById('aiRel').value.trim();
+  if (name) document.getElementById('cName').value = name;
+  if (rel)  document.getElementById('cRel').value  = rel;
+  document.getElementById('cMsg').value = msg;
+  showToast('Message copied to form. Review and send! ✦');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONDOLENCES
+═══════════════════════════════════════════════════════════ */
+let condolences = JSON.parse(localStorage.getItem('margie_cond') || '[]');
+let lastCondolence = null;
+
+function submitCondolence() {
+  const name = document.getElementById('cName').value.trim();
+  const rel  = document.getElementById('cRel').value.trim();
+  const msg  = document.getElementById('cMsg').value.trim();
+  if (!name || !msg) { showToast('Please enter your name and message.'); return; }
+
+  const entry = {
+    name, rel, msg,
+    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
+    ts: Date.now()
+  };
+  condolences.unshift(entry);
+  localStorage.setItem('margie_cond', JSON.stringify(condolences));
+  lastCondolence = entry;
+
+  /* Save to Firebase if ready */
+  if (fbReady) {
+    db.ref('condolences').push(entry).catch(()=>{});
+    document.getElementById('condStatusBar').className = 'cond-status-bar live';
+    document.getElementById('condStatusBar').innerHTML = '<div class="live-dot green"></div><span class="status-text">Messages synced to Firebase</span><span class="status-count" id="condCountBadge">'+condolences.length+' messages</span>';
+  }
+
+  document.getElementById('cName').value = '';
+  document.getElementById('cRel').value  = '';
+  document.getElementById('cMsg').value  = '';
+  renderCondolences();
+  document.getElementById('condWaCard').classList.add('show');
+  showToast('Condolence sent! 🙏');
+  updateStats();
+}
+
+function loadCondolences() {
+  if (fbReady) {
+    db.ref('condolences').orderByChild('ts').on('value', snap => {
+      const items = [];
+      snap.forEach(c => items.unshift(c.val()));
+      condolences = items;
+      localStorage.setItem('margie_cond', JSON.stringify(condolences));
+      renderCondolences();
+      updateStats();
+    });
+  } else {
+    renderCondolences();
+  }
+}
+
+function renderCondolences() {
+  const list = document.getElementById('condolenceList');
+  document.getElementById('condCountBadge').textContent = condolences.length + ' message' + (condolences.length !== 1 ? 's' : '');
+  if (!condolences.length) {
+    list.innerHTML = '<div class="cond-empty"><i class="fa-regular fa-heart"></i>No messages yet. Be the first to share your love for Auntie Margie.</div>';
+    return;
+  }
+  list.innerHTML = '<div class="condolence-cards">' + condolences.slice(0, 20).map(c => `
+    <div class="condolence-card">
+      <div class="condolence-header">
+        <div><div class="condolence-name">${esc(c.name)}</div><div class="condolence-relation">${esc(c.rel || 'Family & Friends')}</div></div>
+        <div class="condolence-date">${esc(c.date)}</div>
+      </div>
+      <div class="condolence-msg">${esc(c.msg)}</div>
+    </div>`).join('') + '</div>';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ATTENDANCE
+═══════════════════════════════════════════════════════════ */
+let attendees = JSON.parse(localStorage.getItem('margie_att') || '[]');
+let lastAttendee = null;
+
+function submitAttendance() {
+  const name = document.getElementById('aName').value.trim();
+  if (!name) { showToast('Please enter your name.'); return; }
+  const events = [...document.querySelectorAll('.evtChk:checked')].map(c => c.value);
+  if (!events.length) { showToast('Please select at least one event.'); return; }
+
+  const entry = {
+    name,
+    phone:    document.getElementById('aPhone').value.trim(),
+    location: document.getElementById('aLocation').value.trim(),
+    rel:      document.getElementById('aRel').value.trim(),
+    notes:    document.getElementById('aNotes').value.trim(),
+    events,
+    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
+    ts: Date.now()
+  };
+  attendees.unshift(entry);
+  localStorage.setItem('margie_att', JSON.stringify(attendees));
+  lastAttendee = entry;
+
+  if (fbReady) db.ref('attendees').push(entry).catch(()=>{});
+
+  ['aName','aPhone','aLocation','aRel','aNotes'].forEach(id => document.getElementById(id).value = '');
+  document.querySelectorAll('.evtChk').forEach(c => c.checked = false);
+  renderAttendees();
+  document.getElementById('attendWaCard').classList.add('show');
+  showToast('Registration saved! 🙏');
+  updateStats();
+}
+
+function loadAttendees() {
+  if (fbReady) {
+    db.ref('attendees').orderByChild('ts').on('value', snap => {
+      const items = [];
+      snap.forEach(a => items.unshift(a.val()));
+      attendees = items;
+      localStorage.setItem('margie_att', JSON.stringify(attendees));
+      renderAttendees();
+      updateStats();
+    });
+  } else {
+    renderAttendees();
+  }
+}
+
+function renderAttendees() {
+  const cnt = document.getElementById('attCountLabel');
+  const tbl = document.getElementById('attendeeTable');
+  if (cnt) cnt.textContent = '(' + attendees.length + ')';
+  if (!attendees.length) {
+    tbl.innerHTML = '<div class="attendees-empty">No registrations yet. Be the first to register!</div>';
+    return;
+  }
+  tbl.innerHTML = attendees.slice(0, 30).map(a => `
+    <div class="attendance-item">
+      <div class="attendee-avatar">${esc(a.name[0].toUpperCase())}</div>
+      <div class="attendee-info">
+        <div class="attendee-name">${esc(a.name)}</div>
+        <div class="attendee-meta">${esc(a.location || 'Location not specified')} · ${esc(a.rel || '')}</div>
+      </div>
+      <div class="attendee-badges">${a.events.map(e => `<span class="attendee-badge">${esc(e)}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function updateStats() {
+  const s1 = document.getElementById('statCond');
+  const s2 = document.getElementById('statAtt');
+  if (s1) s1.textContent = condolences.length;
+  if (s2) s2.textContent = attendees.length;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WHATSAPP NOTIFICATIONS
+═══════════════════════════════════════════════════════════ */
+function notifyFamilyWA(type) {
+  let msg = '';
+  if (type === 'condolence' && lastCondolence) {
+    msg = `🙏 *New Condolence – Auntie Margie Memorial*\n\n*From:* ${lastCondolence.name}\n*Relationship:* ${lastCondolence.rel || 'Not specified'}\n\n"${lastCondolence.msg}"`;
+  } else if (type === 'attendance' && lastAttendee) {
+    msg = `✅ *New Attendance Registration – Auntie Margie Memorial*\n\n*Name:* ${lastAttendee.name}\n*Phone:* ${lastAttendee.phone || 'Not provided'}\n*Location:* ${lastAttendee.location || 'Not specified'}\n*Events:* ${lastAttendee.events.join(', ')}\n*Notes:* ${lastAttendee.notes || 'None'}`;
+  } else {
+    msg = '🙏 A message was submitted on the Auntie Margie Memorial page.';
+  }
+  window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function shareWA() {
+  const msg = `🕊️ In Loving Memory of Margaret Darkwaa Owusu "Auntie Margie" (1966–2026)\n\nView the memorial page, leave condolences, and register your attendance:\n${window.location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+}
+function shareFB() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => showToast('Link copied to clipboard! 🔗'));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIVESTREAM
+═══════════════════════════════════════════════════════════ */
+function activateStream() {
+  const url = document.getElementById('streamEmbedUrl').value.trim();
+  if (!url) { showToast('Please paste a stream embed URL.'); return; }
+  document.getElementById('streamPlaceholder').style.display = 'none';
+  const frame = document.getElementById('streamFrame');
+  frame.src = url;
+  frame.style.display = 'block';
+  if (fbReady) db.ref('stream/embedUrl').set(url);
+  showToast('Livestream activated! ▶');
+}
+function deactivateStream() {
+  document.getElementById('streamPlaceholder').style.display = 'flex';
+  const frame = document.getElementById('streamFrame');
+  frame.src = '';
+  frame.style.display = 'none';
+  if (fbReady) db.ref('stream/embedUrl').remove();
+  showToast('Livestream deactivated.');
+}
+function saveStreamLinks() {
+  const fb = document.getElementById('fbLink').value.trim();
+  const yt = document.getElementById('ytLink').value.trim();
+  const zm = document.getElementById('zmLink').value.trim();
+  if (fb) { document.getElementById('fbStreamLink').href = fb; localStorage.setItem('margie_fb', fb); }
+  if (yt) { document.getElementById('ytStreamLink').href = yt; localStorage.setItem('margie_yt', yt); }
+  if (zm) { document.getElementById('zmStreamLink').href = zm; localStorage.setItem('margie_zm', zm); }
+  if (fbReady) db.ref('stream/links').set({ fb, yt, zm });
+  showToast('Stream links saved!');
+}
+(function loadStreamLinks() {
+  const fb = localStorage.getItem('margie_fb'); if (fb) document.getElementById('fbStreamLink').href = fb;
+  const yt = localStorage.getItem('margie_yt'); if (yt) document.getElementById('ytStreamLink').href = yt;
+  const zm = localStorage.getItem('margie_zm'); if (zm) document.getElementById('zmStreamLink').href = zm;
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   FAMILY CHAT – FIREBASE AUTH + REALTIME DB
+═══════════════════════════════════════════════════════════ */
+let chatUser = null;
+function switchAuthTab(tab) {
+  document.querySelectorAll('.chat-auth-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('signinForm').style.display  = tab === 'signin'   ? 'flex' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
+}
+async function chatSignIn() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const email = document.getElementById('signEmail').value.trim();
+  const pass  = document.getElementById('signPass').value;
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+  } catch(e) { showToast('Sign in failed: ' + e.message); }
+}
+async function chatRegister() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  const rel   = document.getElementById('regRel').value.trim();
+  if (!name || !email || !pass) { showToast('Please fill all required fields.'); return; }
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await db.ref('users/' + cred.user.uid).set({ name, rel, email });
+    showToast('Account created! Welcome, ' + name + '.');
+  } catch(e) { showToast('Registration failed: ' + e.message); }
+}
+function chatSignOut() {
+  if (auth) auth.signOut();
+}
+
+if (fbReady) {
+  auth.onAuthStateChanged(async user => {
+    chatUser = user;
+    if (user) {
+      const snap = await db.ref('users/' + user.uid).get();
+      const info = snap.val() || {};
+      chatUser._name = info.name || user.email;
+      chatUser._rel  = info.rel  || '';
+      document.getElementById('chatAuth').style.display   = 'none';
+      const cs = document.getElementById('chatScreen');
+      cs.style.display = 'flex';
+      cs.style.flexDirection = 'column';
+      cs.style.flex = '1';
+      cs.style.overflow = 'hidden';
+      db.ref('online/' + user.uid).set({ name: chatUser._name, ts: Date.now() });
+      db.ref('online/' + user.uid).onDisconnect().remove();
+      listenOnline();
+    } else {
+      document.getElementById('chatAuth').style.display = 'flex';
+      document.getElementById('chatScreen').style.display = 'none';
+    }
+  });
+}
+
+function listenChatMessages() {
+  db.ref('chat').orderByChild('ts').limitToLast(60).on('value', snap => {
+    const msgs = [];
+    snap.forEach(m => msgs.push(m.val()));
+    renderChatMessages(msgs);
+  });
+}
+function renderChatMessages(msgs) {
+  const box = document.getElementById('chatMessages');
+  if (!msgs.length) return;
+  box.innerHTML = msgs.map(m => {
+    const mine = chatUser && m.uid === chatUser.uid;
+    return `<div style="display:flex;flex-direction:column;">
+      ${!mine ? `<div class="bubble-name">${esc(m.name)}</div>` : ''}
+      <div class="chat-bubble ${mine ? 'mine' : 'other'}">
+        ${esc(m.text)}
+        <div class="bubble-time">${new Date(m.ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+    </div>`;
+  }).join('');
+  box.scrollTop = box.scrollHeight;
+}
+async function sendChatMsg() {
+  if (!chatUser || !fbReady) return;
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  await db.ref('chat').push({ uid: chatUser.uid, name: chatUser._name, text, ts: Date.now() });
+}
+function listenOnline() {
+  db.ref('online').on('value', snap => {
+    const members = [];
+    snap.forEach(m => members.push(m.val().name));
+    document.getElementById('chatOnlineCount').textContent = members.length + ' online now';
+    const ol = document.getElementById('onlineList');
+    ol.innerHTML = members.map(n => `<div class="online-item"><div class="online-dot"></div><div class="online-name">${esc(n)}</div></div>`).join('') || '<p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>';
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY SLIDESHOW
+═══════════════════════════════════════════════════════════ */
+let slides = [], slideIdx = 0, slideTimer;
+function initSlideshow() {
+  const stage = document.getElementById('slideshowStage');
+  if (!stage) return;
+  const dots = document.getElementById('slideDots');
+  slides = stage.querySelectorAll('.slide');
+  if (slides.length <= 1) return;
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goSlide(i);
+    dots.appendChild(d);
+  });
+  updateSlideCounter();
+  slideTimer = setInterval(nextSlide, 5000);
+}
+function goSlide(i) {
+  slides[slideIdx].classList.remove('active');
+  document.querySelectorAll('.slide-dot')[slideIdx]?.classList.remove('active');
+  slideIdx = (i + slides.length) % slides.length;
+  slides[slideIdx].classList.add('active');
+  document.querySelectorAll('.slide-dot')[slideIdx]?.classList.add('active');
+  updateSlideCounter();
+}
+function nextSlide() { goSlide(slideIdx + 1); }
+function prevSlide() { goSlide(slideIdx - 1); clearInterval(slideTimer); }
+function updateSlideCounter() {
+  const el = document.getElementById('slideCounter');
+  if (el) el.textContent = (slideIdx + 1) + ' / ' + slides.length;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════════════════════ */
+function openLightbox(src, caption) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+/* ═══════════════════════════════════════════════════════════
+   MUSIC PLAYER (No audio src – decorative control)
+═══════════════════════════════════════════════════════════ */
+const audio = new Audio();
+let playing = false;
+function toggleMusic() {
+  playing = !playing;
+  document.getElementById('musicIcon').className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+  if (playing) {
+    audio.play().catch(() => { playing = false; document.getElementById('musicIcon').className = 'fa-solid fa-play'; showToast('No audio source loaded.'); });
+  } else {
+    audio.pause();
+  }
+}
+function setVol(v) { audio.volume = parseFloat(v); }
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════ */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (!el.classList.contains('visible')) obs.observe(el);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONDOLENCES RESPONSIVE GRID
+═══════════════════════════════════════════════════════════ */
+function checkCondGrid() {
+  const grid = document.getElementById('condGrid');
+  if (!grid) return;
+  grid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+}
+window.addEventListener('resize', checkCondGrid);
+checkCondGrid();
+
+/* ═══════════════════════════════════════════════════════════
+   ESC HELPER
+═══════════════════════════════════════════════════════════ */
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
