@@ -824,11 +824,27 @@ body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text-dark
   </div>
   <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div>
+<!-- ═══════════════════════════════════════════════════════════
+  ADD THIS CSS inside your <style> block (before </style>)
+  ─────────────────────────────────────────────────────────────
+  .member-photo-wrap { position:relative; cursor:pointer; }
+  .photo-zoom-hint {
+    position:absolute; inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity .25s;
+    border-radius:4px 4px 0 0;
+  }
+  .photo-zoom-hint i { font-size:1.6rem; color:var(--gold); filter:drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+  .member-photo-wrap:hover .photo-zoom-hint { opacity:1; }
+  .member-photo-wrap:has(.member-photo-placeholder:not([style*="display:none"])) .photo-zoom-hint { display:none; }
+═══════════════════════════════════════════════════════════ -->
 
 <!-- ══════════════════════ PAGE: TRIBUTES ══════════════════════ -->
 <div class="page" id="page-tributes">
   <div class="section">
     <div class="container">
+
       <div class="section-header reveal">
         <span class="section-eyebrow">Words of Love</span>
         <h2 class="section-title">Tributes</h2>
@@ -836,6 +852,7 @@ body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text-dark
         <p class="tribute-page-sub">Heartfelt tributes from those whose lives were touched by Margaret Darkwaa Owusu — "Auntie Margie".</p>
       </div>
 
+      <!-- TABS -->
       <div class="tribute-tabs">
         <button class="tribute-tab active" onclick="switchTribute('widower',this)"><i class="fa-solid fa-ring"></i> Widower</button>
         <button class="tribute-tab" onclick="switchTribute('children',this)"><i class="fa-solid fa-people-group"></i> Children</button>
@@ -845,7 +862,7 @@ body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text-dark
         <button class="tribute-tab" onclick="switchTribute('church',this)"><i class="fa-solid fa-church"></i> Church</button>
       </div>
 
-      <!-- ── WIDOWER ── -->
+      <!-- ══ WIDOWER ══ -->
       <div class="tribute-panel active" id="tribute-widower">
         <div class="tribute-text-block">
           <div class="tribute-text-body">My dearest Margie,
@@ -865,14 +882,18 @@ Rest well, my love. You ran your race faithfully. Well done.</div>
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+          <!-- Widower -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/widow.jpg','Mr. Daniel Owusu – Husband')">
               <img src="images/widow.jpg" alt="Mr. Daniel Owusu"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Mr. Daniel Owusu</div>
@@ -881,8 +902,9 @@ Rest well, my love. You ran your race faithfully. Well done.</div>
           </div>
         </div>
       </div>
+      <!-- ══ END WIDOWER ══ -->
 
-      <!-- ── CHILDREN ── -->
+      <!-- ══ CHILDREN ══ -->
       <div class="tribute-panel" id="tribute-children">
         <div class="tribute-text-block">
           <div class="tribute-text-body">Mum, you were more than a mother — you were our foundation.
@@ -900,50 +922,150 @@ We carry you forward, Mum. Into everything we do. Forever your children.</div>
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+
+          <!-- Child 1 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')">
               <img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Mrs. Sandra Owusua Agyekum</div>
               <div class="member-occupation">Daughter</div>
             </div>
           </div>
+
+          <!-- Child 2 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child2.jpg','Samuel Owusu Frimpong – Son')">
               <img src="images/child2.jpg" alt="Samuel Owusu Frimpong"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Samuel Owusu Frimpong</div>
               <div class="member-occupation">Son</div>
             </div>
           </div>
+
+          <!-- Child 3 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
-              <img src="images/children/child3.jpg" alt="Kwame Owusu"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')">
+              <img src="images/child3.jpg" alt="Akua Diana"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
-              <div class="member-name">Kwame Owusu</div>
+              <div class="member-name">Akua Diana</div>
+              <div class="member-occupation">Daughter</div>
+            </div>
+          </div>
+
+          <!-- Child 4 -->
+          <div class="member-card">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')">
+              <img src="images/child4.jpeg" alt="Beatrice Pomaa"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="member-photo-placeholder" style="display:none;">
+                <i class="fa-solid fa-user"></i><span>Add Photo</span>
+              </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Beatrice Pomaa</div>
+              <div class="member-occupation">Daughter</div>
+            </div>
+          </div>
+
+          <!-- Child 5 -->
+          <div class="member-card">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')">
+              <img src="images/child5.jpeg" alt="Naomi Owusua"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="member-photo-placeholder" style="display:none;">
+                <i class="fa-solid fa-user"></i><span>Add Photo</span>
+              </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Naomi Owusua</div>
+              <div class="member-occupation">Daughter</div>
+            </div>
+          </div>
+
+          <!-- Child 6 -->
+          <div class="member-card">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')">
+              <img src="images/child6.jpeg" alt="Aikins Ofori"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="member-photo-placeholder" style="display:none;">
+                <i class="fa-solid fa-user"></i><span>Add Photo</span>
+              </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Aikins Ofori</div>
               <div class="member-occupation">Son</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- ── FAMILY ── -->
+          <!-- Child 7 -->
+          <div class="member-card">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child7.jpeg','Oforiwaa Perpetual – Daughter')">
+              <img src="images/child7.jpeg" alt="Oforiwaa Perpetual"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="member-photo-placeholder" style="display:none;">
+                <i class="fa-solid fa-user"></i><span>Add Photo</span>
+              </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Oforiwaa Perpetual</div>
+              <div class="member-occupation">Daughter</div>
+            </div>
+          </div>
+
+          <!-- Child 8 -->
+          <div class="member-card">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/child8.jpeg','Dosia Aboagyewaa – Daughter')">
+              <img src="images/child8.jpeg" alt="Dosia Aboagyewaa"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="member-photo-placeholder" style="display:none;">
+                <i class="fa-solid fa-user"></i><span>Add Photo</span>
+              </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Dosia Aboagyewaa</div>
+              <div class="member-occupation">Daughter</div>
+            </div>
+          </div>
+
+        </div><!-- /.tribute-grid -->
+      </div>
+      <!-- ══ END CHILDREN ══ -->
+
+      <!-- ══ FAMILY ══ -->
       <div class="tribute-panel" id="tribute-family">
         <div class="tribute-text-block">
           <div class="tribute-text-body">She was the one who kept us together.
@@ -961,37 +1083,48 @@ We will honour her by loving one another the way she loved us — fiercely, unco
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+
+          <!-- Family Member 1 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
-              <img src="images/family/member1.jpg" alt="Family Member"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/family/member1.jpg','Family Member 1 – Sibling')">
+              <img src="images/family/member1.jpg" alt="Family Member 1"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Family Member 1</div>
               <div class="member-occupation">Sibling</div>
             </div>
           </div>
+
+          <!-- Family Member 2 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
-              <img src="images/family/member2.jpg" alt="Family Member"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/family/member2.jpg','Family Member 2 – Sibling')">
+              <img src="images/family/member2.jpg" alt="Family Member 2"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Family Member 2</div>
               <div class="member-occupation">Sibling</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- ── GRANDCHILDREN ── -->
+        </div><!-- /.tribute-grid -->
+      </div>
+      <!-- ══ END FAMILY ══ -->
+
+      <!-- ══ GRANDCHILDREN ══ -->
       <div class="tribute-panel" id="tribute-grandchildren">
         <div class="tribute-text-block">
           <div class="tribute-text-body">Grandma, you smelled like love.
@@ -1009,37 +1142,48 @@ Until we meet again, Grandma. Save us a seat.</div>
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+
+          <!-- Grandchild 1 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/grandchildren/grandchild1.jpg','Grandchild 1')">
               <img src="images/grandchildren/grandchild1.jpg" alt="Grandchild 1"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-child"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Grandchild Name 1</div>
               <div class="member-occupation">Grandchild</div>
             </div>
           </div>
+
+          <!-- Grandchild 2 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/grandchildren/grandchild2.jpg','Grandchild 2')">
               <img src="images/grandchildren/grandchild2.jpg" alt="Grandchild 2"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-child"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Grandchild Name 2</div>
               <div class="member-occupation">Grandchild</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- ── IN-LAWS ── -->
+        </div><!-- /.tribute-grid -->
+      </div>
+      <!-- ══ END GRANDCHILDREN ══ -->
+
+      <!-- ══ IN-LAWS ══ -->
       <div class="tribute-panel" id="tribute-inlaws">
         <div class="tribute-text-block">
           <div class="tribute-text-body">From the moment she joined our family, she became family — not just by marriage, but by heart.
@@ -1055,24 +1199,31 @@ She leaves behind a standard of love and character that we will forever measure 
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+
+          <!-- In-Law 1 -->
           <div class="member-card">
-            <div class="member-photo-wrap">
-              <img src="images/inlaws/inlaw1.jpg" alt="In-Law"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/inlaws/inlaw1.jpg','In-Law 1')">
+              <img src="images/inlaws/inlaw1.jpg" alt="In-Law 1"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">In-Law 1</div>
               <div class="member-occupation">In-Law</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- ── CHURCH ── -->
+        </div><!-- /.tribute-grid -->
+      </div>
+      <!-- ══ END IN-LAWS ══ -->
+
+      <!-- ══ CHURCH ══ -->
       <div class="tribute-panel" id="tribute-church">
         <div class="tribute-text-block">
           <div class="tribute-text-body">Sister Margaret was a pillar in our congregation.
@@ -1090,41 +1241,96 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
             </div>
           </div>
         </div>
+
         <div class="tribute-grid">
+
+          <!-- Pastor -->
           <div class="member-card">
-            <div class="member-photo-wrap">
-              <img src="images/church/pastor.jpg" alt="Pastor"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/church/pastor.jpg','Pastor / Elder – Church Leader')">
+              <img src="images/church/pastor.jpg" alt="Pastor / Elder"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Pastor / Elder</div>
               <div class="member-occupation">Church Leader</div>
             </div>
           </div>
+
+          <!-- Church Member -->
           <div class="member-card">
-            <div class="member-photo-wrap">
+            <div class="member-photo-wrap"
+                 onclick="openLightbox('images/church/member1.jpg','Church Member – Congregation')">
               <img src="images/church/member1.jpg" alt="Church Member"
-                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="member-photo-placeholder" style="display:none;">
                 <i class="fa-solid fa-user"></i><span>Add Photo</span>
               </div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
             <div class="member-info">
               <div class="member-name">Church Member</div>
               <div class="member-occupation">Congregation</div>
             </div>
           </div>
-        </div>
+
+        </div><!-- /.tribute-grid -->
       </div>
+      <!-- ══ END CHURCH ══ -->
 
-    </div>
-  </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+    </div><!-- /.container -->
+  </div><!-- /.section -->
+
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
 </div>
+<!-- ══════════════════ END PAGE: TRIBUTES ══════════════════ -->
 
+
+<!-- ═══════════════════════════════════════════════════════════
+  LIGHTBOX — paste this once anywhere before </body>
+  (already in your index.html — just verify it's there)
+═══════════════════════════════════════════════════════════ -->
+<!--
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+-->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+  LIGHTBOX JS — paste inside your <script> block
+  (already in your index.html — just verify closeLightbox
+   also clears the src to avoid flickering on reopen)
+═══════════════════════════════════════════════════════════ -->
+<!--
+function openLightbox(src, caption) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  // small delay before clearing src so the close animation finishes
+  setTimeout(function(){ document.getElementById('lightboxImg').src = ''; }, 300);
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+// also close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+-->
 <!-- ══════════════════════ PAGE: FAMILY CHAT ══════════════════════ -->
 <div class="page" id="page-chat" style="padding-top:64px;">
   <div class="chat-wrap">
@@ -1560,12 +1766,195 @@ function switchProgram(id, btn) {
 /* ════════════════════════════════════════════════════
    TRIBUTE TABS
 ════════════════════════════════════════════════════ */
+<!-- ═══════════════════════════════════════════════════════════
+  REPLACE your old switchTribute() and any existing
+  openLightbox / closeLightbox functions with ALL of this.
+  Paste it inside your existing <script> block.
+═══════════════════════════════════════════════════════════ -->
+<script>
+
+/* ─────────────────────────────────────────────
+   TRIBUTE TABS
+   ───────────────────────────────────────────── */
 function switchTribute(id, btn) {
+  /* hide all panels + deactivate all tabs */
   document.querySelectorAll('.tribute-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tribute-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tribute-' + id).classList.add('active');
-  btn.classList.add('active');
+
+  /* show selected panel + mark tab active */
+  const panel = document.getElementById('tribute-' + id);
+  if (panel) panel.classList.add('active');
+  if (btn)   btn.classList.add('active');
+
+  /* on mobile, scroll the panel into view smoothly */
+  if (panel && window.innerWidth < 768) {
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  }
 }
+
+
+/* ─────────────────────────────────────────────
+   LIGHTBOX
+   – opens any image with a caption
+   – close by: ✕ button | click outside | Escape
+   – prev/next arrows to browse within same tribute-grid
+   ───────────────────────────────────────────── */
+let _lbImages  = [];   /* all images in current grid */
+let _lbIndex   = 0;    /* current position           */
+
+function openLightbox(src, caption) {
+  const lb  = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCaption');
+  if (!lb || !img) return;
+
+  /* build sibling image list for prev/next navigation */
+  _buildLightboxList(src);
+
+  img.src = src;
+  cap.textContent = caption || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';   /* prevent background scroll */
+
+  /* show/hide nav arrows */
+  _updateLbArrows();
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  if (!lb) return;
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  /* clear src after transition so no flicker on reopen */
+  setTimeout(() => {
+    const img = document.getElementById('lightboxImg');
+    if (img) img.src = '';
+  }, 300);
+}
+
+function lbNext() {
+  if (_lbIndex < _lbImages.length - 1) {
+    _lbIndex++;
+    _lbGoTo(_lbIndex);
+  }
+}
+
+function lbPrev() {
+  if (_lbIndex > 0) {
+    _lbIndex--;
+    _lbGoTo(_lbIndex);
+  }
+}
+
+function _lbGoTo(i) {
+  const entry = _lbImages[i];
+  if (!entry) return;
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCaption');
+  /* fade trick */
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = entry.src;
+    cap.textContent = entry.caption;
+    img.style.opacity = '1';
+  }, 150);
+  _updateLbArrows();
+}
+
+function _updateLbArrows() {
+  const prev = document.getElementById('lbPrev');
+  const next = document.getElementById('lbNext');
+  if (prev) prev.style.display = _lbImages.length > 1 ? 'flex' : 'none';
+  if (next) next.style.display = _lbImages.length > 1 ? 'flex' : 'none';
+  if (prev) prev.style.opacity = _lbIndex === 0 ? '.3' : '1';
+  if (next) next.style.opacity = _lbIndex === _lbImages.length - 1 ? '.3' : '1';
+}
+
+function _buildLightboxList(currentSrc) {
+  /* find the tribute-grid that contains the clicked image */
+  _lbImages = [];
+  _lbIndex  = 0;
+
+  const allWraps = document.querySelectorAll('.tribute-panel.active .member-photo-wrap img');
+  allWraps.forEach((imgEl, i) => {
+    /* skip placeholder images (no real src) */
+    if (!imgEl.src || imgEl.style.display === 'none') return;
+    /* caption = name from .member-name sibling */
+    const card    = imgEl.closest('.member-card');
+    const nameEl  = card ? card.querySelector('.member-name') : null;
+    const roleEl  = card ? card.querySelector('.member-occupation') : null;
+    const caption = nameEl
+      ? nameEl.textContent + (roleEl ? ' – ' + roleEl.textContent : '')
+      : '';
+    _lbImages.push({ src: imgEl.src, caption });
+    if (imgEl.src === currentSrc || imgEl.getAttribute('src') === currentSrc) {
+      _lbIndex = _lbImages.length - 1;
+    }
+  });
+}
+
+/* ── Keyboard navigation ── */
+document.addEventListener('keydown', function(e) {
+  const lb = document.getElementById('lightbox');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'ArrowLeft')  lbPrev();
+});
+
+/* ── Click outside image to close ── */
+document.addEventListener('DOMContentLoaded', function() {
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) closeLightbox();
+    });
+  }
+});
+
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+  UPDATED LIGHTBOX HTML
+  Replace your existing lightbox div with this one.
+  It adds Prev / Next arrow buttons.
+═══════════════════════════════════════════════════════════ -->
+<style>
+/* ── Lightbox upgrades ── */
+.lightbox { position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:2000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px; }
+.lightbox.open { display:flex; }
+.lightbox img { max-width:88vw;max-height:74vh;object-fit:contain;border-radius:2px;transition:opacity .15s ease; }
+.lightbox-caption { color:var(--gold-pale);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;opacity:.8;text-align:center;max-width:80vw; }
+.lightbox-close { position:absolute;top:24px;right:28px;color:var(--gold);font-size:1.8rem;cursor:pointer;opacity:.7;background:none;border:none;transition:opacity .2s;z-index:10; }
+.lightbox-close:hover { opacity:1; }
+.lightbox-counter { position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,233,196,.35); }
+
+/* Prev / Next arrows */
+.lb-arrow { position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.15);border:1px solid rgba(200,168,75,.3);color:var(--gold);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10; }
+.lb-arrow:hover { background:var(--gold);color:var(--dark); }
+#lbPrev { left:20px; }
+#lbNext { right:20px; }
+
+/* Zoom hint on member cards */
+.member-photo-wrap { position:relative;cursor:pointer; }
+.photo-zoom-hint { position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;border-radius:4px 4px 0 0; }
+.photo-zoom-hint i { font-size:1.6rem;color:var(--gold);filter:drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+.member-photo-wrap:hover .photo-zoom-hint { opacity:1; }
+/* Hide hint when placeholder is visible (no real photo) */
+.member-photo-wrap:has(.member-photo-placeholder:not([style*="display:none"])) .photo-zoom-hint { display:none; }
+</style>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <span class="lightbox-counter" id="lbCounter"></span>
+  <button class="lb-arrow" id="lbPrev" onclick="lbPrev()" style="display:none;"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lightboxImg" src="" alt="" />
+  <button class="lb-arrow" id="lbNext" onclick="lbNext()" style="display:none;"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 
 /* ════════════════════════════════════════════════════
    AI CONDOLENCE WRITER
