@@ -1204,6 +1204,60 @@ try {
   fbReady = true;
 } catch(e) { console.warn('Firebase:', e.message); }
 
+
+// Add this function somewhere in your script, perhaps where you handle user sign-up
+function saveUserProfile(user) {
+  if (user) {
+    const userRef = db.ref('users/' + user.uid);
+    userRef.set({
+      email: user.email,
+      displayName: user.displayName || 'Anonymous User',
+      createdAt: firebase.database.ServerValue.TIMESTAMP // Use server timestamp
+    }).then(() => {
+      console.log("User profile saved to Realtime Database!");
+    }).catch((error) => {
+      console.error("Error saving user profile: ", error);
+    });
+  }
+}
+
+// Example of how you might call this after a successful sign-up or login
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     saveUserProfile(user);
+//   }
+// });
+
+
+// Add this function to handle submitting a new condolence message
+function addCondolenceMessage(userId, userName, messageText) {
+  if (!userId || !userName || !messageText) {
+    console.error("Missing message data.");
+    return;
+  }
+
+  const messagesRef = db.ref('condolence_messages');
+  messagesRef.push({
+    userId: userId,
+    userName: userName,
+    message: messageText,
+    timestamp: firebase.database.ServerValue.TIMESTAMP // Use server timestamp
+  }).then(() => {
+    console.log("Condolence message added successfully!");
+    // You might want to clear the input field or show a success message here
+  }).catch((error) => {
+    console.error("Error adding message: ", error);
+  });
+}
+
+// Example usage (e.g., from a form submission)
+// const currentUser = auth.currentUser;
+// if (currentUser) {
+//   const messageInput = document.getElementById('condolenceMessageInput');
+//   addCondolenceMessage(currentUser.uid, currentUser.displayName || currentUser.email, messageInput.value);
+// }
+
+
 /* ════════════════════════════════════════
    LOAD
 ════════════════════════════════════════ */
