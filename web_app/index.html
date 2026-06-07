@@ -411,7 +411,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
 <nav id="nav">
   <div class="nav-inner">
     <a class="nav-brand" onclick="showPage('home')">
-      <i class="fa-solid fa-cross" style="font-size:.8rem;opacity:.7;"></i>
+      <i class="fa-solid fa-cross nav-brand-icon"></i>
       Auntie Margie
     </a>
     <ul class="nav-links">
@@ -425,7 +425,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       <li><a onclick="showPage('livestream')">Livestream</a></li>
       <li><a onclick="showPage('attend')">Attend</a></li>
     </ul>
-    <button class="hamburger" onclick="toggleMobile()"><i class="fa-solid fa-bars"></i></button>
+    <button type="button" class="hamburger" onclick="toggleMobile()" aria-label="Toggle navigation" title="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a onclick="showPage('home');toggleMobile()">Home</a>
@@ -450,14 +450,14 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       <div class="hero-photo-ring">
         <div class="hero-photo-placeholder">
           <img src="images/auntie-margie.jpg" alt="Auntie Margie" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-          <span class="hero-initials" style="display:none;">M</span>
+          <span class="hero-initials" hidden>M</span>
         </div>
       </div>
       <p class="hero-sub">In Loving Memory of</p>
       <h1 class="hero-name">Margaret Darkwaa Owusu<em>"Auntie Margie"</em></h1>
-      <p class="hero-dates"><span style="opacity:.4">—</span>&nbsp; 1966 &nbsp;·&nbsp; 2026 &nbsp;<span style="opacity:.4">—</span></p>
+      <p class="hero-dates">—&nbsp; 1966 &nbsp;·&nbsp; 2026 &nbsp;—</p>
       <p class="hero-tagline">"A life so beautifully lived, a love so deeply felt.<br/>Gone from our sight, but never from our hearts."</p>
-      <div class="hero-badge"><i class="fa-solid fa-church" style="font-size:.75rem;"></i> Funeral — 31st July – 2nd August 2026</div>
+      <div class="hero-badge"><i class="fa-solid fa-church"></i> Funeral — 31st July – 2nd August 2026</div>
     </div>
     <div class="hero-scroll-hint"><span>Scroll</span><i class="fa-solid fa-chevron-down"></i></div>
   </div>
@@ -506,7 +506,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
           <div class="event-card-detail">
             <div><i class="fa-regular fa-calendar"></i> Saturday, 1st August 2026</div>
             <div><i class="fa-regular fa-clock"></i> 8:00 AM onwards</div>
-            <div><i class="fa-solid fa-location-dot"></i> Church Auditorium</div>
+            <div><i class="fa-solid fa-location-dot"></i> Sankubeenase Presby Park</div>
           </div>
         </div>
         <div class="event-card reveal reveal-delay-3">
@@ -593,7 +593,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       <a onclick="showPage('attend')">Attend</a>
     </div>
     <div class="footer-dev">
-      <div class="footer-dev-name">Website designed &amp; developed by <strong>Engineer. Samuel Owusu Frimpong</strong></div>
+      <div class="footer-dev-name">Website designed &amp; developed by <strong>Engr. Samuel Owusu Frimpong</strong></div>
       <div class="footer-dev-socials">
         <a href="https://github.com/samuelowusufrimpong" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
         <a href="https://linkedin.com/in/samuelowusufrimpong" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -647,7 +647,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong class="footer-highlight">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div>
 
 <!-- ══════════════════ PAGE: PROGRAMME ══════════════════ -->
@@ -808,7 +808,7 @@ Rest well, my love. You ran your race faithfully. Well done.</div>
               <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
               <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
-            <div class="member-info"><div class="member-name">Mr. Daniel Owusu</div><div class="member-occupation">Husband</div></div>
+            <div class="member-info"><div class="member-name">Mr. Daniel Owusu</div><div class="member-occupation">Farmer - Sankubenase</div></div>
           </div>
         </div>
       </div>
@@ -829,14 +829,14 @@ We carry you forward, Mum. Into everything we do. Forever your children.</div>
           </div>
         </div>
         <div class="tribute-grid">
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Daughter</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child2.jpg','Engr. Samuel Owusu Frimpong – Son')"><img src="images/child2.jpg" alt="Engr. Samuel Owusu Frimpong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Engr. Samuel Owusu Frimpong</div><div class="member-occupation">Software Engineer - Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')"><img src="images/child3.jpg" alt="Akua Diana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Akua Diana</div><div class="member-occupation">Daughter</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')"><img src="images/child4.jpeg" alt="Beatrice Pomaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Beatrice Pomaa</div><div class="member-occupation">Daughter</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')"><img src="images/child5.jpeg" alt="Naomi Owusua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Naomi Owusua</div><div class="member-occupation">Daughter</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')"><img src="images/child6.jpeg" alt="Aikins Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Aikins Ofori</div><div class="member-occupation">Son</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child7.jpeg','Oforiwaa Perpetual – Daughter')"><img src="images/child7.jpeg" alt="Oforiwaa Perpetual" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Oforiwaa Perpetual</div><div class="member-occupation">Daughter</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child8.jpeg','Dosia Aboagyewaa – Daughter')"><img src="images/child8.jpeg" alt="Dosia Aboagyewaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Dosia Aboagyewaa</div><div class="member-occupation">Daughter</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Accountant - Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child2.jpg','Engr. Samuel Owusu Frimpong – Son')"><img src="images/child2.jpg" alt="Engr. Samuel Owusu Frimpong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder hidden"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Engr. Samuel Owusu Frimpong</div><div class="member-occupation">Software Engineer - Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')"><img src="images/child3.jpg" alt="Akua Diana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Akua Diana</div><div class="member-occupation">Trader - Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')"><img src="images/child4.jpeg" alt="Beatrice Pomaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder hidden"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Beatrice Pomaa</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child7.jpeg','Oforiwaa Perpetual – Daughter')"><img src="images/child7.jpeg" alt="Oforiwaa Perpetual" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Oforiwaa Perpetual</div><div class="member-occupation">Fashion Designer - Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child8.jpeg','Dosia Aboagyewaa – Daughter')"><img src="images/child8.jpeg" alt="Dosia Aboagyewaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Dosia Aboagyewaa</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
+           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')"><img src="images/child6.jpeg" alt="Aikins Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Aikins Ofori</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
+            <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')"><img src="images/child5.jpeg" alt="Naomi Owusua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Naomi Owusua</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
         </div>
       </div>
 
@@ -877,8 +877,13 @@ Until we meet again, Grandma. Save us a seat.</div>
           </div>
         </div>
         <div class="tribute-grid">
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchildren/grandchild1.jpg','Grandchild 1')"><img src="images/grandchildren/grandchild1.jpg" alt="Grandchild 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Grandchild Name 1</div><div class="member-occupation">Grandchild</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchildren/grandchild2.jpg','Grandchild 2')"><img src="images/grandchildren/grandchild2.jpg" alt="Grandchild 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Grandchild Name 2</div><div class="member-occupation">Grandchild</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild1.jpg','Pricilla Ofori')"><img src="images/grandchild1.jpeg" alt="Pricilla Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Pricilla Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild2.jpg','Emmanuel Ofori')"><img src="images/grandchild2.jpeg" alt="Emmanuel Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Emmanuel Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild4.jpg','Asare Godwin')"><img src="images/grandchild4.jpeg" alt="Asare Godwin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Asare Godwin</div><div class="member-occupation">Student -  Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild3.jpg','Nana Kofi Brempong')"><img src="images/grandchild3.jpeg" alt="Nana Kofi Brempong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kofi Brempong</div><div class="member-occupation">Student -  Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild5.jpg','Vaniah Ofori')"><img src="images/grandchild5.jpeg" alt="Vaniah Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Vaniah Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild6.jpg','Daniel Owusu')"><img src="images/grandchild6.jpeg" alt="Daniel Owusu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Daniel Owusu</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild7.jpg','Nana Kwasi')"><img src="images/grandchild7.jpeg" alt="Nana Kwasi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kwasi</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
         </div>
       </div>
 
@@ -1222,11 +1227,11 @@ function saveUserProfile(user) {
 }
 
 // Example of how you might call this after a successful sign-up or login
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     saveUserProfile(user);
-//   }
-// });
+ auth.onAuthStateChanged((user) => {
+   if (user) {
+     saveUserProfile(user);
+   }
+ });
 
 
 // Add this function to handle submitting a new condolence message
@@ -1251,11 +1256,11 @@ function addCondolenceMessage(userId, userName, messageText) {
 }
 
 // Example usage (e.g., from a form submission)
-// const currentUser = auth.currentUser;
-// if (currentUser) {
-//   const messageInput = document.getElementById('condolenceMessageInput');
-//   addCondolenceMessage(currentUser.uid, currentUser.displayName || currentUser.email, messageInput.value);
-// }
+ const currentUser = auth.currentUser;
+ if (currentUser) {
+   const messageInput = document.getElementById('condolenceMessageInput');
+   addCondolenceMessage(currentUser.uid, currentUser.displayName || currentUser.email, messageInput.value);
+ }
 
 
 /* ════════════════════════════════════════
