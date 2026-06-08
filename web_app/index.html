@@ -8,9 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"/>
 <link rel="manifest" href="manifest.json"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -20,80 +17,281 @@
 <meta property="og:title" content="In Loving Memory – Margaret Darkwaa Owusu"/>
 <meta property="og:description" content="Join us in celebrating the life of Auntie Margie. Funeral 31 July – 2 August 2026."/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="icons/icon-512.png"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Auntie Margie Memorial"/>
-<meta name="twitter:description" content="Memorial page for Auntie Margie – 1966–2026."/>
 <style>
+/* ═══════════════════════════════════════
+   CSS VARIABLES & RESET
+═══════════════════════════════════════ */
 :root{
-  --charcoal:#1c1c1c;--dark:#111111;--gold:#c8a84b;--gold-light:#e2c97a;
-  --gold-pale:#f5e9c4;--cream:#f8f4ec;--ivory:#fdfaf4;
-  --text-dark:#2a2a2a;--text-mid:#555550;--text-light:#888880;
-  --border:rgba(200,168,75,.25);--shadow:0 8px 40px rgba(0,0,0,.12);
+  --charcoal:#1c1c1c;
+  --dark:#111111;
+  --gold:#c8a84b;
+  --gold-light:#e2c97a;
+  --gold-pale:#f5e9c4;
+  --cream:#f8f4ec;
+  --ivory:#fdfaf4;
+  --text-dark:#2a2a2a;
+  --text-mid:#555550;
+  --text-light:#888880;
+  --border:rgba(200,168,75,.25);
+  --shadow:0 8px 40px rgba(0,0,0,.12);
+  --green:#22c55e;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-dark);overflow-x:hidden;padding-bottom:60px;}
-#loading-screen{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s,visibility .8s;}
-#loading-screen.fade-out{opacity:0;visibility:hidden;}
-.loading-cross{position:relative;width:40px;height:40px;margin-bottom:24px;animation:pulse-cross 1.5s ease-in-out infinite;}
-.loading-cross::before,.loading-cross::after{content:\'\';position:absolute;background:var(--gold);border-radius:2px;}
+body{
+  font-family:'Lato',sans-serif;
+  background:var(--ivory);
+  color:var(--text-dark);
+  overflow-x:hidden;
+  padding-bottom:60px;
+}
+
+/* ═══════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════ */
+#loading-screen{
+  position:fixed;inset:0;
+  background:var(--dark);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  z-index:9999;
+  transition:opacity .8s,visibility .8s;
+}
+#loading-screen.fade-out{opacity:0;visibility:hidden;pointer-events:none;}
+.loading-cross{
+  position:relative;width:44px;height:44px;
+  margin-bottom:28px;
+  animation:pulse-cross 1.5s ease-in-out infinite;
+}
+.loading-cross::before,.loading-cross::after{
+  content:'';position:absolute;
+  background:var(--gold);border-radius:2px;
+}
 .loading-cross::before{width:4px;height:100%;top:0;left:50%;transform:translateX(-50%);}
 .loading-cross::after{width:100%;height:4px;top:50%;left:0;transform:translateY(-50%);}
-@keyframes pulse-cross{0%,100%{opacity:.4;transform:scale(.95);}50%{opacity:1;transform:scale(1.05);}}
-.loading-text{font-family:\'Cormorant Garamond\',serif;color:var(--gold-pale);font-size:1.1rem;letter-spacing:.3em;text-transform:uppercase;}
-#nav{position:fixed;top:0;left:0;right:0;background:rgba(17,17,17,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid var(--border);}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;}
-.nav-brand{font-family:\'Playfair Display\',serif;color:var(--gold);font-size:1.05rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;text-decoration:none;}
+@keyframes pulse-cross{
+  0%,100%{opacity:.4;transform:scale(.95);}
+  50%{opacity:1;transform:scale(1.05);}
+}
+.loading-text{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--gold-pale);
+  font-size:1.1rem;letter-spacing:.35em;text-transform:uppercase;
+}
+.loading-verse{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  color:rgba(245,233,196,.35);
+  font-size:.88rem;
+  margin-top:16px;
+  letter-spacing:.06em;
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;
+  background:rgba(17,17,17,.97);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:64px;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);font-size:1.05rem;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;gap:8px;
+  text-decoration:none;
+}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
-.nav-links a{color:rgba(245,233,196,.7);text-decoration:none;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:4px;cursor:pointer;transition:color .2s,background .2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(200,168,75,.1);}
-.hamburger{display:none;background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:8px;}
+.nav-links a{
+  color:rgba(245,233,196,.7);text-decoration:none;
+  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 11px;border-radius:4px;cursor:pointer;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--gold);background:rgba(200,168,75,.1);
+}
+.hamburger{
+  display:none;background:none;border:none;
+  color:var(--gold);font-size:1.4rem;cursor:pointer;padding:8px;
+}
 .mobile-menu{display:none;background:rgba(17,17,17,.98);border-top:1px solid var(--border);}
 .mobile-menu.open{display:block;}
-.mobile-menu a{display:block;color:rgba(245,233,196,.75);padding:14px 28px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;text-decoration:none;transition:color .2s,background .2s;}
+.mobile-menu a{
+  display:block;color:rgba(245,233,196,.75);
+  padding:14px 28px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  cursor:pointer;text-decoration:none;
+  transition:color .2s,background .2s;
+}
 .mobile-menu a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
-.page{display:none;min-height:100vh;padding-top:64px;background:var(--ivory);animation:fadeInPage .45s ease forwards;}
+
+/* ═══════════════════════════════════════
+   PAGES
+═══════════════════════════════════════ */
+.page{display:none;min-height:100vh;padding-top:64px;animation:fadeInPage .45s ease forwards;}
 .page.active{display:block;}
 @keyframes fadeInPage{from{opacity:0;}to{opacity:1;}}
-.hero{position:relative;min-height:calc(100vh - 64px);background:var(--dark);display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,160,160,.05) 0%,transparent 60%),linear-gradient(180deg,#111 0%,#1a1a15 60%,#111 100%);}
-.hero-pattern{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px);}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{
+  position:relative;min-height:calc(100vh - 64px);
+  background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,160,160,.05) 0%,transparent 60%),
+    linear-gradient(180deg,#111 0%,#1a1a15 60%,#111 100%);
+}
+.hero-pattern{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px);
+}
 .hero-content{position:relative;z-index:1;max-width:700px;padding:60px 24px;}
 .hero-ornament{color:var(--gold);font-size:1.6rem;letter-spacing:.6em;margin-bottom:20px;opacity:.6;display:block;}
-.hero-sub{font-family:\'Cormorant Garamond\',serif;color:var(--gold);font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:16px;opacity:.85;}
-.hero-name{font-family:\'Playfair Display\',serif;color:var(--cream);font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;margin-bottom:8px;}
-.hero-name em{display:block;font-style:italic;color:var(--gold-light);font-size:.55em;font-weight:400;letter-spacing:.06em;margin-top:6px;}
-.hero-dates{font-family:\'Cormorant Garamond\',serif;color:rgba(245,233,196,.6);font-size:1.1rem;letter-spacing:.2em;margin:20px 0 8px;}
-.hero-tagline{font-family:\'Cormorant Garamond\',serif;font-style:italic;color:var(--gold-pale);font-size:1.25rem;margin:28px 0 40px;opacity:.8;line-height:1.6;}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--gold);font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;
+  margin-bottom:16px;opacity:.85;
+}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  color:var(--cream);font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;
+  margin-bottom:8px;
+}
+.hero-name em{
+  display:block;font-style:italic;color:var(--gold-light);
+  font-size:.55em;font-weight:400;letter-spacing:.06em;margin-top:6px;
+}
+.hero-dates{
+  font-family:'Cormorant Garamond',serif;
+  color:rgba(245,233,196,.6);font-size:1.1rem;letter-spacing:.2em;
+  margin:20px 0 8px;
+}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--gold-pale);font-size:1.25rem;
+  margin:28px 0 40px;opacity:.8;line-height:1.6;
+}
 .hero-photo-ring{width:175px;height:175px;border-radius:50%;margin:0 auto 36px;position:relative;}
-.hero-photo-ring::before{content:\'\';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--gold);opacity:.5;}
-.hero-photo-ring::after{content:\'\';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(200,168,75,.2);}
-.hero-photo-placeholder{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#2a2a20,#1e1e18);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.hero-photo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
-.hero-photo-placeholder .hero-initials{font-family:\'Playfair Display\',serif;font-size:3.5rem;color:var(--gold);opacity:.5;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,168,75,.1);border:1px solid var(--border);border-radius:2px;padding:7px 18px;font-family:\'Cormorant Garamond\',serif;font-size:.85rem;color:var(--gold);letter-spacing:.12em;margin-bottom:16px;}
-.hero-scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(200,168,75,.4);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounceDown 2s ease-in-out infinite;}
-@keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
-.countdown-strip{background:var(--dark);padding:36px 24px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.countdown-label{font-family:\'Cormorant Garamond\',serif;color:var(--gold);font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:20px;display:block;}
+.hero-photo-ring::before{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid var(--gold);opacity:.5;
+}
+.hero-photo-ring::after{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  border:1px solid rgba(200,168,75,.2);
+}
+.hero-photo-placeholder{
+  width:100%;height:100%;border-radius:50%;
+  background:linear-gradient(135deg,#2a2a20,#1e1e18);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.hero-photo-placeholder img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
+}
+.hero-initials{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);opacity:.5;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,168,75,.1);border:1px solid var(--border);
+  border-radius:2px;padding:7px 18px;
+  font-family:'Cormorant Garamond',serif;font-size:.85rem;
+  color:var(--gold);letter-spacing:.12em;margin-bottom:16px;
+}
+.hero-scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  color:rgba(200,168,75,.4);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bounceDown 2s ease-in-out infinite;
+}
+@keyframes bounceDown{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(6px);}
+}
+
+/* ═══════════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════════ */
+.countdown-strip{
+  background:var(--dark);padding:36px 24px;text-align:center;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.countdown-label{
+  font-family:'Cormorant Garamond',serif;color:var(--gold);
+  font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;
+  margin-bottom:20px;display:block;
+}
 .countdown-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-.countdown-box{background:var(--charcoal);border:1px solid var(--border);border-radius:4px;padding:18px 22px;min-width:80px;}
-.countdown-num{font-family:\'Playfair Display\',serif;font-size:2.6rem;font-weight:700;color:var(--gold);display:block;line-height:1;}
-.countdown-unit{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-top:6px;display:block;}
-.countdown-done{font-family:\'Cormorant Garamond\',serif;font-size:1.4rem;color:var(--gold);font-style:italic;}
-.verse-strip{background:var(--charcoal);padding:40px 24px;text-align:center;}
-.verse-text{font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--gold-pale);max-width:640px;margin:0 auto 12px;line-height:1.7;opacity:.85;}
+.countdown-box{
+  background:var(--charcoal);border:1px solid var(--border);
+  border-radius:4px;padding:18px 22px;min-width:80px;
+  position:relative;overflow:hidden;
+}
+.countdown-box::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.4;
+}
+.countdown-num{
+  font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;
+  color:var(--gold);display:block;line-height:1;
+}
+.countdown-unit{
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-light);margin-top:6px;display:block;
+}
+.countdown-done{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);font-style:italic;}
+
+/* ═══════════════════════════════════════
+   VERSE & ABOUT STRIPS
+═══════════════════════════════════════ */
+.verse-strip{background:var(--charcoal);padding:48px 24px;text-align:center;}
+.verse-text{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--gold-pale);
+  max-width:640px;margin:0 auto 12px;line-height:1.7;opacity:.85;
+}
 .verse-ref{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.6;}
-.about-strip{background:var(--charcoal);padding:56px 24px;text-align:center;}
-.about-strip p{font-family:\'Cormorant Garamond\',serif;font-size:1.35rem;line-height:1.8;color:rgba(245,233,196,.75);max-width:680px;margin:0 auto;font-style:italic;}
+.about-strip{background:var(--charcoal);padding:56px 24px;text-align:center;border-top:1px solid var(--border);}
+.about-strip p{
+  font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.8;
+  color:rgba(245,233,196,.75);max-width:680px;margin:0 auto;font-style:italic;
+}
 .about-strip strong{color:var(--gold);}
+
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
 .section{padding:80px 24px;background:var(--ivory);}
 .section-alt{background:var(--cream);}
 .section-dark{background:var(--dark);color:var(--cream);}
 .section-header{text-align:center;margin-bottom:56px;}
-.section-eyebrow{font-family:\'Cormorant Garamond\',serif;font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
-.section-title{font-family:\'Playfair Display\',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.2;color:var(--text-dark);}
+.section-eyebrow{
+  font-family:'Cormorant Garamond',serif;font-size:.78rem;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;display:block;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.2;
+  color:var(--text-dark);
+}
 .section-title--cream{color:var(--cream);}
 .section-ornament{display:flex;align-items:center;gap:16px;justify-content:center;margin-top:20px;}
 .section-ornament span{width:40px;height:1px;background:var(--gold);opacity:.5;}
@@ -101,163 +299,453 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
 .container{max-width:1100px;margin:0 auto;}
 .container-sm{max-width:720px;margin:0 auto;}
 .container-md{max-width:900px;margin:0 auto;}
-.quick-events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:8px;}
-.event-card{background:var(--ivory);border:1px solid var(--border);border-top:3px solid var(--gold);padding:28px 24px;border-radius:2px;transition:transform .2s,box-shadow .2s;}
+
+/* ═══════════════════════════════════════
+   EVENT CARDS
+═══════════════════════════════════════ */
+.quick-events-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;margin-top:8px;
+}
+.event-card{
+  background:var(--ivory);border:1px solid var(--border);
+  border-top:3px solid var(--gold);padding:28px 24px;border-radius:2px;
+  transition:transform .2s,box-shadow .2s;
+}
 .event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-.event-card-icon{width:40px;height:40px;background:rgba(200,168,75,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;margin-bottom:16px;}
+.event-card-icon{
+  width:40px;height:40px;background:rgba(200,168,75,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1rem;margin-bottom:16px;
+}
 .event-card-type{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
-.event-card-name{font-family:\'Playfair Display\',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.event-card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
 .event-card-detail{font-size:.85rem;color:var(--text-mid);line-height:1.6;}
 .event-card-detail i{color:var(--gold);margin-right:5px;width:14px;}
-.stats-row{display:flex;flex-wrap:wrap;justify-content:center;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
-.stat-item{flex:1;min-width:140px;padding:28px 20px;text-align:center;border-right:1px solid var(--border);background:var(--ivory);}
+
+/* ═══════════════════════════════════════
+   STATS ROW
+═══════════════════════════════════════ */
+.stats-row{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+}
+.stat-item{
+  flex:1;min-width:140px;padding:28px 20px;text-align:center;
+  border-right:1px solid var(--border);background:var(--ivory);
+}
 .stat-item:last-child{border-right:none;}
-.stat-num{font-family:\'Playfair Display\',serif;font-size:2.4rem;font-weight:700;color:var(--gold);display:block;margin-bottom:6px;}
+.stat-num{
+  font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;
+  color:var(--gold);display:block;margin-bottom:6px;
+}
 .stat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-light);}
+
+/* ═══════════════════════════════════════
+   SHARE SECTION
+═══════════════════════════════════════ */
 .share-section{text-align:center;}
 .share-section p{color:rgba(245,233,196,.6);margin:24px auto;max-width:480px;line-height:1.8;font-size:.92rem;}
 .share-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px;}
-.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 24px;font-family:\'Lato\',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
+.btn-outline{
+  background:transparent;color:var(--gold);border:1px solid var(--gold);
+  padding:10px 24px;font-family:'Lato',sans-serif;font-size:.78rem;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  cursor:pointer;border-radius:2px;transition:all .2s;
+}
 .btn-outline:hover{background:var(--gold);color:var(--dark);}
+
+/* ═══════════════════════════════════════
+   ANNOUNCEMENTS
+═══════════════════════════════════════ */
 .announcement-list{display:flex;flex-direction:column;gap:20px;}
-.announcement-item{background:var(--ivory);border-left:4px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s;}
+.announcement-item{
+  background:var(--ivory);border-left:4px solid var(--gold);
+  padding:24px 28px;border-radius:0 4px 4px 0;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  transition:transform .2s;
+}
 .announcement-item:hover{transform:translateX(4px);}
 .ann-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
-.ann-tag{background:var(--gold);color:var(--dark);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;font-weight:700;}
+.ann-tag{
+  background:var(--gold);color:var(--dark);font-size:.65rem;
+  letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;
+  border-radius:2px;font-weight:700;
+}
 .ann-date{font-size:.8rem;color:var(--text-light);}
-.ann-title{font-family:\'Playfair Display\',serif;font-size:1.2rem;font-weight:600;color:var(--text-dark);margin-bottom:8px;}
+.ann-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text-dark);margin-bottom:8px;}
 .ann-body{font-size:.9rem;color:var(--text-mid);line-height:1.7;}
-.program-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
-.program-tab{padding:10px 22px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:\'Lato\',sans-serif;}
+
+/* ═══════════════════════════════════════
+   PROGRAMME
+═══════════════════════════════════════ */
+.program-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;
+}
+.program-tab{
+  padding:10px 22px;border:1px solid var(--border);
+  background:var(--ivory);color:var(--text-mid);
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;
+}
 .program-tab.active,.program-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
 .program-panel{display:none;}
 .program-panel.active{display:block;}
-.program-day-header{background:var(--charcoal);color:var(--gold-pale);padding:20px 28px;border-radius:4px 4px 0 0;}
-.program-day-header h3{font-family:\'Playfair Display\',serif;font-size:1.3rem;font-weight:600;}
+.program-day-header{
+  background:var(--charcoal);color:var(--gold-pale);
+  padding:20px 28px;border-radius:4px 4px 0 0;
+}
+.program-day-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;}
 .program-day-header p{font-size:.85rem;opacity:.6;margin-top:4px;}
-.program-items{background:var(--ivory);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;}
-.program-item{display:flex;align-items:flex-start;padding:18px 28px;border-bottom:1px solid rgba(200,168,75,.1);transition:background .2s;}
+.program-items{
+  background:var(--ivory);border:1px solid var(--border);
+  border-top:none;border-radius:0 0 4px 4px;overflow:hidden;
+}
+.program-item{
+  display:flex;align-items:flex-start;padding:18px 28px;
+  border-bottom:1px solid rgba(200,168,75,.1);transition:background .2s;
+}
 .program-item:last-child{border-bottom:none;}
 .program-item:hover{background:rgba(200,168,75,.03);}
-.program-item-num{width:32px;height:32px;flex-shrink:0;background:rgba(200,168,75,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--gold);margin-right:18px;margin-top:2px;}
+.program-item-num{
+  width:32px;height:32px;flex-shrink:0;
+  background:rgba(200,168,75,.12);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;color:var(--gold);
+  margin-right:18px;margin-top:2px;
+}
 .program-item-body{flex:1;}
 .program-item-title{font-weight:700;font-size:.92rem;color:var(--text-dark);margin-bottom:3px;}
 .program-item-detail{font-size:.82rem;color:var(--text-mid);}
 .program-item-time{font-size:.75rem;color:var(--gold);font-weight:700;letter-spacing:.05em;margin-left:12px;flex-shrink:0;}
-.form-wrap-dark{background:var(--charcoal);padding:40px;border-radius:4px;border:1px solid rgba(200,168,75,.15);margin-bottom:48px;}
-.form-wrap-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);margin-bottom:24px;font-size:1.25rem;}
+
+/* ═══════════════════════════════════════
+   FORMS (shared)
+═══════════════════════════════════════ */
+.form-wrap-dark{
+  background:var(--charcoal);padding:40px;border-radius:4px;
+  border:1px solid rgba(200,168,75,.15);margin-bottom:28px;
+}
+.form-wrap-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:24px;font-size:1.25rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .form-group{margin-bottom:20px;}
-.form-group label{display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:700;}
-.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:12px 16px;border-radius:2px;font-family:\'Lato\',sans-serif;font-size:.92rem;transition:border-color .2s;outline:none;}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
-.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(245,233,196,.3);}
+.form-group label{
+  display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;font-weight:700;
+}
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;background:rgba(255,255,255,.05);
+  border:1px solid rgba(200,168,75,.2);color:var(--cream);
+  padding:12px 16px;border-radius:2px;
+  font-family:'Lato',sans-serif;font-size:.92rem;
+  transition:border-color .2s;outline:none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{border-color:var(--gold);}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:rgba(245,233,196,.3);}
 .form-group textarea{resize:vertical;min-height:100px;}
 .form-group select option{background:var(--charcoal);}
 .checkbox-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
 .checkbox-label{display:flex;align-items:center;gap:8px;color:var(--cream);font-size:.88rem;cursor:pointer;}
 .checkbox-label input[type="checkbox"]{accent-color:var(--gold);width:16px;height:16px;}
-.btn-gold{background:var(--gold);color:var(--dark);border:none;padding:14px 36px;font-family:\'Lato\',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:background .2s,transform .1s;display:inline-flex;align-items:center;gap:8px;}
+
+.btn-gold{
+  background:var(--gold);color:var(--dark);border:none;
+  padding:14px 36px;font-family:'Lato',sans-serif;
+  font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  cursor:pointer;border-radius:2px;transition:background .2s,transform .1s;
+  display:inline-flex;align-items:center;gap:8px;
+}
 .btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
 .btn-gold:disabled{opacity:.55;cursor:not-allowed;transform:none;}
 .btn-gold--sm{padding:10px 24px;font-size:.75rem;}
-.cond-status-bar{display:flex;align-items:center;gap:10px;padding:11px 18px;border-radius:4px;margin-bottom:28px;font-size:.82rem;}
+
+.btn-secondary{
+  background:transparent;color:rgba(200,168,75,.7);
+  border:1px solid rgba(200,168,75,.3);padding:9px 20px;
+  font-family:'Lato',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;
+}
+.btn-secondary:hover{background:rgba(200,168,75,.1);color:var(--gold);border-color:var(--gold);}
+
+/* ═══════════════════════════════════════
+   CONDOLENCES
+═══════════════════════════════════════ */
+.cond-status-bar{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 18px;border-radius:4px;margin-bottom:28px;font-size:.82rem;
+}
 .cond-status-bar.live{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
 .cond-status-bar.offline{background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.2);}
 .live-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.live-dot.green{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:pulseDot 1.8s ease-in-out infinite;}
+.live-dot.green{background:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:pulseDot 1.8s ease-in-out infinite;}
 .live-dot.amber{background:var(--gold);}
-@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2);}50%{box-shadow:0 0 0 8px rgba(34,197,94,.04);}}
+@keyframes pulseDot{
+  0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2);}
+  50%{box-shadow:0 0 0 8px rgba(34,197,94,.04);}
+}
 .status-text{color:var(--text-mid);}
 .status-count{margin-left:auto;color:var(--text-light);font-weight:700;}
 .condolence-cards{display:flex;flex-direction:column;gap:20px;}
-.condolence-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;padding:24px 28px;position:relative;transition:box-shadow .2s;}
+.condolence-card{
+  background:var(--ivory);border:1px solid var(--border);
+  border-radius:4px;padding:24px 28px;position:relative;
+  transition:box-shadow .2s;
+}
 .condolence-card.new-card{animation:slideIn .5s ease;}
-@keyframes slideIn{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(-12px);}
+  to{opacity:1;transform:translateY(0);}
+}
 .condolence-card:hover{box-shadow:var(--shadow);}
-.condolence-card::before{content:"\\201C";position:absolute;top:16px;left:20px;font-family:\'Playfair Display\',serif;font-size:3rem;color:var(--gold);opacity:.15;line-height:1;pointer-events:none;}
-.condolence-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-left:8px;}
-.condolence-name{font-family:\'Playfair Display\',serif;font-weight:600;font-size:1.05rem;color:var(--text-dark);}
+.condolence-card::before{
+  content:"\201C";position:absolute;top:16px;left:20px;
+  font-family:'Playfair Display',serif;font-size:3rem;
+  color:var(--gold);opacity:.15;line-height:1;pointer-events:none;
+}
+.condolence-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-left:8px;flex-wrap:wrap;gap:6px;}
+.condolence-name{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;color:var(--text-dark);}
 .condolence-relation{font-size:.75rem;color:var(--gold);letter-spacing:.08em;}
-.condolence-date{font-size:.75rem;color:var(--text-light);white-space:nowrap;flex-shrink:0;margin-left:12px;}
-.condolence-msg{font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1.08rem;color:var(--text-mid);line-height:1.75;padding-left:8px;}
-.condolences-heading{font-family:\'Playfair Display\',serif;font-size:1.25rem;margin-bottom:20px;color:var(--text-dark);}
-.cond-empty{text-align:center;padding:52px 20px;color:var(--text-light);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1rem;border:1px dashed rgba(200,168,75,.2);border-radius:4px;}
+.condolence-date{font-size:.75rem;color:var(--text-light);white-space:nowrap;flex-shrink:0;}
+.condolence-msg{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.08rem;color:var(--text-mid);line-height:1.75;padding-left:8px;
+}
+.condolences-heading{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:20px;color:var(--text-dark);}
+.cond-empty{
+  text-align:center;padding:52px 20px;color:var(--text-light);
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;
+  border:1px dashed rgba(200,168,75,.2);border-radius:4px;
+}
 .cond-empty i{display:block;font-size:2rem;color:var(--gold);opacity:.2;margin-bottom:12px;}
-.ai-writer-box{background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:24px 28px;margin-bottom:28px;}
-.ai-writer-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+
+/* AI Writer */
+.ai-writer-box{
+  background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.2);
+  border-radius:4px;padding:24px 28px;margin-bottom:28px;
+}
+.ai-writer-title{
+  font-family:'Playfair Display',serif;color:var(--gold-pale);
+  font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;
+}
 .ai-writer-sub{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
-.ai-result-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:16px;font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1.05rem;color:var(--gold-pale);line-height:1.75;margin-top:14px;display:none;min-height:80px;}
+.ai-result-box{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:3px;padding:16px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.05rem;color:var(--gold-pale);line-height:1.75;
+  margin-top:14px;display:none;min-height:80px;
+}
 .ai-result-box.show{display:block;}
 .ai-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
-.btn-secondary{background:transparent;color:rgba(200,168,75,.7);border:1px solid rgba(200,168,75,.3);padding:9px 20px;font-family:\'Lato\',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
-.btn-secondary:hover{background:rgba(200,168,75,.1);color:var(--gold);border-color:var(--gold);}
-.wa-card{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);border-radius:4px;padding:20px 24px;margin-top:20px;display:none;flex-direction:column;gap:14px;}
+
+/* WhatsApp card */
+.wa-card{
+  background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);
+  border-radius:4px;padding:20px 24px;margin-top:20px;
+  display:none;flex-direction:column;gap:14px;
+}
 .wa-card.show{display:flex;}
-.wa-card-title{color:#25d366;font-family:\'Playfair Display\',serif;font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:10px;}
+.wa-card-title{color:#25d366;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:10px;}
 .wa-card-body{font-size:.88rem;color:var(--gold-pale);line-height:1.6;}
 .wa-card-body strong{color:#25d366;}
-.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:13px 28px;font-family:\'Lato\',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;display:inline-flex;align-items:center;gap:10px;transition:background .2s;align-self:flex-start;}
+.btn-whatsapp{
+  background:#25d366;color:#fff;border:none;padding:13px 28px;
+  font-family:'Lato',sans-serif;font-size:.82rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:background .2s;align-self:flex-start;
+}
 .btn-whatsapp:hover{background:#1ebe5d;}
+
+/* ═══════════════════════════════════════
+   TRIBUTES
+═══════════════════════════════════════ */
 .tribute-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:52px;}
-.tribute-tab{padding:11px 26px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:\'Lato\',sans-serif;display:flex;align-items:center;gap:8px;}
+.tribute-tab{
+  padding:11px 26px;border:1px solid var(--border);
+  background:var(--ivory);color:var(--text-mid);
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;border-radius:2px;transition:all .2s;
+  font-family:'Lato',sans-serif;display:flex;align-items:center;gap:8px;
+}
 .tribute-tab.active,.tribute-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
 .tribute-panel{display:none;}
 .tribute-panel.active{display:block;}
-.tribute-text-block{background:var(--ivory);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:40px 44px;position:relative;margin-bottom:40px;}
-.tribute-text-block::before{content:"\\201C";position:absolute;top:12px;left:22px;font-family:\'Playfair Display\',serif;font-size:6rem;color:var(--gold);opacity:.09;line-height:1;pointer-events:none;}
-.tribute-text-body{font-family:\'Cormorant Garamond\',serif;font-size:1.22rem;line-height:2;color:var(--text-mid);font-style:italic;padding-left:14px;white-space:pre-line;}
-.tribute-signoff{display:flex;align-items:center;gap:16px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border);}
-.tribute-signoff-icon{width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0;}
-.tribute-signoff-name{font-family:\'Playfair Display\',serif;font-size:1rem;font-weight:600;color:var(--text-dark);}
+.tribute-text-block{
+  background:var(--ivory);border:1px solid var(--border);
+  border-left:4px solid var(--gold);border-radius:0 6px 6px 0;
+  padding:40px 44px;position:relative;margin-bottom:40px;
+}
+.tribute-text-block::before{
+  content:"\201C";position:absolute;top:12px;left:22px;
+  font-family:'Playfair Display',serif;font-size:6rem;
+  color:var(--gold);opacity:.09;line-height:1;pointer-events:none;
+}
+.tribute-text-body{
+  font-family:'Cormorant Garamond',serif;font-size:1.22rem;
+  line-height:2;color:var(--text-mid);font-style:italic;
+  padding-left:14px;white-space:pre-line;
+}
+.tribute-signoff{
+  display:flex;align-items:center;gap:16px;margin-top:28px;
+  padding-top:20px;border-top:1px solid var(--border);
+}
+.tribute-signoff-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(200,168,75,.12);display:flex;align-items:center;
+  justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0;
+}
+.tribute-signoff-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);}
 .tribute-signoff-role{font-size:.78rem;color:var(--text-light);margin-top:3px;}
-.tribute-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:20px;}
-.member-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-align:center;}
+.tribute-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:18px;margin-bottom:20px;
+}
+.tribute-page-sub{margin:16px auto 0;color:var(--text-mid);font-size:.9rem;max-width:540px;text-align:center;line-height:1.7;}
+
+/* Member cards */
+.member-card{
+  background:var(--ivory);border:1px solid var(--border);
+  border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-align:center;
+}
 .member-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-.member-photo-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--charcoal);cursor:pointer;}
-.member-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s;}
+.member-photo-wrap{
+  position:relative;aspect-ratio:3/4;overflow:hidden;
+  background:var(--charcoal);cursor:pointer;
+}
+.member-photo-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:top;display:block;
+  transition:transform .4s;
+}
 .member-card:hover .member-photo-wrap img{transform:scale(1.05);}
-.member-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e1e18,#2a2a22);color:var(--gold);gap:10px;text-align:center;}
+.member-photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1e1e18,#2a2a22);
+  color:var(--gold);gap:10px;text-align:center;
+}
 .member-photo-placeholder i{font-size:2.8rem;opacity:.4;}
 .member-photo-placeholder span{font-size:.68rem;letter-spacing:.12em;color:var(--text-light);text-transform:uppercase;}
 .member-info{padding:16px 12px 18px;}
-.member-name{font-family:\'Playfair Display\',serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:5px;}
+.member-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:5px;}
 .member-occupation{font-size:.78rem;color:var(--gold);letter-spacing:.05em;line-height:1.4;}
-.tribute-page-sub{margin:16px auto 0;color:var(--text-mid);font-size:.9rem;max-width:540px;text-align:center;line-height:1.7;}
-/* Photo zoom hint */
-.photo-zoom-hint{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;border-radius:4px 4px 0 0;}
+.photo-zoom-hint{
+  position:absolute;inset:0;background:rgba(0,0,0,.45);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .25s;
+}
 .photo-zoom-hint i{font-size:1.6rem;color:var(--gold);filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));}
 .member-photo-wrap:hover .photo-zoom-hint{opacity:1;}
+
+/* Church tribute extras — FIXED (was in HTML comment before) */
+.tribute-section-divider{
+  display:flex;align-items:center;gap:14px;
+  margin:32px 0 24px;
+}
+.tribute-section-divider span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);opacity:.75;white-space:nowrap;
+}
+.tribute-section-divider::before,
+.tribute-section-divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,rgba(200,168,75,.3));
+}
+.tribute-section-divider::after{
+  background:linear-gradient(to left,transparent,rgba(200,168,75,.3));
+}
+.member-role-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.25);
+  border-radius:2px;padding:3px 9px;
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-top:5px;
+}
+.member-role-badge.member-badge{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(245,233,196,.15);
+  color:rgba(245,233,196,.4);
+}
+
+/* ═══════════════════════════════════════
+   GALLERY SLIDESHOW
+═══════════════════════════════════════ */
 .slideshow-wrap{position:relative;max-width:720px;margin:0 auto;}
-.slideshow-stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:8px;background:var(--charcoal);border:1px solid var(--border);}
+.slideshow-stage{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+  border-radius:8px;background:var(--charcoal);border:1px solid var(--border);
+}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
 .slide.active{opacity:1;}
 .slide img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:28px 20px 16px;font-family:\'Cormorant Garamond\',serif;font-style:italic;color:var(--gold-pale);font-size:1rem;text-align:center;}
+.slide-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.75));
+  padding:28px 20px 16px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--gold-pale);font-size:1rem;text-align:center;
+}
 .slide-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;}
-.slide-btn{width:40px;height:40px;border-radius:50%;background:var(--charcoal);border:1px solid var(--border);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s;}
+.slide-btn{
+  width:40px;height:40px;border-radius:50%;background:var(--charcoal);
+  border:1px solid var(--border);color:var(--gold);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .2s;
+}
 .slide-btn:hover{background:var(--gold);color:var(--dark);}
 .slide-dots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:300px;}
-.slide-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:background .2s;}
+.slide-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--border);
+  border:none;cursor:pointer;padding:0;transition:background .2s;
+}
 .slide-dot.active{background:var(--gold);}
 .slide-counter{font-size:.78rem;color:var(--text-light);letter-spacing:.1em;min-width:50px;text-align:center;}
-.gallery-placeholder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:32px;}
-.gallery-ph-item{aspect-ratio:3/4;background:var(--charcoal);border:1px solid var(--border);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-light);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;gap:10px;}
+.gallery-placeholder-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;margin-top:32px;
+}
+.gallery-ph-item{
+  aspect-ratio:3/4;background:var(--charcoal);
+  border:1px solid var(--border);border-radius:4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--text-light);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;gap:10px;
+}
 .gallery-ph-item i{font-size:1.8rem;color:var(--gold);opacity:.25;}
+
+/* ═══════════════════════════════════════
+   FAMILY CHAT
+═══════════════════════════════════════ */
 .chat-wrap{display:flex;height:calc(100vh - 64px);overflow:hidden;background:var(--dark);}
-.chat-sidebar{width:280px;flex-shrink:0;background:#161610;border-right:1px solid rgba(200,168,75,.12);display:flex;flex-direction:column;}
+.chat-sidebar{
+  width:280px;flex-shrink:0;background:#161610;
+  border-right:1px solid rgba(200,168,75,.12);
+  display:flex;flex-direction:column;
+}
 .chat-sidebar-head{padding:16px 18px;border-bottom:1px solid rgba(200,168,75,.1);background:#111108;}
-.chat-sidebar-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);font-size:.95rem;font-weight:600;}
+.chat-sidebar-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:.95rem;font-weight:600;}
 .chat-sidebar-sub{font-size:.72rem;color:var(--text-light);margin-top:3px;}
 .online-list{padding:10px 14px;flex:1;overflow-y:auto;}
 .online-item{display:flex;align-items:center;gap:10px;padding:8px 6px;border-bottom:1px solid rgba(200,168,75,.06);font-size:.82rem;}
-.online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+.online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
 .online-name{color:var(--gold-pale);}
 .chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-.chat-header{padding:16px 20px;border-bottom:1px solid rgba(200,168,75,.12);background:#111108;display:flex;align-items:center;gap:12px;}
-.chat-header-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);font-size:1rem;font-weight:600;}
+.chat-header{
+  padding:16px 20px;border-bottom:1px solid rgba(200,168,75,.12);
+  background:#111108;display:flex;align-items:center;gap:12px;
+}
+.chat-header-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1rem;font-weight:600;}
 .chat-header-sub{font-size:.72rem;color:var(--text-light);}
-.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;}
+.chat-messages{
+  flex:1;overflow-y:auto;padding:20px;
+  display:flex;flex-direction:column;gap:14px;
+}
 .chat-messages::-webkit-scrollbar{width:3px;}
 .chat-messages::-webkit-scrollbar-thumb{background:rgba(200,168,75,.2);}
 .chat-bubble{max-width:68%;border-radius:12px;padding:12px 16px;font-size:.9rem;line-height:1.55;}
@@ -265,40 +753,86 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
 .chat-bubble.mine{background:rgba(200,168,75,.18);color:var(--gold-pale);align-self:flex-end;border-bottom-right-radius:2px;}
 .bubble-name{font-size:.68rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em;}
 .bubble-time{font-size:.65rem;color:var(--text-light);margin-top:5px;text-align:right;}
-.chat-input-bar{padding:14px 16px;border-top:1px solid rgba(200,168,75,.12);background:#111108;display:flex;gap:10px;}
-.chat-input-bar input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:20px;font-size:.88rem;outline:none;font-family:\'Lato\',sans-serif;}
+.chat-input-bar{
+  padding:14px 16px;border-top:1px solid rgba(200,168,75,.12);
+  background:#111108;display:flex;gap:10px;
+}
+.chat-input-bar input{
+  flex:1;background:rgba(255,255,255,.06);
+  border:1px solid rgba(200,168,75,.2);color:var(--cream);
+  padding:10px 14px;border-radius:20px;font-size:.88rem;
+  outline:none;font-family:'Lato',sans-serif;
+}
 .chat-input-bar input::placeholder{color:rgba(245,233,196,.25);}
 .chat-input-bar input:focus{border-color:rgba(200,168,75,.5);}
-.chat-send-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;}
+.chat-send-btn{
+  width:40px;height:40px;border-radius:50%;background:var(--gold);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;
+}
 .chat-send-btn:hover{background:var(--gold-light);}
-.chat-auth{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px;}
-.chat-auth-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);font-size:1.4rem;text-align:center;}
+.chat-auth{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:20px;padding:40px;
+}
+.chat-auth-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1.4rem;text-align:center;}
 .chat-auth-sub{color:var(--text-light);font-size:.88rem;text-align:center;max-width:320px;line-height:1.7;}
 .chat-auth-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
-.chat-auth-tab{padding:9px 22px;background:transparent;border:none;color:var(--text-mid);font-family:\'Lato\',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.chat-auth-tab{
+  padding:9px 22px;background:transparent;border:none;color:var(--text-mid);
+  font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;
+}
 .chat-auth-tab.active{background:var(--gold);color:var(--dark);}
 .chat-auth-form{width:100%;max-width:360px;display:flex;flex-direction:column;gap:12px;}
-.chat-auth-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:12px 16px;border-radius:2px;font-size:.9rem;outline:none;font-family:\'Lato\',sans-serif;}
+.chat-auth-input{
+  width:100%;background:rgba(255,255,255,.06);
+  border:1px solid rgba(200,168,75,.2);color:var(--cream);
+  padding:12px 16px;border-radius:2px;font-size:.9rem;
+  outline:none;font-family:'Lato',sans-serif;
+}
 .chat-auth-input:focus{border-color:var(--gold);}
 .chat-auth-input::placeholder{color:rgba(245,233,196,.3);}
-@media(max-width:640px){.chat-sidebar{display:none;}.chat-wrap{height:calc(100vh - 64px);}}
-.livestream-embed{position:relative;padding-bottom:56.25%;height:0;background:#000;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;}
+
+/* ═══════════════════════════════════════
+   LIVESTREAM
+═══════════════════════════════════════ */
+.livestream-embed{
+  position:relative;padding-bottom:56.25%;height:0;
+  background:#000;border-radius:4px;overflow:hidden;
+  border:1px solid var(--border);margin-bottom:40px;
+}
 .livestream-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
-.livestream-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--charcoal);color:var(--gold-pale);gap:16px;text-align:center;padding:24px;}
+.livestream-placeholder{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:var(--charcoal);color:var(--gold-pale);
+  gap:16px;text-align:center;padding:24px;
+}
 .livestream-placeholder i{font-size:3rem;color:var(--gold);opacity:.6;}
-.livestream-placeholder h3{font-family:\'Playfair Display\',serif;font-size:1.4rem;}
+.livestream-placeholder h3{font-family:'Playfair Display',serif;font-size:1.4rem;}
 .livestream-placeholder p{font-size:.88rem;color:var(--text-light);max-width:340px;line-height:1.6;}
 .livestream-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px;}
-.stream-link{display:flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);text-decoration:none;font-size:.88rem;background:var(--charcoal);transition:all .2s;}
+.stream-link{
+  display:flex;align-items:center;gap:10px;padding:14px 24px;
+  border:1px solid var(--border);border-radius:4px;color:var(--cream);
+  text-decoration:none;font-size:.88rem;background:var(--charcoal);
+  transition:all .2s;
+}
 .stream-link:hover{border-color:var(--gold);color:var(--gold);}
 .stream-link i{font-size:1.2rem;}
 .ic-fb{color:#1877f2;}.ic-yt{color:#ff0000;}.ic-zm{color:#2d8cff;}
 .admin-panel{background:var(--charcoal);border:1px solid rgba(200,168,75,.18);border-radius:4px;padding:24px;}
 .admin-panel--mt{margin-top:24px;}
-.admin-panel-title{font-family:\'Playfair Display\',serif;color:var(--gold-pale);margin-bottom:12px;font-size:1rem;display:flex;align-items:center;gap:8px;}
+.admin-panel-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:12px;font-size:1rem;display:flex;align-items:center;gap:8px;}
 .admin-panel-title i{color:var(--gold);}
 .admin-panel-note{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
-.admin-input{width:100%;padding:10px 14px;border:1px solid rgba(200,168,75,.2);border-radius:2px;font-family:\'Lato\',sans-serif;font-size:.88rem;background:rgba(255,255,255,.05);color:var(--cream);outline:none;}
+.admin-input{
+  width:100%;padding:10px 14px;border:1px solid rgba(200,168,75,.2);
+  border-radius:2px;font-family:'Lato',sans-serif;font-size:.88rem;
+  background:rgba(255,255,255,.05);color:var(--cream);outline:none;
+}
 .admin-input::placeholder{color:rgba(245,233,196,.3);}
 .admin-input:focus{border-color:var(--gold);}
 .admin-row{display:flex;gap:12px;flex-wrap:wrap;}
@@ -306,113 +840,266 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
 .admin-links-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .admin-field-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;font-weight:700;}
 .admin-mt{margin-top:14px;}
-.attend-intro{background:var(--charcoal);border:1px solid rgba(200,168,75,.15);border-left:4px solid var(--gold);padding:20px 24px;border-radius:0 4px 4px 0;margin-bottom:36px;color:var(--gold-pale);font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;line-height:1.6;}
+
+/* ═══════════════════════════════════════
+   ATTENDANCE
+═══════════════════════════════════════ */
+.attend-intro{
+  background:var(--charcoal);border:1px solid rgba(200,168,75,.15);
+  border-left:4px solid var(--gold);padding:20px 24px;border-radius:0 4px 4px 0;
+  margin-bottom:36px;color:var(--gold-pale);
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.6;
+}
 .attend-intro strong{color:var(--gold);}
-.sms-notice{background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:14px 18px;margin-top:20px;font-size:.82rem;color:var(--gold-pale);display:flex;gap:10px;align-items:flex-start;}
+.sms-notice{
+  background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);
+  border-radius:4px;padding:14px 18px;margin-top:20px;
+  font-size:.82rem;color:var(--gold-pale);
+  display:flex;gap:10px;align-items:flex-start;
+}
 .sms-notice i{color:var(--gold);flex-shrink:0;margin-top:2px;}
 .attendees-section{margin-top:48px;}
-.attendees-heading{font-family:\'Playfair Display\',serif;font-size:1.2rem;margin-bottom:20px;color:var(--text-dark);display:flex;align-items:baseline;gap:10px;}
+.attendees-heading{
+  font-family:'Playfair Display',serif;font-size:1.2rem;
+  margin-bottom:20px;color:var(--text-dark);
+  display:flex;align-items:baseline;gap:10px;
+}
 .attendees-count{font-size:.85rem;font-weight:400;color:var(--text-light);}
 .attendees-table{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .attendees-empty{padding:40px;text-align:center;color:var(--text-light);font-size:.9rem;}
-.attendance-item{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border);font-size:.9rem;transition:background .2s;}
+.attendance-item{
+  display:flex;align-items:center;gap:16px;padding:14px 20px;
+  border-bottom:1px solid var(--border);font-size:.9rem;
+  transition:background .2s;
+}
 .attendance-item:hover{background:rgba(200,168,75,.03);}
 .attendance-item:last-child{border-bottom:none;}
-.attendee-avatar{width:36px;height:36px;border-radius:50%;background:rgba(200,168,75,.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.85rem;font-weight:700;flex-shrink:0;}
+.attendee-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(200,168,75,.15);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:.85rem;font-weight:700;flex-shrink:0;
+}
 .attendee-info{flex:1;min-width:0;}
 .attendee-name{font-weight:700;color:var(--text-dark);}
 .attendee-meta{font-size:.78rem;color:var(--text-light);}
 .attendee-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
-.attendee-badge{font-size:.7rem;padding:3px 9px;background:rgba(200,168,75,.1);color:var(--gold);border-radius:2px;letter-spacing:.08em;text-transform:uppercase;}
-/* INSTALL BANNERS */
-.install-banner{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;padding:14px 20px;display:none;align-items:center;gap:14px;z-index:3000;box-shadow:0 8px 32px rgba(0,0,0,.4);max-width:360px;width:90%;}
-.install-banner.show{display:flex;}
-.install-banner-text{flex:1;font-size:.85rem;color:var(--gold-pale);line-height:1.5;}
-.install-banner-text strong{color:var(--gold);display:block;margin-bottom:2px;font-size:.9rem;}
-.install-btn{background:var(--gold);color:var(--dark);border:none;padding:9px 18px;font-family:\'Lato\',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;white-space:nowrap;}
-.install-close{background:none;border:none;color:var(--text-light);font-size:1.1rem;cursor:pointer;padding:4px;}
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:2000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+.attendee-badge{
+  font-size:.7rem;padding:3px 9px;background:rgba(200,168,75,.1);
+  color:var(--gold);border-radius:2px;letter-spacing:.08em;text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════ */
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.93);
+  z-index:2000;display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:14px;
+}
 .lightbox.open{display:flex;}
-.lightbox img{max-width:88vw;max-height:74vh;object-fit:contain;border-radius:2px;transition:opacity .15s ease;}
-.lightbox-caption{color:var(--gold-pale);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1rem;opacity:.8;text-align:center;max-width:80vw;}
-.lightbox-close{position:absolute;top:24px;right:28px;color:var(--gold);font-size:1.8rem;cursor:pointer;opacity:.7;background:none;border:none;transition:opacity .2s;z-index:10;}
+.lightbox img{
+  max-width:88vw;max-height:74vh;object-fit:contain;
+  border-radius:2px;transition:opacity .15s ease;
+}
+.lightbox-caption{
+  color:var(--gold-pale);font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1rem;opacity:.8;
+  text-align:center;max-width:80vw;
+}
+.lightbox-close{
+  position:absolute;top:24px;right:28px;color:var(--gold);
+  font-size:1.8rem;cursor:pointer;opacity:.7;
+  background:none;border:none;transition:opacity .2s;z-index:10;
+}
 .lightbox-close:hover{opacity:1;}
-.lightbox-counter{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,233,196,.35);}
-.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.15);border:1px solid rgba(200,168,75,.3);color:var(--gold);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;}
+.lightbox-counter{
+  position:absolute;top:28px;left:50%;transform:translateX(-50%);
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(245,233,196,.35);
+}
+.lb-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(200,168,75,.15);border:1px solid rgba(200,168,75,.3);
+  color:var(--gold);font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:10;
+}
 .lb-arrow:hover{background:var(--gold);color:var(--dark);}
 #lbPrev{left:20px;}
 #lbNext{right:20px;}
-/* TOAST */
-#toast{position:fixed;bottom:70px;left:28px;background:var(--charcoal);border:1px solid var(--gold);color:var(--cream);padding:14px 22px;border-radius:4px;font-size:.88rem;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:5000;transform:translateY(80px);opacity:0;transition:all .35s;display:flex;align-items:center;gap:10px;max-width:320px;}
+
+/* ═══════════════════════════════════════
+   INSTALL BANNERS
+═══════════════════════════════════════ */
+.install-banner{
+  position:fixed;bottom:70px;left:50%;transform:translateX(-50%);
+  background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;
+  padding:14px 20px;display:none;align-items:center;gap:14px;
+  z-index:3000;box-shadow:0 8px 32px rgba(0,0,0,.4);
+  max-width:360px;width:90%;
+}
+.install-banner.show{display:flex;}
+.install-banner-text{flex:1;font-size:.85rem;color:var(--gold-pale);line-height:1.5;}
+.install-banner-text strong{color:var(--gold);display:block;margin-bottom:2px;font-size:.9rem;}
+.install-btn{
+  background:var(--gold);color:var(--dark);border:none;padding:9px 18px;
+  font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;white-space:nowrap;
+}
+.install-close{background:none;border:none;color:var(--text-light);font-size:1.1rem;cursor:pointer;padding:4px;}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+#toast{
+  position:fixed;bottom:70px;left:28px;
+  background:var(--charcoal);border:1px solid var(--gold);
+  color:var(--cream);padding:14px 22px;border-radius:4px;
+  font-size:.88rem;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  z-index:5000;transform:translateY(80px);opacity:0;
+  transition:all .35s;display:flex;align-items:center;gap:10px;max-width:320px;
+}
 #toast.show{transform:translateY(0);opacity:1;}
 #toast i{color:var(--gold);}
-/* FOOTER BAR */
-.footer-bar{position:fixed;bottom:0;left:0;right:0;height:60px;background:rgba(17,17,17,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;align-items:center;z-index:900;padding:0 16px;gap:12px;}
+
+/* ═══════════════════════════════════════
+   FOOTER BAR (fixed bottom music bar)
+═══════════════════════════════════════ */
+.footer-bar{
+  position:fixed;bottom:0;left:0;right:0;height:60px;
+  background:rgba(17,17,17,.97);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;z-index:900;padding:0 16px;gap:12px;
+}
 .fb-music{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
-.fb-music-btn{width:34px;height:34px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.8rem;flex-shrink:0;transition:background .2s;}
+.fb-music-btn{
+  width:34px;height:34px;border-radius:50%;background:var(--gold);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--dark);font-size:.8rem;flex-shrink:0;transition:background .2s;
+}
 .fb-music-btn:hover{background:var(--gold-light);}
 .fb-music-info{display:flex;flex-direction:column;max-width:160px;}
-.fb-music-title{font-family:\'Playfair Display\',serif;font-size:.68rem;color:var(--gold-pale);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fb-music-title{font-family:'Playfair Display',serif;font-size:.68rem;color:var(--gold-pale);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .fb-music-sub{font-size:.58rem;color:var(--text-light);letter-spacing:.06em;margin-top:1px;}
 .fb-music-vol{width:52px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
 .fb-center{flex:1;text-align:center;}
-.fb-center-text{font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:.82rem;color:rgba(245,233,196,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fb-center-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.82rem;color:rgba(245,233,196,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .fb-dev{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
 .fb-dev-label{font-size:.62rem;color:rgba(245,233,196,.3);letter-spacing:.08em;white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;display:none;}
 .fb-dev-socials{display:flex;gap:6px;}
-.fb-dev-socials a{width:26px;height:26px;border-radius:50%;border:1px solid rgba(200,168,75,.2);display:flex;align-items:center;justify-content:center;color:rgba(200,168,75,.5);font-size:.7rem;text-decoration:none;transition:all .2s;}
+.fb-dev-socials a{
+  width:26px;height:26px;border-radius:50%;
+  border:1px solid rgba(200,168,75,.2);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(200,168,75,.5);font-size:.7rem;text-decoration:none;
+  transition:all .2s;
+}
 .fb-dev-socials a:hover{border-color:var(--gold);color:var(--gold);}
 @media(min-width:600px){.fb-dev-label{display:block;}}
 @media(min-width:900px){.fb-music-info{max-width:200px;}}
-/* SCROLLABLE FOOTER */
-.site-footer{background:var(--dark);border-top:1px solid rgba(200,168,75,.18);font-family:\'Lato\',sans-serif;color:rgba(245,233,196,.4);font-size:.82rem;}
-.footer-top{display:flex;align-items:center;justify-content:center;gap:14px;padding:28px 24px 22px;border-bottom:1px solid rgba(200,168,75,.09);flex-wrap:wrap;text-align:center;}
-.footer-memorial{font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1rem;color:rgba(245,233,196,.5);line-height:1.5;}
+
+/* ═══════════════════════════════════════
+   SITE FOOTER (scrollable)
+═══════════════════════════════════════ */
+.site-footer{
+  background:var(--dark);border-top:1px solid rgba(200,168,75,.18);
+  font-family:'Lato',sans-serif;color:rgba(245,233,196,.4);font-size:.82rem;
+}
+.footer-top{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:28px 24px 22px;border-bottom:1px solid rgba(200,168,75,.09);
+  flex-wrap:wrap;text-align:center;
+}
+.footer-memorial{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1rem;color:rgba(245,233,196,.5);line-height:1.5;
+}
 .footer-memorial strong{color:var(--gold);font-style:normal;}
 .footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;padding:18px 24px;border-bottom:1px solid rgba(200,168,75,.09);}
-.footer-nav a{color:rgba(245,233,196,.3);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;padding:5px 11px;border-radius:2px;transition:color .2s,background .2s;}
+.footer-nav a{
+  color:rgba(245,233,196,.3);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;padding:5px 11px;border-radius:2px;
+  transition:color .2s,background .2s;
+}
 .footer-nav a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
 .footer-dev{text-align:center;padding:20px 24px;border-bottom:1px solid rgba(200,168,75,.06);}
-.footer-dev-name{font-family:\'Playfair Display\',serif;font-size:.9rem;color:rgba(245,233,196,.4);margin-bottom:10px;}
+.footer-dev-name{font-family:'Playfair Display',serif;font-size:.9rem;color:rgba(245,233,196,.4);margin-bottom:10px;}
 .footer-dev-name strong{color:var(--gold);}
 .footer-dev-socials{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.footer-dev-socials a{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid rgba(200,168,75,.18);border-radius:3px;color:rgba(245,233,196,.4);font-size:.72rem;text-decoration:none;transition:all .2s;letter-spacing:.06em;}
+.footer-dev-socials a{
+  display:flex;align-items:center;gap:6px;padding:6px 14px;
+  border:1px solid rgba(200,168,75,.18);border-radius:3px;
+  color:rgba(245,233,196,.4);font-size:.72rem;text-decoration:none;
+  transition:all .2s;letter-spacing:.06em;
+}
 .footer-dev-socials a:hover{border-color:var(--gold);color:var(--gold);}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:16px 32px;flex-wrap:wrap;}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px 24px;padding:16px 32px;flex-wrap:wrap;
+}
 .footer-left{font-size:.76rem;color:rgba(245,233,196,.25);letter-spacing:.04em;}
-.footer-copy{text-align:center;padding:13px 24px 22px;font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:.92rem;color:rgba(245,233,196,.18);letter-spacing:.06em;border-top:1px solid rgba(200,168,75,.06);}
-/* REVEAL */
+.footer-copy{
+  text-align:center;padding:13px 24px 22px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.92rem;color:rgba(245,233,196,.18);letter-spacing:.06em;
+  border-top:1px solid rgba(200,168,75,.06);
+}
+
+/* ═══════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════ */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
-/* RESPONSIVE */
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
 @media(max-width:768px){
-  .nav-links{display:none;}.hamburger{display:block;}
-  .section{padding:60px 16px;}.form-wrap-dark{padding:24px 20px;}.form-row{grid-template-columns:1fr;}
-  .hero-content{padding:40px 16px;}.admin-links-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+  .section{padding:60px 16px;}
+  .form-wrap-dark{padding:24px 20px;}
+  .form-row{grid-template-columns:1fr;}
+  .hero-content{padding:40px 16px;}
+  .admin-links-grid{grid-template-columns:1fr;}
   .tribute-text-block{padding:28px 22px 28px 26px;}
   .tribute-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
-  .condolence-header{flex-wrap:wrap;gap:6px;}
   .footer-bottom{flex-direction:column;align-items:center;text-align:center;padding:16px 20px;}
+  #condGrid{grid-template-columns:1fr!important;}
+  .chat-sidebar{display:none;}
+  .chat-wrap{height:calc(100vh - 64px);}
 }
-@media(max-width:480px){.tribute-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){
+  .tribute-grid{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
+<!-- ═══════════════════════════════════════
+     LOADING SCREEN
+═══════════════════════════════════════ -->
 <div id="loading-screen">
   <div class="loading-cross"></div>
   <div class="loading-text">In Loving Memory</div>
+  <div class="loading-verse">"I am the resurrection and the life." — John 11:25</div>
 </div>
 
-<!-- NAV -->
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
 <nav id="nav">
   <div class="nav-inner">
     <a class="nav-brand" onclick="showPage('home')">
-      <i class="fa-solid fa-cross nav-brand-icon"></i>
-      Auntie Margie
+      <i class="fa-solid fa-cross"></i> Auntie Margie
     </a>
     <ul class="nav-links">
       <li><a onclick="showPage('home')" class="active">Home</a></li>
@@ -425,7 +1112,9 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       <li><a onclick="showPage('livestream')">Livestream</a></li>
       <li><a onclick="showPage('attend')">Attend</a></li>
     </ul>
-    <button type="button" class="hamburger" onclick="toggleMobile()" aria-label="Toggle navigation" title="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
+    <button type="button" class="hamburger" onclick="toggleMobile()" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a onclick="showPage('home');toggleMobile()">Home</a>
@@ -440,7 +1129,9 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
   </div>
 </nav>
 
-<!-- ══════════════════ PAGE: HOME ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-bg"></div>
@@ -449,8 +1140,9 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       <span class="hero-ornament">✦ ✦ ✦</span>
       <div class="hero-photo-ring">
         <div class="hero-photo-placeholder">
-          <img src="images/auntie-margie.jpg" alt="Auntie Margie" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-          <span class="hero-initials" hidden>M</span>
+          <img src="images/auntie-margie.jpg" alt="Auntie Margie"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <span class="hero-initials" style="display:none;">M</span>
         </div>
       </div>
       <p class="hero-sub">In Loving Memory of</p>
@@ -562,21 +1254,18 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;">
           <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:9px 16px;font-size:.82rem;color:rgba(245,233,196,.7);">
             <i class="fa-brands fa-android" style="color:#3ddc84;font-size:1.1rem;"></i>
-            Chrome menu → <strong style="color:var(--gold);">Add to Home Screen</strong>
+            Chrome → <strong style="color:var(--gold);">Add to Home Screen</strong>
           </div>
           <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:9px 16px;font-size:.82rem;color:rgba(245,233,196,.7);">
             <i class="fa-brands fa-apple" style="color:rgba(245,233,196,.6);font-size:1.1rem;"></i>
             Safari Share ⬆ → <strong style="color:var(--gold);">Add to Home Screen</strong>
           </div>
         </div>
-        <a href="/install.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--dark);border:none;padding:11px 26px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;text-decoration:none;">
-          <i class="fa-solid fa-mobile-screen-button"></i> Step-by-Step Install Guide
-        </a>
       </div>
     </div>
   </div>
 
-  <footer class="site-footer" id="homeFooter">
+  <footer class="site-footer">
     <div class="footer-top">
       <i class="fa-solid fa-cross" style="color:var(--gold);opacity:.3;"></i>
       <div class="footer-memorial">In Loving Memory of <strong>Margaret Darkwaa Owusu</strong><br/>"Auntie Margie" · 1966 – 2026</div>
@@ -607,9 +1296,11 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
     </div>
     <div class="footer-copy">Celebrating a life well lived · Forever in our hearts</div>
   </footer>
-</div>
+</div><!-- /#page-home -->
 
-<!-- ══════════════════ PAGE: ANNOUNCEMENTS ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: ANNOUNCEMENTS
+═══════════════════════════════════════ -->
 <div class="page" id="page-announcements">
   <div class="section">
     <div class="container-md">
@@ -627,7 +1318,11 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Programme</span><span class="ann-date">July 2026</span></div>
           <div class="ann-title">Funeral Weekend Schedule</div>
-          <div class="ann-body"><strong>Friday, 31st July 2026</strong><br/>Wake Keeping — 8:00 PM<br/><br/><strong>Saturday, 1st August 2026</strong><br/>Funeral Service, Burial &amp; Final Funeral Rites — 8:00 AM onwards<br/><br/><strong>Sunday, 2nd August 2026</strong><br/>Thanksgiving Service — 9:00 AM</div>
+          <div class="ann-body">
+            <strong>Friday, 31st July 2026</strong><br/>Wake Keeping — 8:00 PM<br/><br/>
+            <strong>Saturday, 1st August 2026</strong><br/>Funeral Service, Burial &amp; Final Funeral Rites — 8:00 AM onwards<br/><br/>
+            <strong>Sunday, 2nd August 2026</strong><br/>Thanksgiving Service — 9:00 AM
+          </div>
         </div>
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Attendance</span><span class="ann-date">July 2026</span></div>
@@ -647,10 +1342,14 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong class="footer-highlight">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-announcements -->
 
-<!-- ══════════════════ PAGE: PROGRAMME ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: PROGRAMME
+═══════════════════════════════════════ -->
 <div class="page" id="page-programme">
   <div class="section">
     <div class="container-md">
@@ -665,6 +1364,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
         <button class="program-tab" onclick="switchProgram('burial',this)">Burial</button>
         <button class="program-tab" onclick="switchProgram('thanksgiving',this)">Thanksgiving</button>
       </div>
+
       <div class="program-panel active" id="prog-wake">
         <div class="program-day-header"><h3>Wake Keeping</h3><p>Friday, 31st July 2026 &nbsp;·&nbsp; Family Residence</p></div>
         <div class="program-items">
@@ -675,6 +1375,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
           <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Night Vigil</div><div class="program-item-detail">Prayer, fellowship and remembrance</div></div><div class="program-item-time">10:30 PM</div></div>
         </div>
       </div>
+
       <div class="program-panel" id="prog-funeral">
         <div class="program-day-header"><h3>Funeral Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubenase Presby Park</p></div>
         <div class="program-items">
@@ -685,14 +1386,16 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
           <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Sermon &amp; Final Blessing</div><div class="program-item-detail">Message of hope and comfort</div></div><div class="program-item-time">10:30 AM</div></div>
         </div>
       </div>
+
       <div class="program-panel" id="prog-burial">
-        <div class="program-day-header"><h3>Burial Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubenase Cemetery </p></div>
+        <div class="program-day-header"><h3>Burial Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubenase Cemetery</p></div>
         <div class="program-items">
           <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Procession to Cemetery</div><div class="program-item-detail">Family and guests proceed to burial grounds</div></div><div class="program-item-time">11:30 AM</div></div>
           <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Committal Service</div><div class="program-item-detail">Scripture reading and prayers</div></div><div class="program-item-time">12:00 PM</div></div>
           <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Final Farewell</div><div class="program-item-detail">Family and friends pay their last respects</div></div><div class="program-item-time">12:30 PM</div></div>
         </div>
       </div>
+
       <div class="program-panel" id="prog-thanksgiving">
         <div class="program-day-header"><h3>Thanksgiving Service</h3><p>Sunday, 2nd August 2026 &nbsp;·&nbsp; Church Auditorium</p></div>
         <div class="program-items">
@@ -703,10 +1406,14 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-programme -->
 
-<!-- ══════════════════ PAGE: CONDOLENCES ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: CONDOLENCES
+═══════════════════════════════════════ -->
 <div class="page" id="page-condolences">
   <div class="section">
     <div class="container">
@@ -722,11 +1429,21 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
             <div class="ai-writer-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--gold);"></i> AI Condolence Writer</div>
             <div class="ai-writer-sub">Not sure what to write? Let our AI craft a heartfelt, personalised message for you in seconds.</div>
             <div class="form-row">
-              <div class="form-group" style="margin-bottom:0;"><label>Your Name</label><input type="text" id="aiName" placeholder="Your name" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/></div>
-              <div class="form-group" style="margin-bottom:0;"><label>Your Relationship</label><input type="text" id="aiRel" placeholder="e.g. Church friend" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/></div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Your Name</label>
+                <input type="text" id="aiName" placeholder="Your name"
+                  style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Your Relationship</label>
+                <input type="text" id="aiRel" placeholder="e.g. Church friend"
+                  style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
+              </div>
             </div>
             <div class="ai-actions" style="margin-top:14px;">
-              <button class="btn-gold btn-gold--sm" onclick="generateAIMessage()" id="aiBtnGen"><i class="fa-solid fa-sparkles"></i> Generate Message</button>
+              <button class="btn-gold btn-gold--sm" onclick="generateAIMessage()" id="aiBtnGen">
+                <i class="fa-solid fa-sparkles"></i> Generate Message
+              </button>
             </div>
             <div class="ai-result-box" id="aiResultBox"></div>
             <div class="ai-actions" id="aiUseActions" style="display:none;">
@@ -734,6 +1451,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
               <button class="btn-secondary" onclick="generateAIMessage()"><i class="fa-solid fa-rotate"></i> Regenerate</button>
             </div>
           </div>
+
           <div class="form-wrap-dark reveal">
             <div class="form-wrap-title">Leave a Condolence</div>
             <div class="form-row">
@@ -743,12 +1461,14 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
             <div class="form-group"><label>Your Message *</label><textarea id="cMsg" rows="5" placeholder="Share your thoughts, prayers, and memories of Auntie Margie…"></textarea></div>
             <button class="btn-gold" onclick="submitCondolence()"><i class="fa-solid fa-paper-plane"></i> Send Condolence</button>
           </div>
+
           <div class="wa-card" id="condWaCard">
             <div class="wa-card-title"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Message Sent Successfully</div>
             <div class="wa-card-body">Your condolence has been saved. Tap below to send a <strong>free WhatsApp notification</strong> to the family.</div>
             <button class="btn-whatsapp" onclick="notifyFamilyWA('condolence')"><i class="fa-brands fa-whatsapp"></i> Notify Family via WhatsApp</button>
           </div>
         </div>
+
         <!-- RIGHT: Display messages -->
         <div>
           <div class="cond-status-bar offline" id="condStatusBar">
@@ -757,15 +1477,24 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
             <span class="status-count" id="condCountBadge">0 messages</span>
           </div>
           <div class="condolences-heading">Messages from the Community</div>
-          <div id="condolenceList"><div class="cond-empty"><i class="fa-regular fa-heart"></i>No messages yet. Be the first to share your love for Auntie Margie.</div></div>
+          <div id="condolenceList">
+            <div class="cond-empty">
+              <i class="fa-regular fa-heart"></i>
+              No messages yet. Be the first to share your love for Auntie Margie.
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-condolences -->
 
-<!-- ══════════════════ PAGE: TRIBUTES ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: TRIBUTES
+═══════════════════════════════════════ -->
 <div class="page" id="page-tributes">
   <div class="section">
     <div class="container">
@@ -775,6 +1504,7 @@ body{font-family:\'Lato\',sans-serif;background:var(--ivory);color:var(--text-da
         <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
         <p class="tribute-page-sub">Heartfelt tributes from those whose lives were touched by Margaret Darkwaa Owusu — "Auntie Margie".</p>
       </div>
+
       <div class="tribute-tabs">
         <button class="tribute-tab active" onclick="switchTribute('widower',this)"><i class="fa-solid fa-ring"></i> Widower</button>
         <button class="tribute-tab" onclick="switchTribute('children',this)"><i class="fa-solid fa-people-group"></i> Children</button>
@@ -808,7 +1538,7 @@ Rest well, my love. You ran your race faithfully. Well done.</div>
               <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
               <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
-            <div class="member-info"><div class="member-name">Mr. Daniel Owusu</div><div class="member-occupation">Farmer - Sankubenase</div></div>
+            <div class="member-info"><div class="member-name">Mr. Daniel Owusu</div><div class="member-occupation">Farmer – Sankubeenase</div></div>
           </div>
         </div>
       </div>
@@ -829,14 +1559,14 @@ We carry you forward, Mum. Into everything we do. Forever your children.</div>
           </div>
         </div>
         <div class="tribute-grid">
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Accountant - Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child2.jpg','Engr. Samuel Owusu Frimpong – Son')"><img src="images/child2.jpg" alt="Engr. Samuel Owusu Frimpong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder hidden"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Engr. Samuel Owusu Frimpong</div><div class="member-occupation">Software Engineer - Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')"><img src="images/child3.jpg" alt="Akua Diana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Akua Diana</div><div class="member-occupation">Trader - Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')"><img src="images/child4.jpeg" alt="Beatrice Pomaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder hidden"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Beatrice Pomaa</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child7.jpeg','Oforiwaa Perpetual – Daughter')"><img src="images/child7.jpeg" alt="Oforiwaa Perpetual" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Oforiwaa Perpetual</div><div class="member-occupation">Fashion Designer - Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child8.jpeg','Dosia Aboagyewaa – Daughter')"><img src="images/child8.jpeg" alt="Dosia Aboagyewaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Dosia Aboagyewaa</div><div class="member-occupation">Trader - Sankubenase</div></div></div>
-           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')"><img src="images/child6.jpeg" alt="Aikins Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Aikins Ofori</div><div class="member-occupation">Driver - Sankubenase</div></div></div>
-            <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')"><img src="images/child5.jpeg" alt="Naomi Owusua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Naomi Owusua</div><div class="member-occupation">Hair Stylist - Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')"><img src="images/child3.jpg" alt="Akua Diana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Akua Diana</div><div class="member-occupation">Trader – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')"><img src="images/child4.jpeg" alt="Beatrice Pomaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Beatrice Pomaa</div><div class="member-occupation">Trader – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Accountant – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')"><img src="images/child5.jpeg" alt="Naomi Owusua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Naomi Owusua</div><div class="member-occupation">Hair Stylist – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child2.jpg','Engr. Samuel Owusu Frimpong – Son')"><img src="images/child2.jpg" alt="Engr. Samuel Owusu Frimpong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Engr. Samuel Owusu Frimpong</div><div class="member-occupation">Software Engineer – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')"><img src="images/child6.jpeg" alt="Aikins Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Aikins Ofori</div><div class="member-occupation">Driver – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child7.jpeg','Oforiwaa Perpetual – Daughter')"><img src="images/child7.jpeg" alt="Oforiwaa Perpetual" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Oforiwaa Perpetual</div><div class="member-occupation">Fashion Designer – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child8.jpeg','Dosia Aboagyewaa – Daughter')"><img src="images/child8.jpeg" alt="Dosia Aboagyewaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Dosia Aboagyewaa</div><div class="member-occupation">Trader – Sankubeenase</div></div></div>
         </div>
       </div>
 
@@ -877,13 +1607,13 @@ Until we meet again, Grandma. Save us a seat.</div>
           </div>
         </div>
         <div class="tribute-grid">
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild1.jpg','Pricilla Ofori')"><img src="images/grandchild1.jpeg" alt="Pricilla Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Pricilla Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild2.jpg','Emmanuel Ofori')"><img src="images/grandchild2.jpeg" alt="Emmanuel Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Emmanuel Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild4.jpg','Asare Godwin')"><img src="images/grandchild4.jpeg" alt="Asare Godwin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Asare Godwin</div><div class="member-occupation">Student -  Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild3.jpg','Nana Kofi Brempong')"><img src="images/grandchild3.jpeg" alt="Nana Kofi Brempong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kofi Brempong</div><div class="member-occupation">Student -  Accra</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild5.jpg','Vaniah Ofori')"><img src="images/grandchild5.jpeg" alt="Vaniah Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Vaniah Ofori</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild6.jpg','Daniel Owusu')"><img src="images/grandchild6.jpeg" alt="Daniel Owusu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Daniel Owusu</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild7.jpg','Nana Kwasi')"><img src="images/grandchild7.jpeg" alt="Nana Kwasi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kwasi</div><div class="member-occupation">Student -  Sankubenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild1.jpeg','Pricilla Ofori')"><img src="images/grandchild1.jpeg" alt="Pricilla Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Pricilla Ofori</div><div class="member-occupation">Student – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild2.jpeg','Emmanuel Ofori')"><img src="images/grandchild2.jpeg" alt="Emmanuel Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Emmanuel Ofori</div><div class="member-occupation">Student – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild4.jpeg','Asare Godwin')"><img src="images/grandchild4.jpeg" alt="Asare Godwin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Asare Godwin</div><div class="member-occupation">Student – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild3.jpeg','Nana Kofi Brempong')"><img src="images/grandchild3.jpeg" alt="Nana Kofi Brempong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kofi Brempong</div><div class="member-occupation">Student – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild5.jpeg','Vaniah Ofori')"><img src="images/grandchild5.jpeg" alt="Vaniah Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Vaniah Ofori</div><div class="member-occupation">Student – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild6.jpeg','Daniel Owusu')"><img src="images/grandchild6.jpeg" alt="Daniel Owusu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Daniel Owusu</div><div class="member-occupation">Student – Sankubeenase</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/grandchild7.jpeg','Nana Kwasi')"><img src="images/grandchild7.jpeg" alt="Nana Kwasi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-child"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Nana Kwasi</div><div class="member-occupation">Student – Sankubeenase</div></div></div>
         </div>
       </div>
 
@@ -904,246 +1634,144 @@ She leaves behind a standard of love and character that we will forever measure 
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/inlaw1.jpg','In-Law 1')"><img src="images/inlaw1.jpg" alt="In-Law 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">In-Law 1</div><div class="member-occupation">In-Law</div></div></div>
         </div>
       </div>
-<!-- ══ CHURCH TRIBUTE — UPGRADED ══
-     Sections:  1. Tribute text + signoff
-                2. Church Leadership (Pastor, Elders, Deacons)
-                3. Congregation Members
-     Each card: photo → lightbox on click, zoom hint on hover,
-                graceful placeholder on missing image.
-     Add more cards by duplicating any .member-card block.
--->
 
-<!-- ── Add this CSS once in your <style> block ──────────────
-.tribute-section-divider {
-  display:flex;align-items:center;gap:14px;
-  margin:32px 0 24px;
-}
-.tribute-section-divider span {
-  font-family:'Cormorant Garamond',serif;
-  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--gold);opacity:.75;white-space:nowrap;
-}
-.tribute-section-divider::before,
-.tribute-section-divider::after {
-  content:'';flex:1;height:1px;
-  background:linear-gradient(to right,transparent,rgba(200,168,75,.3));
-}
-.tribute-section-divider::after {
-  background:linear-gradient(to left,transparent,rgba(200,168,75,.3));
-}
-.member-role-badge {
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.25);
-  border-radius:2px;padding:3px 9px;
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gold);margin-top:5px;
-}
-─────────────────────────────────────────────────────────── -->
-
-<!-- ══ CHURCH ══ -->
-<div class="tribute-panel" id="tribute-church">
-
-  <!-- Tribute letter -->
-  <div class="tribute-text-block">
-    <div class="tribute-text-body">Sister Margaret was a pillar in our congregation.
+      <!-- CHURCH -->
+      <div class="tribute-panel" id="tribute-church">
+        <div class="tribute-text-block">
+          <div class="tribute-text-body">Sister Margaret was a pillar in our congregation.
 
 She served quietly, faithfully, and without expectation of recognition. She prayed for the sick, supported the weak, and encouraged the young. She was always the first to arrive and the last to leave.
 
 Her faith was not a Sunday faith — it was a daily, living, breathing devotion to the God she loved. She led by example in ways that no sermon could replicate.
 
 The Church has lost a warrior, but heaven has gained a saint. We are grateful to God for the years He gave her to us.</div>
+          <div class="tribute-signoff">
+            <div class="tribute-signoff-icon"><i class="fa-solid fa-church"></i></div>
+            <div><div class="tribute-signoff-name">The Church Family</div><div class="tribute-signoff-role">Pastor, Elders &amp; Congregation</div></div>
+          </div>
+        </div>
 
-    <div class="tribute-signoff">
-      <div class="tribute-signoff-icon"><i class="fa-solid fa-church"></i></div>
-      <div>
-        <div class="tribute-signoff-name">The Church Family</div>
-        <div class="tribute-signoff-role">Pastor, Elders &amp; Congregation</div>
-      </div>
+        <!-- Church Leadership -->
+        <div class="tribute-section-divider">
+          <span><i class="fa-solid fa-cross" style="font-size:.65rem;margin-right:6px;"></i>Church Leadership</span>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/pastor.jpg','Senior Pastor')">
+              <img src="images/church/pastor.jpg" alt="Senior Pastor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Rev. / Pastor</div>
+              <div class="member-occupation">Senior Pastor</div>
+              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/elder1.jpg','Church Elder')">
+              <img src="images/church/elder1.jpg" alt="Elder 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Elder Name 1</div>
+              <div class="member-occupation">Church Elder</div>
+              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/elder2.jpg','Church Elder')">
+              <img src="images/church/elder2.jpg" alt="Elder 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Elder Name 2</div>
+              <div class="member-occupation">Church Elder</div>
+              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/deacon1.jpg','Church Deacon')">
+              <img src="images/church/deacon1.jpg" alt="Deacon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Deacon Name</div>
+              <div class="member-occupation">Church Deacon</div>
+              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Congregation -->
+        <div class="tribute-section-divider">
+          <span><i class="fa-solid fa-people-group" style="font-size:.65rem;margin-right:6px;"></i>Congregation</span>
+        </div>
+        <div class="tribute-grid">
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/member1.jpg','Member Name 1 – Congregation')">
+              <img src="images/church/member1.jpg" alt="Member 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Member Name 1</div>
+              <div class="member-occupation">Congregation</div>
+              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/member2.jpg','Member Name 2 – Congregation')">
+              <img src="images/church/member2.jpg" alt="Member 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Member Name 2</div>
+              <div class="member-occupation">Congregation</div>
+              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/member3.jpg','Member Name 3 – Congregation')">
+              <img src="images/church/member3.jpg" alt="Member 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Member Name 3</div>
+              <div class="member-occupation">Congregation</div>
+              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo-wrap" onclick="openLightbox('images/church/member4.jpg','Member Name 4 – Congregation')">
+              <img src="images/church/member4.jpg" alt="Member 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
+              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name">Member Name 4</div>
+              <div class="member-occupation">Congregation</div>
+              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /#tribute-church -->
+
     </div>
   </div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-tributes -->
 
-  <!-- ── SECTION 1: CHURCH LEADERSHIP ───────────────────── -->
-  <div class="tribute-section-divider">
-    <span><i class="fa-solid fa-cross" style="font-size:.65rem;margin-right:6px;"></i>Church Leadership</span>
-  </div>
-
-  <div class="tribute-grid">
-
-    <!-- Pastor -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/pastor.jpg','Rev. / Pastor – Senior Pastor')">
-        <img src="images/church/pastor.jpg" alt="Senior Pastor"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Rev. / Pastor</div>
-        <div class="member-occupation">Senior Pastor</div>
-        <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-      </div>
-    </div>
-
-    <!-- Elder 1 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/elder1.jpg','Elder 1 – Church Elder')">
-        <img src="images/church/elder1.jpg" alt="Elder 1"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Elder Name 1</div>
-        <div class="member-occupation">Church Elder</div>
-        <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-      </div>
-    </div>
-
-    <!-- Elder 2 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/elder2.jpg','Elder 2 – Church Elder')">
-        <img src="images/church/elder2.jpg" alt="Elder 2"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Elder Name 2</div>
-        <div class="member-occupation">Church Elder</div>
-        <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-      </div>
-    </div>
-
-    <!-- Deacon -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/deacon1.jpg','Deacon – Church Deacon')">
-        <img src="images/church/deacon1.jpg" alt="Deacon"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Deacon Name</div>
-        <div class="member-occupation">Church Deacon</div>
-        <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-      </div>
-    </div>
-
-  </div><!-- /.tribute-grid (leadership) -->
-
-
-  <!-- ── SECTION 2: CONGREGATION MEMBERS ────────────────── -->
-  <div class="tribute-section-divider">
-    <span><i class="fa-solid fa-people-group" style="font-size:.65rem;margin-right:6px;"></i>Congregation</span>
-  </div>
-
-  <div class="tribute-grid">
-
-    <!-- Member 1 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/member1.jpg','Church Member 1 – Congregation')">
-        <img src="images/church/member1.jpg" alt="Church Member 1"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Member Name 1</div>
-        <div class="member-occupation">Congregation</div>
-        <div class="member-role-badge" style="background:rgba(255,255,255,.05);border-color:rgba(245,233,196,.15);color:rgba(245,233,196,.4);">
-          <i class="fa-solid fa-hands-praying"></i> Member
-        </div>
-      </div>
-    </div>
-
-    <!-- Member 2 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/member2.jpg','Church Member 2 – Congregation')">
-        <img src="images/church/member2.jpg" alt="Church Member 2"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Member Name 2</div>
-        <div class="member-occupation">Congregation</div>
-        <div class="member-role-badge" style="background:rgba(255,255,255,.05);border-color:rgba(245,233,196,.15);color:rgba(245,233,196,.4);">
-          <i class="fa-solid fa-hands-praying"></i> Member
-        </div>
-      </div>
-    </div>
-
-    <!-- Member 3 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/member3.jpg','Church Member 3 – Congregation')">
-        <img src="images/church/member3.jpg" alt="Church Member 3"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Member Name 3</div>
-        <div class="member-occupation">Congregation</div>
-        <div class="member-role-badge" style="background:rgba(255,255,255,.05);border-color:rgba(245,233,196,.15);color:rgba(245,233,196,.4);">
-          <i class="fa-solid fa-hands-praying"></i> Member
-        </div>
-      </div>
-    </div>
-
-    <!-- Member 4 -->
-    <div class="member-card">
-      <div class="member-photo-wrap"
-           onclick="openLightbox('images/church/member4.jpg','Church Member 4 – Congregation')">
-        <img src="images/member4.jpg" alt="Church Member 4"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-        <div class="member-photo-placeholder" style="display:none;">
-          <i class="fa-solid fa-user"></i><span>Add Photo</span>
-        </div>
-        <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-      </div>
-      <div class="member-info">
-        <div class="member-name">Member Name 4</div>
-        <div class="member-occupation">Congregation</div>
-        <div class="member-role-badge" style="background:rgba(255,255,255,.05);border-color:rgba(245,233,196,.15);color:rgba(245,233,196,.4);">
-          <i class="fa-solid fa-hands-praying"></i> Member
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /.tribute-grid (congregation) -->
-
-</div><!-- /#tribute-church -->
-
-<!-- PAGE FOOTER -->
-<footer class="site-footer">
-  <div class="footer-copy">In Loving Memory of
-    <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong>
-    · "Auntie Margie" · 1966 – 2026
-  </div>
-</footer>
-
-<!-- ══════════════════ PAGE: FAMILY CHAT ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: FAMILY CHAT
+═══════════════════════════════════════ -->
 <div class="page" id="page-chat">
   <div class="chat-wrap">
     <div class="chat-sidebar">
@@ -1194,9 +1822,11 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-</div>
+</div><!-- /#page-chat -->
 
-<!-- ══════════════════ PAGE: GALLERY ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: GALLERY
+═══════════════════════════════════════ -->
 <div class="page" id="page-gallery">
   <div class="section">
     <div class="container-md">
@@ -1234,10 +1864,14 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-gallery -->
 
-<!-- ══════════════════ PAGE: LIVESTREAM ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: LIVESTREAM
+═══════════════════════════════════════ -->
 <div class="page" id="page-livestream">
   <div class="section section-dark">
     <div class="container-md">
@@ -1279,10 +1913,14 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-livestream -->
 
-<!-- ══════════════════ PAGE: ATTEND ══════════════════ -->
+<!-- ═══════════════════════════════════════
+     PAGE: ATTEND
+═══════════════════════════════════════ -->
 <div class="page" id="page-attend">
   <div class="section">
     <div class="container-md">
@@ -1332,10 +1970,14 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
-</div>
+  <footer class="site-footer">
+    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
+  </footer>
+</div><!-- /#page-attend -->
 
-<!-- LIGHTBOX (single, clean, with prev/next) -->
+<!-- ═══════════════════════════════════════
+     LIGHTBOX
+═══════════════════════════════════════ -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
   <span class="lightbox-counter" id="lbCounter"></span>
@@ -1348,23 +1990,22 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
 <!-- TOAST -->
 <div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
 
-<!-- ANDROID INSTALL BANNER -->
+<!-- INSTALL BANNER (Android/Chrome) -->
 <div class="install-banner" id="installBanner">
   <div class="install-banner-text"><strong>📱 Install App</strong>Add Auntie Margie's memorial to your home screen.</div>
   <button class="install-btn" id="installBtn">Install</button>
   <button class="install-close" onclick="document.getElementById('installBanner').classList.remove('show')">✕</button>
 </div>
 
-<!-- iOS INSTALL BANNER -->
+<!-- INSTALL BANNER (iOS) -->
 <div class="install-banner" id="iosInstallBanner" style="flex-direction:column;align-items:flex-start;gap:10px;">
   <div style="display:flex;align-items:center;gap:10px;width:100%;">
     <div class="install-banner-text"><strong>📱 iPhone? Add to Home Screen</strong>Tap Share ⬆ in Safari, then "Add to Home Screen".</div>
     <button class="install-close" onclick="document.getElementById('iosInstallBanner').classList.remove('show');localStorage.setItem('margie_ios_dismissed','1')">✕</button>
   </div>
-  <a href="/install.html" style="background:var(--gold);color:var(--dark);padding:8px 16px;font-family:'Lato',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;text-decoration:none;">View Full Guide</a>
 </div>
 
-<!-- FOOTER BAR -->
+<!-- FOOTER MUSIC BAR -->
 <div class="footer-bar">
   <div class="fb-music">
     <button class="fb-music-btn" id="musicBtn" onclick="toggleMusic()">
@@ -1374,31 +2015,34 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       <div class="fb-music-title">God Be With You Till We Meet Again</div>
       <div class="fb-music-sub">LDS Hymn #152 · In Memory of Auntie Margie</div>
     </div>
-    <input class="fb-music-vol" type="range" min="0" max="1" step=".05" value=".6" oninput="setVol(this.value)" title="Volume"/>
+    <input class="fb-music-vol" type="range" min="0" max="1" step=".05" value=".6"
+           oninput="setVol(this.value)" title="Volume"/>
   </div>
   <div class="fb-center">
     <div class="fb-center-text">Margaret Darkwaa Owusu · "Auntie Margie" · 1966 – 2026</div>
   </div>
   <div class="fb-dev">
-    <div class="fb-dev-label">Built by Eng. Samuel Owusu Frimpong</div>
+    <div class="fb-dev-label">Built by Engr. Samuel Owusu Frimpong</div>
     <div class="fb-dev-socials">
       <a href="https://github.com/nyaw4027" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/samuel-owusu-frimpong-793101370?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/samuel-owusu-frimpong-793101370" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       <a href="https://wa.me/233558040216" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       <a href="mailto:nyaw4027@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
   </div>
 </div>
 
-<!-- FIREBASE SDK -->
+<!-- ═══════════════════════════════════════
+     FIREBASE SDK
+═══════════════════════════════════════ -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-/* ════════════════════════════════════════
-   CONFIG
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   FIREBASE CONFIG
+═══════════════════════════════════════ */
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyAqWq_-JMCrktHBTQ-h64vUw_p_-z6xpKo",
   authDomain:        "auntie-margie.firebaseapp.com",
@@ -1410,74 +2054,20 @@ const FIREBASE_CONFIG = {
 };
 const ADMIN_WA = "233558040216";
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    FIREBASE INIT
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 let db = null, auth = null, fbReady = false;
 try {
   firebase.initializeApp(FIREBASE_CONFIG);
   auth = firebase.auth();
   db   = firebase.database();
   fbReady = true;
-} catch(e) { console.warn('Firebase:', e.message); }
+} catch(e) { console.warn('Firebase init failed:', e.message); }
 
-
-// Add this function somewhere in your script, perhaps where you handle user sign-up
-function saveUserProfile(user) {
-  if (user) {
-    const userRef = db.ref('users/' + user.uid);
-    userRef.set({
-      email: user.email,
-      displayName: user.displayName || 'Anonymous User',
-      createdAt: firebase.database.ServerValue.TIMESTAMP // Use server timestamp
-    }).then(() => {
-      console.log("User profile saved to Realtime Database!");
-    }).catch((error) => {
-      console.error("Error saving user profile: ", error);
-    });
-  }
-}
-
-// Example of how you might call this after a successful sign-up or login
- auth.onAuthStateChanged((user) => {
-   if (user) {
-     saveUserProfile(user);
-   }
- });
-
-
-// Add this function to handle submitting a new condolence message
-function addCondolenceMessage(userId, userName, messageText) {
-  if (!userId || !userName || !messageText) {
-    console.error("Missing message data.");
-    return;
-  }
-
-  const messagesRef = db.ref('condolence_messages');
-  messagesRef.push({
-    userId: userId,
-    userName: userName,
-    message: messageText,
-    timestamp: firebase.database.ServerValue.TIMESTAMP // Use server timestamp
-  }).then(() => {
-    console.log("Condolence message added successfully!");
-    // You might want to clear the input field or show a success message here
-  }).catch((error) => {
-    console.error("Error adding message: ", error);
-  });
-}
-
-// Example usage (e.g., from a form submission)
- const currentUser = auth.currentUser;
- if (currentUser) {
-   const messageInput = document.getElementById('condolenceMessageInput');
-   addCondolenceMessage(currentUser.uid, currentUser.displayName || currentUser.email, messageInput.value);
- }
-
-
-/* ════════════════════════════════════════
-   LOAD
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   PAGE LOAD
+═══════════════════════════════════════ */
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loading-screen').classList.add('fade-out');
@@ -1488,56 +2078,67 @@ window.addEventListener('load', () => {
     updateStats();
     initSlideshow();
     loadStreamSettings();
-    if (fbReady) listenChatMessages();
+    if (fbReady) {
+      setupFirebaseAuth();
+      listenChatMessages();
+    }
   }, 1800);
 });
 
-/* ════════════════════════════════════════
-   PWA
-════════════════════════════════════════ */
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+/* ═══════════════════════════════════════
+   PWA / INSTALL
+═══════════════════════════════════════ */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
 let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault(); deferredPrompt = e;
+  e.preventDefault();
+  deferredPrompt = e;
   setTimeout(() => document.getElementById('installBanner').classList.add('show'), 4000);
 });
-document.getElementById('installBtn').onclick = async () => {
+document.getElementById('installBtn').addEventListener('click', async () => {
   if (!deferredPrompt) return;
   deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
   deferredPrompt = null;
   document.getElementById('installBanner').classList.remove('show');
   if (outcome === 'accepted') showToast('App installed! 🎉');
-};
+});
 (function checkiOS() {
   const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
   const isStandalone = window.navigator.standalone === true;
   const dismissed = localStorage.getItem('margie_ios_dismissed');
-  if (isIOS && !isStandalone && !dismissed)
+  if (isIOS && !isStandalone && !dismissed) {
     setTimeout(() => document.getElementById('iosInstallBanner').classList.add('show'), 5000);
+  }
 })();
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    NAVIGATION
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
-  const link = [...document.querySelectorAll('.nav-links a')].find(a =>
-    a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'"));
-  if (link) link.classList.add('active');
+  const links = document.querySelectorAll('.nav-links a');
+  links.forEach(a => {
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'")) {
+      a.classList.add('active');
+    }
+  });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  initReveal();
+  setTimeout(initReveal, 100);
 }
+
 function toggleMobile() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    COUNTDOWN
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 function startCountdown() {
   const target = new Date('2026-07-31T08:00:00');
   function tick() {
@@ -1557,35 +2158,38 @@ function startCountdown() {
     document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
     document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
   }
-  tick(); setInterval(tick, 1000);
+  tick();
+  setInterval(tick, 1000);
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    PROGRAMME TABS
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 function switchProgram(id, btn) {
   document.querySelectorAll('.program-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('prog-' + id).classList.add('active');
-  btn.classList.add('active');
+  const panel = document.getElementById('prog-' + id);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    TRIBUTE TABS
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 function switchTribute(id, btn) {
   document.querySelectorAll('.tribute-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tribute-tab').forEach(t => t.classList.remove('active'));
   const panel = document.getElementById('tribute-' + id);
   if (panel) panel.classList.add('active');
   if (btn) btn.classList.add('active');
-  if (panel && window.innerWidth < 768)
-    setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
+  if (panel && window.innerWidth < 768) {
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+  }
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    LIGHTBOX (with prev/next navigation)
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 let _lbImages = [], _lbIndex = 0;
 
 function openLightbox(src, caption) {
@@ -1597,13 +2201,20 @@ function openLightbox(src, caption) {
   document.body.style.overflow = 'hidden';
   _updateLbArrows();
 }
+
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
   setTimeout(() => { document.getElementById('lightboxImg').src = ''; }, 300);
 }
-function lbNext() { if (_lbIndex < _lbImages.length - 1) { _lbIndex++; _lbGoTo(_lbIndex); } }
-function lbPrev() { if (_lbIndex > 0) { _lbIndex--; _lbGoTo(_lbIndex); } }
+
+function lbNext() {
+  if (_lbIndex < _lbImages.length - 1) { _lbIndex++; _lbGoTo(_lbIndex); }
+}
+function lbPrev() {
+  if (_lbIndex > 0) { _lbIndex--; _lbGoTo(_lbIndex); }
+}
+
 function _lbGoTo(i) {
   const entry = _lbImages[i];
   if (!entry) return;
@@ -1616,6 +2227,7 @@ function _lbGoTo(i) {
   }, 150);
   _updateLbArrows();
 }
+
 function _updateLbArrows() {
   const prev = document.getElementById('lbPrev');
   const next = document.getElementById('lbNext');
@@ -1625,6 +2237,7 @@ function _updateLbArrows() {
   if (next) { next.style.display = show ? 'flex' : 'none'; next.style.opacity = _lbIndex === _lbImages.length - 1 ? '.3' : '1'; }
   if (counter) counter.textContent = show ? (_lbIndex + 1) + ' / ' + _lbImages.length : '';
 }
+
 function _buildLightboxList(currentSrc) {
   _lbImages = []; _lbIndex = 0;
   document.querySelectorAll('.tribute-panel.active .member-photo-wrap img').forEach(imgEl => {
@@ -1632,12 +2245,18 @@ function _buildLightboxList(currentSrc) {
     const card   = imgEl.closest('.member-card');
     const nameEl = card ? card.querySelector('.member-name') : null;
     const roleEl = card ? card.querySelector('.member-occupation') : null;
-    const caption = nameEl ? nameEl.textContent + (roleEl ? ' – ' + roleEl.textContent : '') : '';
+    const caption = nameEl ? (nameEl.textContent + (roleEl ? ' – ' + roleEl.textContent : '')) : '';
     _lbImages.push({ src: imgEl.src, caption });
-    if (imgEl.src === currentSrc || imgEl.getAttribute('src') === currentSrc)
+    if (imgEl.src === currentSrc || imgEl.getAttribute('src') === currentSrc) {
       _lbIndex = _lbImages.length - 1;
+    }
   });
+  // fallback: single image mode
+  if (!_lbImages.length) {
+    _lbImages = [{ src: currentSrc, caption: '' }];
+  }
 }
+
 document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
@@ -1649,19 +2268,22 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  lbPrev();
 });
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    AI CONDOLENCE WRITER
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 async function generateAIMessage() {
   const name = document.getElementById('aiName').value.trim() || 'a mourner';
   const rel  = document.getElementById('aiRel').value.trim()  || 'a friend of the family';
   const box  = document.getElementById('aiResultBox');
   const acts = document.getElementById('aiUseActions');
   const btn  = document.getElementById('aiBtnGen');
+
   box.className = 'ai-result-box show';
-  box.innerHTML = '<span style="font-family:\'Lato\';font-style:normal;font-size:.85rem;color:var(--text-light);">✦ Crafting your message…</span>';
+  box.style.fontStyle = 'normal';
+  box.innerHTML = '<span style="font-size:.85rem;color:var(--text-light);">✦ Crafting your message…</span>';
   acts.style.display = 'none';
   btn.disabled = true;
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -1669,7 +2291,10 @@ async function generateAIMessage() {
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        messages: [{ role: 'user', content: `Write a heartfelt, sincere condolence message for the family of Margaret Darkwaa Owusu, affectionately known as "Auntie Margie". She was a 60-year-old Ghanaian woman of great faith who has passed away. The message is written from the perspective of ${name}, who is ${rel}. Write in first person. Keep it between 60–90 words. Make it warm, comforting, and faith-filled. Reference her warmth, grace, or her love for God and family in a natural way. No quotation marks around the message. Just the plain message text.` }]
+        messages: [{
+          role: 'user',
+          content: `Write a heartfelt, sincere condolence message for the family of Margaret Darkwaa Owusu, affectionately known as "Auntie Margie". She was a 60-year-old Ghanaian woman of great Christian faith who has passed away. The message is written from the perspective of ${name}, who is ${rel}. Write in first person. Keep it between 60–90 words. Make it warm, comforting, and faith-filled. Reference her warmth, grace, or her love for God and family in a natural way. No quotation marks around the message. Just the plain message text.`
+        }]
       })
     });
     const data = await res.json();
@@ -1678,10 +2303,11 @@ async function generateAIMessage() {
     box.textContent = text;
     acts.style.display = 'flex';
   } catch(e) {
-    box.innerHTML = '<span style="font-family:\'Lato\';font-style:normal;font-size:.85rem;color:#ef4444;">Could not generate message. Please check your connection and try again.</span>';
+    box.innerHTML = '<span style="font-size:.85rem;color:#ef4444;">Could not generate message. Please check your connection and try again.</span>';
   }
   btn.disabled = false;
 }
+
 function useAIMessage() {
   const msg  = document.getElementById('aiResultBox').textContent;
   const name = document.getElementById('aiName').value.trim();
@@ -1692,27 +2318,38 @@ function useAIMessage() {
   showToast('Message copied to form. Review and send! ✦');
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    CONDOLENCES
-════════════════════════════════════════ */
-let condolences = JSON.parse(localStorage.getItem('margie_cond') || '[]');
+═══════════════════════════════════════ */
+let condolences = [];
 let lastCondolence = null;
+
+// Safe load from localStorage
+try { condolences = JSON.parse(localStorage.getItem('margie_cond') || '[]'); } catch(e) { condolences = []; }
 
 function submitCondolence() {
   const name = document.getElementById('cName').value.trim();
   const rel  = document.getElementById('cRel').value.trim();
   const msg  = document.getElementById('cMsg').value.trim();
-  if (!name || !msg) { showToast('Please enter your name and message.'); return; }
-  const entry = { name, rel, msg, date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }), ts: Date.now() };
+  if (!name) { showToast('Please enter your name.'); return; }
+  if (!msg)  { showToast('Please write a message.'); return; }
+
+  const entry = {
+    name, rel, msg,
+    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
+    ts: Date.now()
+  };
   condolences.unshift(entry);
-  localStorage.setItem('margie_cond', JSON.stringify(condolences));
+  try { localStorage.setItem('margie_cond', JSON.stringify(condolences)); } catch(e) {}
   lastCondolence = entry;
+
   if (fbReady) {
-    db.ref('condolences').push(entry).catch(() => {});
+    db.ref('condolences').push(entry).catch(err => console.warn('FB condolence push:', err));
     const bar = document.getElementById('condStatusBar');
     bar.className = 'cond-status-bar live';
-    bar.innerHTML = '<div class="live-dot green"></div><span class="status-text">Messages synced to Firebase</span><span class="status-count" id="condCountBadge">' + condolences.length + ' messages</span>';
+    bar.innerHTML = '<div class="live-dot green"></div><span class="status-text">Synced to Firebase</span><span class="status-count" id="condCountBadge">' + condolences.length + ' messages</span>';
   }
+
   document.getElementById('cName').value = '';
   document.getElementById('cRel').value  = '';
   document.getElementById('cMsg').value  = '';
@@ -1721,17 +2358,25 @@ function submitCondolence() {
   showToast('Condolence sent! 🙏');
   updateStats();
 }
+
 function loadCondolences() {
   if (fbReady) {
     db.ref('condolences').orderByChild('ts').on('value', snap => {
       const items = [];
       snap.forEach(c => items.unshift(c.val()));
       condolences = items;
-      localStorage.setItem('margie_cond', JSON.stringify(condolences));
-      renderCondolences(); updateStats();
+      try { localStorage.setItem('margie_cond', JSON.stringify(condolences)); } catch(e) {}
+      renderCondolences();
+      updateStats();
+    }, err => {
+      console.warn('Firebase condolences read error:', err);
+      renderCondolences();
     });
-  } else { renderCondolences(); }
+  } else {
+    renderCondolences();
+  }
 }
+
 function renderCondolences() {
   const list  = document.getElementById('condolenceList');
   const badge = document.getElementById('condCountBadge');
@@ -1740,71 +2385,101 @@ function renderCondolences() {
     list.innerHTML = '<div class="cond-empty"><i class="fa-regular fa-heart"></i>No messages yet. Be the first to share your love for Auntie Margie.</div>';
     return;
   }
-  list.innerHTML = '<div class="condolence-cards">' + condolences.slice(0,20).map(c => `
-    <div class="condolence-card">
-      <div class="condolence-header">
-        <div><div class="condolence-name">${esc(c.name)}</div><div class="condolence-relation">${esc(c.rel || 'Family & Friends')}</div></div>
-        <div class="condolence-date">${esc(c.date)}</div>
-      </div>
-      <div class="condolence-msg">${esc(c.msg)}</div>
-    </div>`).join('') + '</div>';
+  list.innerHTML = '<div class="condolence-cards">' +
+    condolences.slice(0, 20).map(c => `
+      <div class="condolence-card">
+        <div class="condolence-header">
+          <div>
+            <div class="condolence-name">${esc(c.name)}</div>
+            <div class="condolence-relation">${esc(c.rel || 'Family &amp; Friends')}</div>
+          </div>
+          <div class="condolence-date">${esc(c.date)}</div>
+        </div>
+        <div class="condolence-msg">${esc(c.msg)}</div>
+      </div>`).join('') +
+  '</div>';
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    ATTENDANCE
-════════════════════════════════════════ */
-let attendees = JSON.parse(localStorage.getItem('margie_att') || '[]');
+═══════════════════════════════════════ */
+let attendees = [];
 let lastAttendee = null;
+
+try { attendees = JSON.parse(localStorage.getItem('margie_att') || '[]'); } catch(e) { attendees = []; }
 
 function submitAttendance() {
   const name = document.getElementById('aName').value.trim();
   if (!name) { showToast('Please enter your name.'); return; }
   const events = [...document.querySelectorAll('.evtChk:checked')].map(c => c.value);
   if (!events.length) { showToast('Please select at least one event.'); return; }
+
   const entry = {
-    name, phone: document.getElementById('aPhone').value.trim(),
+    name,
+    phone:    document.getElementById('aPhone').value.trim(),
     location: document.getElementById('aLocation').value.trim(),
-    rel: document.getElementById('aRel').value.trim(),
-    notes: document.getElementById('aNotes').value.trim(),
-    events, date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }), ts: Date.now()
+    rel:      document.getElementById('aRel').value.trim(),
+    notes:    document.getElementById('aNotes').value.trim(),
+    events,
+    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
+    ts: Date.now()
   };
   attendees.unshift(entry);
-  localStorage.setItem('margie_att', JSON.stringify(attendees));
+  try { localStorage.setItem('margie_att', JSON.stringify(attendees)); } catch(e) {}
   lastAttendee = entry;
-  if (fbReady) db.ref('attendees').push(entry).catch(() => {});
-  ['aName','aPhone','aLocation','aRel','aNotes'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+
+  if (fbReady) db.ref('attendees').push(entry).catch(err => console.warn('FB attendees push:', err));
+
+  ['aName','aPhone','aLocation','aRel','aNotes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
   document.querySelectorAll('.evtChk').forEach(c => c.checked = false);
   renderAttendees();
   document.getElementById('attendWaCard').classList.add('show');
   showToast('Registration saved! 🙏');
   updateStats();
 }
+
 function loadAttendees() {
   if (fbReady) {
     db.ref('attendees').orderByChild('ts').on('value', snap => {
       const items = [];
       snap.forEach(a => items.unshift(a.val()));
       attendees = items;
-      localStorage.setItem('margie_att', JSON.stringify(attendees));
-      renderAttendees(); updateStats();
+      try { localStorage.setItem('margie_att', JSON.stringify(attendees)); } catch(e) {}
+      renderAttendees();
+      updateStats();
+    }, err => {
+      console.warn('Firebase attendees read error:', err);
+      renderAttendees();
     });
-  } else { renderAttendees(); }
+  } else {
+    renderAttendees();
+  }
 }
+
 function renderAttendees() {
   const cnt = document.getElementById('attCountLabel');
   const tbl = document.getElementById('attendeeTable');
   if (cnt) cnt.textContent = '(' + attendees.length + ')';
-  if (!attendees.length) { tbl.innerHTML = '<div class="attendees-empty">No registrations yet. Be the first to register!</div>'; return; }
-  tbl.innerHTML = attendees.slice(0,30).map(a => `
+  if (!attendees.length) {
+    tbl.innerHTML = '<div class="attendees-empty">No registrations yet. Be the first to register!</div>';
+    return;
+  }
+  tbl.innerHTML = attendees.slice(0, 30).map(a => `
     <div class="attendance-item">
       <div class="attendee-avatar">${esc(a.name[0].toUpperCase())}</div>
       <div class="attendee-info">
         <div class="attendee-name">${esc(a.name)}</div>
-        <div class="attendee-meta">${esc(a.location || 'Location not specified')} · ${esc(a.rel || '')}</div>
+        <div class="attendee-meta">${esc(a.location || 'Location not specified')}${a.rel ? ' · ' + esc(a.rel) : ''}</div>
       </div>
-      <div class="attendee-badges">${(a.events || []).map(e => `<span class="attendee-badge">${esc(e)}</span>`).join('')}</div>
+      <div class="attendee-badges">
+        ${(a.events || []).map(e => `<span class="attendee-badge">${esc(e)}</span>`).join('')}
+      </div>
     </div>`).join('');
 }
+
 function updateStats() {
   const s1 = document.getElementById('statCond');
   const s2 = document.getElementById('statAtt');
@@ -1812,44 +2487,59 @@ function updateStats() {
   if (s2) s2.textContent = attendees.length;
 }
 
-/* ════════════════════════════════════════
-   WHATSAPP
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   WHATSAPP SHARING
+═══════════════════════════════════════ */
 function notifyFamilyWA(type) {
   let msg = '';
   if (type === 'condolence' && lastCondolence) {
     msg = `🙏 *New Condolence – Auntie Margie Memorial*\n\n*From:* ${lastCondolence.name}\n*Relationship:* ${lastCondolence.rel || 'Not specified'}\n\n"${lastCondolence.msg}"`;
   } else if (type === 'attendance' && lastAttendee) {
     msg = `✅ *New Attendance – Auntie Margie Memorial*\n\n*Name:* ${lastAttendee.name}\n*Phone:* ${lastAttendee.phone || 'Not provided'}\n*Location:* ${lastAttendee.location || 'Not specified'}\n*Events:* ${lastAttendee.events.join(', ')}\n*Notes:* ${lastAttendee.notes || 'None'}`;
-  } else { msg = '🙏 A message was submitted on the Auntie Margie Memorial page.'; }
+  } else {
+    msg = '🙏 A message was submitted on the Auntie Margie Memorial page.';
+  }
   window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
 function shareWA() {
   const msg = `🕊️ In Loving Memory of Margaret Darkwaa Owusu "Auntie Margie" (1966–2026)\n\nView the memorial, leave condolences, and register:\n${window.location.href}`;
   window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
-function shareFB() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); }
-function copyLink() { navigator.clipboard.writeText(window.location.href).then(() => showToast('Link copied! 🔗')); }
 
-/* ════════════════════════════════════════
+function shareFB() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href)
+    .then(() => showToast('Link copied! 🔗'))
+    .catch(() => showToast('Copy failed. Please copy the URL manually.'));
+}
+
+/* ═══════════════════════════════════════
    LIVESTREAM
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 function activateStream() {
   const url = document.getElementById('streamEmbedUrl').value.trim();
   if (!url) { showToast('Please paste a stream embed URL.'); return; }
   document.getElementById('streamPlaceholder').style.display = 'none';
   const frame = document.getElementById('streamFrame');
-  frame.src = url; frame.style.display = 'block';
-  if (fbReady) db.ref('stream/embedUrl').set(url);
+  frame.src = url;
+  frame.style.display = 'block';
+  if (fbReady) db.ref('stream/embedUrl').set(url).catch(() => {});
   showToast('Livestream activated! ▶');
 }
+
 function deactivateStream() {
   document.getElementById('streamPlaceholder').style.display = 'flex';
   const frame = document.getElementById('streamFrame');
-  frame.src = ''; frame.style.display = 'none';
-  if (fbReady) db.ref('stream/embedUrl').remove();
+  frame.src = '';
+  frame.style.display = 'none';
+  if (fbReady) db.ref('stream/embedUrl').remove().catch(() => {});
   showToast('Livestream deactivated.');
 }
+
 function saveStreamLinks() {
   const fb = document.getElementById('fbLink').value.trim();
   const yt = document.getElementById('ytLink').value.trim();
@@ -1857,9 +2547,10 @@ function saveStreamLinks() {
   if (fb) { document.getElementById('fbStreamLink').href = fb; localStorage.setItem('margie_fb', fb); }
   if (yt) { document.getElementById('ytStreamLink').href = yt; localStorage.setItem('margie_yt', yt); }
   if (zm) { document.getElementById('zmStreamLink').href = zm; localStorage.setItem('margie_zm', zm); }
-  if (fbReady) db.ref('stream/links').set({ fb, yt, zm });
+  if (fbReady) db.ref('stream/links').set({ fb, yt, zm }).catch(() => {});
   showToast('Stream links saved!');
 }
+
 function loadStreamSettings() {
   const fb = localStorage.getItem('margie_fb'); if (fb) document.getElementById('fbStreamLink').href = fb;
   const yt = localStorage.getItem('margie_yt'); if (yt) document.getElementById('ytStreamLink').href = yt;
@@ -1870,55 +2561,46 @@ function loadStreamSettings() {
       if (url) {
         document.getElementById('streamPlaceholder').style.display = 'none';
         const frame = document.getElementById('streamFrame');
-        frame.src = url; frame.style.display = 'block';
+        frame.src = url;
+        frame.style.display = 'block';
       }
-    });
+    }).catch(() => {});
   }
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    FAMILY CHAT
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 let chatUser = null;
-function switchAuthTab(tab, btn) {
-  document.querySelectorAll('.chat-auth-tab').forEach(t => t.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  document.getElementById('signinForm').style.display   = tab === 'signin'   ? 'flex' : 'none';
-  document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
-}
-async function chatSignIn() {
-  if (!fbReady) { showToast('Firebase not configured.'); return; }
-  const email = document.getElementById('signEmail').value.trim();
-  const pass  = document.getElementById('signPass').value;
-  try { await auth.signInWithEmailAndPassword(email, pass); }
-  catch(e) { showToast('Sign in failed: ' + e.message); }
-}
-async function chatRegister() {
-  if (!fbReady) { showToast('Firebase not configured.'); return; }
-  const name  = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass  = document.getElementById('regPass').value;
-  const rel   = document.getElementById('regRel').value.trim();
-  if (!name || !email || !pass) { showToast('Please fill all required fields.'); return; }
-  try {
-    const cred = await auth.createUserWithEmailAndPassword(email, pass);
-    await db.ref('users/' + cred.user.uid).set({ name, rel, email });
-    showToast('Account created! Welcome, ' + name + '.');
-  } catch(e) { showToast('Registration failed: ' + e.message); }
-}
-function chatSignOut() { if (auth) auth.signOut(); }
 
-if (fbReady) {
+function setupFirebaseAuth() {
   auth.onAuthStateChanged(async user => {
     chatUser = user;
     if (user) {
-      const snap = await db.ref('users/' + user.uid).get();
-      const info = snap.val() || {};
-      chatUser._name = info.name || user.email;
-      chatUser._rel  = info.rel  || '';
+      let userName = user.email;
+      let userRel = '';
+      try {
+        const snap = await db.ref('users/' + user.uid).get();
+        const info = snap.val() || {};
+        userName = info.name || user.email;
+        userRel  = info.rel  || '';
+      } catch(e) {}
+      chatUser._name = userName;
+      chatUser._rel  = userRel;
+
+      // Save/update profile
+      db.ref('users/' + user.uid).update({
+        email: user.email,
+        lastSeen: firebase.database.ServerValue.TIMESTAMP
+      }).catch(() => {});
+
       document.getElementById('chatAuth').style.display = 'none';
       const cs = document.getElementById('chatScreen');
-      cs.style.display = 'flex'; cs.style.flexDirection = 'column'; cs.style.flex = '1'; cs.style.overflow = 'hidden';
+      cs.style.display = 'flex';
+      cs.style.flexDirection = 'column';
+      cs.style.flex = '1';
+      cs.style.overflow = 'hidden';
+
       db.ref('online/' + user.uid).set({ name: chatUser._name, ts: Date.now() });
       db.ref('online/' + user.uid).onDisconnect().remove();
       listenOnline();
@@ -1928,13 +2610,59 @@ if (fbReady) {
     }
   });
 }
+
+function switchAuthTab(tab, btn) {
+  document.querySelectorAll('.chat-auth-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('signinForm').style.display   = tab === 'signin'   ? 'flex' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
+}
+
+async function chatSignIn() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const email = document.getElementById('signEmail').value.trim();
+  const pass  = document.getElementById('signPass').value;
+  if (!email || !pass) { showToast('Please enter email and password.'); return; }
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+  } catch(e) {
+    showToast('Sign in failed: ' + e.message);
+  }
+}
+
+async function chatRegister() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  const rel   = document.getElementById('regRel').value.trim();
+  if (!name || !email || !pass) { showToast('Please fill all required fields.'); return; }
+  if (pass.length < 6) { showToast('Password must be at least 6 characters.'); return; }
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await db.ref('users/' + cred.user.uid).set({
+      name, rel, email,
+      createdAt: firebase.database.ServerValue.TIMESTAMP
+    });
+    showToast('Account created! Welcome, ' + name + '.');
+  } catch(e) {
+    showToast('Registration failed: ' + e.message);
+  }
+}
+
+function chatSignOut() {
+  if (auth) auth.signOut().catch(() => {});
+}
+
 function listenChatMessages() {
+  if (!fbReady) return;
   db.ref('chat').orderByChild('ts').limitToLast(60).on('value', snap => {
     const msgs = [];
     snap.forEach(m => msgs.push(m.val()));
     renderChatMessages(msgs);
-  });
+  }, err => console.warn('Chat listen error:', err));
 }
+
 function renderChatMessages(msgs) {
   const box = document.getElementById('chatMessages');
   if (!msgs.length) return;
@@ -1950,37 +2678,55 @@ function renderChatMessages(msgs) {
   }).join('');
   box.scrollTop = box.scrollHeight;
 }
+
 async function sendChatMsg() {
-  if (!chatUser || !fbReady) return;
+  if (!chatUser || !fbReady) { showToast('Please sign in to chat.'); return; }
   const input = document.getElementById('chatInput');
   const text  = input.value.trim();
   if (!text) return;
   input.value = '';
-  await db.ref('chat').push({ uid: chatUser.uid, name: chatUser._name, text, ts: Date.now() });
+  try {
+    await db.ref('chat').push({
+      uid: chatUser.uid,
+      name: chatUser._name,
+      text,
+      ts: Date.now()
+    });
+  } catch(e) {
+    showToast('Message not sent. Please try again.');
+    input.value = text; // restore
+  }
 }
+
 function listenOnline() {
+  if (!fbReady) return;
   db.ref('online').on('value', snap => {
     const members = [];
     snap.forEach(m => members.push(m.val().name));
     const el = document.getElementById('chatOnlineCount');
     if (el) el.textContent = members.length + ' online now';
     const ol = document.getElementById('onlineList');
-    ol.innerHTML = members.length
-      ? members.map(n => `<div class="online-item"><div class="online-dot"></div><div class="online-name">${esc(n)}</div></div>`).join('')
-      : '<p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>';
-  });
+    if (ol) {
+      ol.innerHTML = members.length
+        ? members.map(n => `<div class="online-item"><div class="online-dot"></div><div class="online-name">${esc(n)}</div></div>`).join('')
+        : '<p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>';
+    }
+  }, err => console.warn('Online listen error:', err));
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    GALLERY SLIDESHOW
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 let slides = [], slideIdx = 0, slideTimer;
+
 function initSlideshow() {
   const stage = document.getElementById('slideshowStage');
   if (!stage) return;
   const dots = document.getElementById('slideDots');
-  slides = stage.querySelectorAll('.slide');
+  slides = Array.from(stage.querySelectorAll('.slide'));
   if (slides.length <= 1) return;
+  // Clear existing dots
+  dots.innerHTML = '';
   slides.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -1990,27 +2736,35 @@ function initSlideshow() {
   updateSlideCounter();
   slideTimer = setInterval(nextSlide, 5000);
 }
+
 function goSlide(i) {
+  if (!slides.length) return;
   slides[slideIdx].classList.remove('active');
-  document.querySelectorAll('.slide-dot')[slideIdx]?.classList.remove('active');
-  slideIdx = (i + slides.length) % slides.length;
+  const dotEls = document.querySelectorAll('.slide-dot');
+  if (dotEls[slideIdx]) dotEls[slideIdx].classList.remove('active');
+  slideIdx = ((i % slides.length) + slides.length) % slides.length;
   slides[slideIdx].classList.add('active');
-  document.querySelectorAll('.slide-dot')[slideIdx]?.classList.add('active');
+  if (dotEls[slideIdx]) dotEls[slideIdx].classList.add('active');
   updateSlideCounter();
 }
+
 function nextSlide() { goSlide(slideIdx + 1); }
-function prevSlide() { goSlide(slideIdx - 1); clearInterval(slideTimer); }
+function prevSlide() { clearInterval(slideTimer); goSlide(slideIdx - 1); }
+
 function updateSlideCounter() {
   const el = document.getElementById('slideCounter');
   if (el) el.textContent = (slideIdx + 1) + ' / ' + slides.length;
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    MUSIC PLAYER
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 const audio = new Audio('audio/god-be-with-you.mp3');
-audio.loop = true; audio.volume = 0.6; audio.preload = 'metadata';
+audio.loop = true;
+audio.volume = 0.6;
+audio.preload = 'metadata';
 let playing = false;
+
 function toggleMusic() {
   playing = !playing;
   document.getElementById('musicIcon').className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
@@ -2020,23 +2774,35 @@ function toggleMusic() {
       document.getElementById('musicIcon').className = 'fa-solid fa-play';
       showToast('Place the MP3 at: audio/god-be-with-you.mp3');
     });
-  } else { audio.pause(); }
+  } else {
+    audio.pause();
+  }
 }
-function setVol(v) { audio.volume = parseFloat(v); }
 
-/* ════════════════════════════════════════
+function setVol(v) {
+  audio.volume = parseFloat(v);
+}
+
+/* ═══════════════════════════════════════
    SCROLL REVEAL
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
+let revealObserver = null;
+
 function initReveal() {
-  const obs = new IntersectionObserver(entries => {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
 }
 
-/* ════════════════════════════════════════
-   CONDOLENCE GRID RESPONSIVE
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   CONDOLENCE GRID — RESPONSIVE
+═══════════════════════════════════════ */
 function checkCondGrid() {
   const grid = document.getElementById('condGrid');
   if (grid) grid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
@@ -2044,9 +2810,9 @@ function checkCondGrid() {
 window.addEventListener('resize', checkCondGrid);
 checkCondGrid();
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════
    TOAST
-════════════════════════════════════════ */
+═══════════════════════════════════════ */
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -2056,11 +2822,15 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-/* ════════════════════════════════════════
-   ESC HELPER
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   HTML ESCAPE HELPER
+═══════════════════════════════════════ */
 function esc(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s || '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
 }
 </script>
 </body>
