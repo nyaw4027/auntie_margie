@@ -19,279 +19,95 @@
 <meta property="og:type" content="website"/>
 <style>
 /* ═══════════════════════════════════════
-   CSS VARIABLES & RESET
+   VARIABLES & RESET
 ═══════════════════════════════════════ */
 :root{
-  --charcoal:#1c1c1c;
-  --dark:#111111;
-  --gold:#c8a84b;
-  --gold-light:#e2c97a;
-  --gold-pale:#f5e9c4;
-  --cream:#f8f4ec;
-  --ivory:#fdfaf4;
-  --text-dark:#2a2a2a;
-  --text-mid:#555550;
-  --text-light:#888880;
-  --border:rgba(200,168,75,.25);
-  --shadow:0 8px 40px rgba(0,0,0,.12);
+  --charcoal:#1c1c1c;--dark:#111111;
+  --gold:#c8a84b;--gold-light:#e2c97a;--gold-pale:#f5e9c4;
+  --cream:#f8f4ec;--ivory:#fdfaf4;
+  --text-dark:#2a2a2a;--text-mid:#555550;--text-light:#888880;
+  --border:rgba(200,168,75,.25);--shadow:0 8px 40px rgba(0,0,0,.12);
   --green:#22c55e;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'Lato',sans-serif;
-  background:var(--ivory);
-  color:var(--text-dark);
-  overflow-x:hidden;
-  padding-bottom:60px;
-}
+body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text-dark);overflow-x:hidden;padding-bottom:60px;}
 
-/* ═══════════════════════════════════════
-   LOADING SCREEN
-═══════════════════════════════════════ */
-#loading-screen{
-  position:fixed;inset:0;
-  background:var(--dark);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  z-index:9999;
-  transition:opacity .8s,visibility .8s;
-}
+/* ─── LOADING ─────────────────────────── */
+#loading-screen{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s,visibility .8s;}
 #loading-screen.fade-out{opacity:0;visibility:hidden;pointer-events:none;}
-.loading-cross{
-  position:relative;width:44px;height:44px;
-  margin-bottom:28px;
-  animation:pulse-cross 1.5s ease-in-out infinite;
-}
-.loading-cross::before,.loading-cross::after{
-  content:'';position:absolute;
-  background:var(--gold);border-radius:2px;
-}
+.loading-cross{position:relative;width:44px;height:44px;margin-bottom:28px;animation:pulse-cross 1.5s ease-in-out infinite;}
+.loading-cross::before,.loading-cross::after{content:'';position:absolute;background:var(--gold);border-radius:2px;}
 .loading-cross::before{width:4px;height:100%;top:0;left:50%;transform:translateX(-50%);}
 .loading-cross::after{width:100%;height:4px;top:50%;left:0;transform:translateY(-50%);}
-@keyframes pulse-cross{
-  0%,100%{opacity:.4;transform:scale(.95);}
-  50%{opacity:1;transform:scale(1.05);}
-}
-.loading-text{
-  font-family:'Cormorant Garamond',serif;
-  color:var(--gold-pale);
-  font-size:1.1rem;letter-spacing:.35em;text-transform:uppercase;
-}
-.loading-verse{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  color:rgba(245,233,196,.35);
-  font-size:.88rem;
-  margin-top:16px;
-  letter-spacing:.06em;
-}
+@keyframes pulse-cross{0%,100%{opacity:.4;transform:scale(.95);}50%{opacity:1;transform:scale(1.05);}}
+.loading-text{font-family:'Cormorant Garamond',serif;color:var(--gold-pale);font-size:1.1rem;letter-spacing:.35em;text-transform:uppercase;}
+.loading-verse{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(245,233,196,.35);font-size:.88rem;margin-top:16px;letter-spacing:.06em;}
 
-/* ═══════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════ */
-#nav{
-  position:fixed;top:0;left:0;right:0;
-  background:rgba(17,17,17,.97);
-  -webkit-backdrop-filter:blur(12px);
-  backdrop-filter:blur(12px);
-  z-index:1000;
-  border-bottom:1px solid var(--border);
-}
-.nav-inner{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;height:64px;
-}
-.nav-brand{
-  font-family:'Playfair Display',serif;
-  color:var(--gold);font-size:1.05rem;font-weight:600;
-  cursor:pointer;display:flex;align-items:center;gap:8px;
-  text-decoration:none;
-}
+/* ─── NAV ─────────────────────────────── */
+#nav{position:fixed;top:0;left:0;right:0;background:rgba(17,17,17,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;}
+.nav-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.05rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;text-decoration:none;}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
-.nav-links a{
-  color:rgba(245,233,196,.7);text-decoration:none;
-  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:6px 11px;border-radius:4px;cursor:pointer;
-  transition:color .2s,background .2s;
-}
-.nav-links a:hover,.nav-links a.active{
-  color:var(--gold);background:rgba(200,168,75,.1);
-}
-.hamburger{
-  display:none;background:none;border:none;
-  color:var(--gold);font-size:1.4rem;cursor:pointer;padding:8px;
-}
+.nav-links a{color:rgba(245,233,196,.7);text-decoration:none;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:4px;cursor:pointer;transition:color .2s,background .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(200,168,75,.1);}
+.hamburger{display:none;background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:8px;}
 .mobile-menu{display:none;background:rgba(17,17,17,.98);border-top:1px solid var(--border);}
 .mobile-menu.open{display:block;}
-.mobile-menu a{
-  display:block;color:rgba(245,233,196,.75);
-  padding:14px 28px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  cursor:pointer;text-decoration:none;
-  transition:color .2s,background .2s;
-}
+.mobile-menu a{display:block;color:rgba(245,233,196,.75);padding:14px 28px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;text-decoration:none;transition:color .2s,background .2s;}
 .mobile-menu a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
 
-/* ═══════════════════════════════════════
-   PAGES
-═══════════════════════════════════════ */
+/* ─── PAGES ───────────────────────────── */
 .page{display:none;min-height:100vh;padding-top:64px;animation:fadeInPage .45s ease forwards;}
 .page.active{display:block;}
 @keyframes fadeInPage{from{opacity:0;}to{opacity:1;}}
 
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-.hero{
-  position:relative;min-height:calc(100vh - 64px);
-  background:var(--dark);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;text-align:center;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 70%),
-    radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,160,160,.05) 0%,transparent 60%),
-    linear-gradient(180deg,#111 0%,#1a1a15 60%,#111 100%);
-}
-.hero-pattern{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px),
-    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px);
-}
+/* ─── HERO ────────────────────────────── */
+.hero{position:relative;min-height:calc(100vh - 64px);background:var(--dark);display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,160,160,.05) 0%,transparent 60%),linear-gradient(180deg,#111 0%,#1a1a15 60%,#111 100%);}
+.hero-pattern{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,168,75,.04) 80px);}
 .hero-content{position:relative;z-index:1;max-width:700px;padding:60px 24px;}
 .hero-ornament{color:var(--gold);font-size:1.6rem;letter-spacing:.6em;margin-bottom:20px;opacity:.6;display:block;}
-.hero-sub{
-  font-family:'Cormorant Garamond',serif;
-  color:var(--gold);font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;
-  margin-bottom:16px;opacity:.85;
-}
-.hero-name{
-  font-family:'Playfair Display',serif;
-  color:var(--cream);font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;
-  margin-bottom:8px;
-}
-.hero-name em{
-  display:block;font-style:italic;color:var(--gold-light);
-  font-size:.55em;font-weight:400;letter-spacing:.06em;margin-top:6px;
-}
-.hero-dates{
-  font-family:'Cormorant Garamond',serif;
-  color:rgba(245,233,196,.6);font-size:1.1rem;letter-spacing:.2em;
-  margin:20px 0 8px;
-}
-.hero-tagline{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  color:var(--gold-pale);font-size:1.25rem;
-  margin:28px 0 40px;opacity:.8;line-height:1.6;
-}
+.hero-sub{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:16px;opacity:.85;}
+.hero-name{font-family:'Playfair Display',serif;color:var(--cream);font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;margin-bottom:8px;}
+.hero-name em{display:block;font-style:italic;color:var(--gold-light);font-size:.55em;font-weight:400;letter-spacing:.06em;margin-top:6px;}
+.hero-dates{font-family:'Cormorant Garamond',serif;color:rgba(245,233,196,.6);font-size:1.1rem;letter-spacing:.2em;margin:20px 0 8px;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-pale);font-size:1.25rem;margin:28px 0 40px;opacity:.8;line-height:1.6;}
 .hero-photo-ring{width:175px;height:175px;border-radius:50%;margin:0 auto 36px;position:relative;}
-.hero-photo-ring::before{
-  content:'';position:absolute;inset:-6px;border-radius:50%;
-  border:2px solid var(--gold);opacity:.5;
-}
-.hero-photo-ring::after{
-  content:'';position:absolute;inset:-14px;border-radius:50%;
-  border:1px solid rgba(200,168,75,.2);
-}
-.hero-photo-placeholder{
-  width:100%;height:100%;border-radius:50%;
-  background:linear-gradient(135deg,#2a2a20,#1e1e18);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-.hero-photo-placeholder img{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
-}
+.hero-photo-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--gold);opacity:.5;}
+.hero-photo-ring::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(200,168,75,.2);}
+.hero-photo-placeholder{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#2a2a20,#1e1e18);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-photo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
 .hero-initials{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);opacity:.5;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(200,168,75,.1);border:1px solid var(--border);
-  border-radius:2px;padding:7px 18px;
-  font-family:'Cormorant Garamond',serif;font-size:.85rem;
-  color:var(--gold);letter-spacing:.12em;margin-bottom:16px;
-}
-.hero-scroll-hint{
-  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
-  color:rgba(200,168,75,.4);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  animation:bounceDown 2s ease-in-out infinite;
-}
-@keyframes bounceDown{
-  0%,100%{transform:translateX(-50%) translateY(0);}
-  50%{transform:translateX(-50%) translateY(6px);}
-}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,168,75,.1);border:1px solid var(--border);border-radius:2px;padding:7px 18px;font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--gold);letter-spacing:.12em;margin-bottom:16px;}
+.hero-scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(200,168,75,.4);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounceDown 2s ease-in-out infinite;}
+@keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
 
-/* ═══════════════════════════════════════
-   COUNTDOWN
-═══════════════════════════════════════ */
-.countdown-strip{
-  background:var(--dark);padding:36px 24px;text-align:center;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.countdown-label{
-  font-family:'Cormorant Garamond',serif;color:var(--gold);
-  font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;
-  margin-bottom:20px;display:block;
-}
+/* ─── COUNTDOWN ───────────────────────── */
+.countdown-strip{background:var(--dark);padding:36px 24px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.countdown-label{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:20px;display:block;}
 .countdown-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-.countdown-box{
-  background:var(--charcoal);border:1px solid var(--border);
-  border-radius:4px;padding:18px 22px;min-width:80px;
-  position:relative;overflow:hidden;
-}
-.countdown-box::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.4;
-}
-.countdown-num{
-  font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;
-  color:var(--gold);display:block;line-height:1;
-}
-.countdown-unit{
-  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--text-light);margin-top:6px;display:block;
-}
+.countdown-box{background:var(--charcoal);border:1px solid var(--border);border-radius:4px;padding:18px 22px;min-width:80px;position:relative;overflow:hidden;}
+.countdown-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
+.countdown-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--gold);display:block;line-height:1;}
+.countdown-unit{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-top:6px;display:block;}
 .countdown-done{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);font-style:italic;}
 
-/* ═══════════════════════════════════════
-   VERSE & ABOUT STRIPS
-═══════════════════════════════════════ */
+/* ─── STRIPS ──────────────────────────── */
 .verse-strip{background:var(--charcoal);padding:48px 24px;text-align:center;}
-.verse-text{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--gold-pale);
-  max-width:640px;margin:0 auto 12px;line-height:1.7;opacity:.85;
-}
+.verse-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--gold-pale);max-width:640px;margin:0 auto 12px;line-height:1.7;opacity:.85;}
 .verse-ref{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.6;}
 .about-strip{background:var(--charcoal);padding:56px 24px;text-align:center;border-top:1px solid var(--border);}
-.about-strip p{
-  font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.8;
-  color:rgba(245,233,196,.75);max-width:680px;margin:0 auto;font-style:italic;
-}
+.about-strip p{font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.8;color:rgba(245,233,196,.75);max-width:680px;margin:0 auto;font-style:italic;}
 .about-strip strong{color:var(--gold);}
 
-/* ═══════════════════════════════════════
-   SECTIONS
-═══════════════════════════════════════ */
+/* ─── SECTIONS ────────────────────────── */
 .section{padding:80px 24px;background:var(--ivory);}
 .section-alt{background:var(--cream);}
 .section-dark{background:var(--dark);color:var(--cream);}
 .section-header{text-align:center;margin-bottom:56px;}
-.section-eyebrow{
-  font-family:'Cormorant Garamond',serif;font-size:.78rem;
-  letter-spacing:.35em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:12px;display:block;
-}
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.2;
-  color:var(--text-dark);
-}
+.section-eyebrow{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.2;color:var(--text-dark);}
 .section-title--cream{color:var(--cream);}
 .section-ornament{display:flex;align-items:center;gap:16px;justify-content:center;margin-top:20px;}
 .section-ornament span{width:40px;height:1px;background:var(--gold);opacity:.5;}
@@ -300,434 +116,172 @@ body{
 .container-sm{max-width:720px;margin:0 auto;}
 .container-md{max-width:900px;margin:0 auto;}
 
-/* ═══════════════════════════════════════
-   EVENT CARDS
-═══════════════════════════════════════ */
-.quick-events-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;margin-top:8px;
-}
-.event-card{
-  background:var(--ivory);border:1px solid var(--border);
-  border-top:3px solid var(--gold);padding:28px 24px;border-radius:2px;
-  transition:transform .2s,box-shadow .2s;
-}
+/* ─── EVENT CARDS ─────────────────────── */
+.quick-events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:8px;}
+.event-card{background:var(--ivory);border:1px solid var(--border);border-top:3px solid var(--gold);padding:28px 24px;border-radius:2px;transition:transform .2s,box-shadow .2s;}
 .event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-.event-card-icon{
-  width:40px;height:40px;background:rgba(200,168,75,.1);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:1rem;margin-bottom:16px;
-}
+.event-card-icon{width:40px;height:40px;background:rgba(200,168,75,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;margin-bottom:16px;}
 .event-card-type{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 .event-card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
 .event-card-detail{font-size:.85rem;color:var(--text-mid);line-height:1.6;}
 .event-card-detail i{color:var(--gold);margin-right:5px;width:14px;}
 
-/* ═══════════════════════════════════════
-   STATS ROW
-═══════════════════════════════════════ */
-.stats-row{
-  display:flex;flex-wrap:wrap;justify-content:center;
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
-}
-.stat-item{
-  flex:1;min-width:140px;padding:28px 20px;text-align:center;
-  border-right:1px solid var(--border);background:var(--ivory);
-}
+/* ─── STATS ───────────────────────────── */
+.stats-row{display:flex;flex-wrap:wrap;justify-content:center;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.stat-item{flex:1;min-width:140px;padding:28px 20px;text-align:center;border-right:1px solid var(--border);background:var(--ivory);}
 .stat-item:last-child{border-right:none;}
-.stat-num{
-  font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;
-  color:var(--gold);display:block;margin-bottom:6px;
-}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);display:block;margin-bottom:6px;}
 .stat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-light);}
 
-/* ═══════════════════════════════════════
-   SHARE SECTION
-═══════════════════════════════════════ */
+/* ─── SHARE ───────────────────────────── */
 .share-section{text-align:center;}
 .share-section p{color:rgba(245,233,196,.6);margin:24px auto;max-width:480px;line-height:1.8;font-size:.92rem;}
 .share-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px;}
-.btn-outline{
-  background:transparent;color:var(--gold);border:1px solid var(--gold);
-  padding:10px 24px;font-family:'Lato',sans-serif;font-size:.78rem;
-  letter-spacing:.18em;text-transform:uppercase;font-weight:700;
-  cursor:pointer;border-radius:2px;transition:all .2s;
-}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 24px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
 .btn-outline:hover{background:var(--gold);color:var(--dark);}
 
-/* ═══════════════════════════════════════
-   ANNOUNCEMENTS
-═══════════════════════════════════════ */
+/* ─── ANNOUNCEMENTS ───────────────────── */
 .announcement-list{display:flex;flex-direction:column;gap:20px;}
-.announcement-item{
-  background:var(--ivory);border-left:4px solid var(--gold);
-  padding:24px 28px;border-radius:0 4px 4px 0;
-  box-shadow:0 2px 12px rgba(0,0,0,.06);
-  transition:transform .2s;
-}
+.announcement-item{background:var(--ivory);border-left:4px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s;}
 .announcement-item:hover{transform:translateX(4px);}
 .ann-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
-.ann-tag{
-  background:var(--gold);color:var(--dark);font-size:.65rem;
-  letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;
-  border-radius:2px;font-weight:700;
-}
+.ann-tag{background:var(--gold);color:var(--dark);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;font-weight:700;}
 .ann-date{font-size:.8rem;color:var(--text-light);}
 .ann-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text-dark);margin-bottom:8px;}
 .ann-body{font-size:.9rem;color:var(--text-mid);line-height:1.7;}
 
-/* ═══════════════════════════════════════
-   PROGRAMME
-═══════════════════════════════════════ */
-.program-tabs{
-  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;
-}
-.program-tab{
-  padding:10px 22px;border:1px solid var(--border);
-  background:var(--ivory);color:var(--text-mid);
-  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;
-}
+/* ─── PROGRAMME ───────────────────────── */
+.program-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
+.program-tab{padding:10px 22px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;}
 .program-tab.active,.program-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
-.program-panel{display:none;}
-.program-panel.active{display:block;}
-.program-day-header{
-  background:var(--charcoal);color:var(--gold-pale);
-  padding:20px 28px;border-radius:4px 4px 0 0;
-}
+.program-panel{display:none;}.program-panel.active{display:block;}
+.program-day-header{background:var(--charcoal);color:var(--gold-pale);padding:20px 28px;border-radius:4px 4px 0 0;}
 .program-day-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;}
 .program-day-header p{font-size:.85rem;opacity:.6;margin-top:4px;}
-.program-items{
-  background:var(--ivory);border:1px solid var(--border);
-  border-top:none;border-radius:0 0 4px 4px;overflow:hidden;
-}
-.program-item{
-  display:flex;align-items:flex-start;padding:18px 28px;
-  border-bottom:1px solid rgba(200,168,75,.1);transition:background .2s;
-}
+.program-items{background:var(--ivory);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;}
+.program-item{display:flex;align-items:flex-start;padding:18px 28px;border-bottom:1px solid rgba(200,168,75,.1);transition:background .2s;}
 .program-item:last-child{border-bottom:none;}
 .program-item:hover{background:rgba(200,168,75,.03);}
-.program-item-num{
-  width:32px;height:32px;flex-shrink:0;
-  background:rgba(200,168,75,.12);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;font-weight:700;color:var(--gold);
-  margin-right:18px;margin-top:2px;
-}
+.program-item-num{width:32px;height:32px;flex-shrink:0;background:rgba(200,168,75,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--gold);margin-right:18px;margin-top:2px;}
 .program-item-body{flex:1;}
 .program-item-title{font-weight:700;font-size:.92rem;color:var(--text-dark);margin-bottom:3px;}
 .program-item-detail{font-size:.82rem;color:var(--text-mid);}
 .program-item-time{font-size:.75rem;color:var(--gold);font-weight:700;letter-spacing:.05em;margin-left:12px;flex-shrink:0;}
 
-/* ═══════════════════════════════════════
-   FORMS (shared)
-═══════════════════════════════════════ */
-.form-wrap-dark{
-  background:var(--charcoal);padding:40px;border-radius:4px;
-  border:1px solid rgba(200,168,75,.15);margin-bottom:28px;
-}
+/* ─── FORMS ───────────────────────────── */
+.form-wrap-dark{background:var(--charcoal);padding:40px;border-radius:4px;border:1px solid rgba(200,168,75,.15);margin-bottom:28px;}
 .form-wrap-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:24px;font-size:1.25rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .form-group{margin-bottom:20px;}
-.form-group label{
-  display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:8px;font-weight:700;
-}
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;background:rgba(255,255,255,.05);
-  border:1px solid rgba(200,168,75,.2);color:var(--cream);
-  padding:12px 16px;border-radius:2px;
-  font-family:'Lato',sans-serif;font-size:.92rem;
-  transition:border-color .2s;outline:none;
-}
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{border-color:var(--gold);}
-.form-group input::placeholder,
-.form-group textarea::placeholder{color:rgba(245,233,196,.3);}
+.form-group label{display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:700;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:12px 16px;border-radius:2px;font-family:'Lato',sans-serif;font-size:.92rem;transition:border-color .2s;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(245,233,196,.3);}
 .form-group textarea{resize:vertical;min-height:100px;}
 .form-group select option{background:var(--charcoal);}
 .checkbox-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
 .checkbox-label{display:flex;align-items:center;gap:8px;color:var(--cream);font-size:.88rem;cursor:pointer;}
 .checkbox-label input[type="checkbox"]{accent-color:var(--gold);width:16px;height:16px;}
-
-.btn-gold{
-  background:var(--gold);color:var(--dark);border:none;
-  padding:14px 36px;font-family:'Lato',sans-serif;
-  font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
-  cursor:pointer;border-radius:2px;transition:background .2s,transform .1s;
-  display:inline-flex;align-items:center;gap:8px;
-}
+.btn-gold{background:var(--gold);color:var(--dark);border:none;padding:14px 36px;font-family:'Lato',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:background .2s,transform .1s;display:inline-flex;align-items:center;gap:8px;}
 .btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
 .btn-gold:disabled{opacity:.55;cursor:not-allowed;transform:none;}
 .btn-gold--sm{padding:10px 24px;font-size:.75rem;}
-
-.btn-secondary{
-  background:transparent;color:rgba(200,168,75,.7);
-  border:1px solid rgba(200,168,75,.3);padding:9px 20px;
-  font-family:'Lato',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
-  font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;
-}
+.btn-secondary{background:transparent;color:rgba(200,168,75,.7);border:1px solid rgba(200,168,75,.3);padding:9px 20px;font-family:'Lato',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;transition:all .2s;}
 .btn-secondary:hover{background:rgba(200,168,75,.1);color:var(--gold);border-color:var(--gold);}
 
-/* ═══════════════════════════════════════
-   CONDOLENCES
-═══════════════════════════════════════ */
-.cond-status-bar{
-  display:flex;align-items:center;gap:10px;
-  padding:11px 18px;border-radius:4px;margin-bottom:28px;font-size:.82rem;
-}
+/* ─── CONDOLENCES ─────────────────────── */
+.cond-status-bar{display:flex;align-items:center;gap:10px;padding:11px 18px;border-radius:4px;margin-bottom:28px;font-size:.82rem;}
 .cond-status-bar.live{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
 .cond-status-bar.offline{background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.2);}
 .live-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .live-dot.green{background:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:pulseDot 1.8s ease-in-out infinite;}
 .live-dot.amber{background:var(--gold);}
-@keyframes pulseDot{
-  0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2);}
-  50%{box-shadow:0 0 0 8px rgba(34,197,94,.04);}
-}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2);}50%{box-shadow:0 0 0 8px rgba(34,197,94,.04);}}
 .status-text{color:var(--text-mid);}
 .status-count{margin-left:auto;color:var(--text-light);font-weight:700;}
 .condolence-cards{display:flex;flex-direction:column;gap:20px;}
-.condolence-card{
-  background:var(--ivory);border:1px solid var(--border);
-  border-radius:4px;padding:24px 28px;position:relative;
-  transition:box-shadow .2s;
-}
+.condolence-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;padding:24px 28px;position:relative;transition:box-shadow .2s;}
 .condolence-card.new-card{animation:slideIn .5s ease;}
-@keyframes slideIn{
-  from{opacity:0;transform:translateY(-12px);}
-  to{opacity:1;transform:translateY(0);}
-}
+@keyframes slideIn{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0);}}
 .condolence-card:hover{box-shadow:var(--shadow);}
-.condolence-card::before{
-  content:"\201C";position:absolute;top:16px;left:20px;
-  font-family:'Playfair Display',serif;font-size:3rem;
-  color:var(--gold);opacity:.15;line-height:1;pointer-events:none;
-}
+.condolence-card::before{content:"\201C";position:absolute;top:16px;left:20px;font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);opacity:.15;line-height:1;pointer-events:none;}
 .condolence-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-left:8px;flex-wrap:wrap;gap:6px;}
 .condolence-name{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;color:var(--text-dark);}
 .condolence-relation{font-size:.75rem;color:var(--gold);letter-spacing:.08em;}
 .condolence-date{font-size:.75rem;color:var(--text-light);white-space:nowrap;flex-shrink:0;}
-.condolence-msg{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.08rem;color:var(--text-mid);line-height:1.75;padding-left:8px;
-}
+.condolence-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:var(--text-mid);line-height:1.75;padding-left:8px;}
 .condolences-heading{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:20px;color:var(--text-dark);}
-.cond-empty{
-  text-align:center;padding:52px 20px;color:var(--text-light);
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;
-  border:1px dashed rgba(200,168,75,.2);border-radius:4px;
-}
+.cond-empty{text-align:center;padding:52px 20px;color:var(--text-light);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;border:1px dashed rgba(200,168,75,.2);border-radius:4px;}
 .cond-empty i{display:block;font-size:2rem;color:var(--gold);opacity:.2;margin-bottom:12px;}
-
-/* AI Writer */
-.ai-writer-box{
-  background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.2);
-  border-radius:4px;padding:24px 28px;margin-bottom:28px;
-}
-.ai-writer-title{
-  font-family:'Playfair Display',serif;color:var(--gold-pale);
-  font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;
-}
+.ai-writer-box{background:rgba(200,168,75,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:24px 28px;margin-bottom:28px;}
+.ai-writer-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
 .ai-writer-sub{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
-.ai-result-box{
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:3px;padding:16px;
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.05rem;color:var(--gold-pale);line-height:1.75;
-  margin-top:14px;display:none;min-height:80px;
-}
+.ai-result-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--gold-pale);line-height:1.75;margin-top:14px;display:none;min-height:80px;}
 .ai-result-box.show{display:block;}
 .ai-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
-
-/* WhatsApp card */
-.wa-card{
-  background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);
-  border-radius:4px;padding:20px 24px;margin-top:20px;
-  display:none;flex-direction:column;gap:14px;
-}
+.wa-card{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);border-radius:4px;padding:20px 24px;margin-top:20px;display:none;flex-direction:column;gap:14px;}
 .wa-card.show{display:flex;}
 .wa-card-title{color:#25d366;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:10px;}
 .wa-card-body{font-size:.88rem;color:var(--gold-pale);line-height:1.6;}
 .wa-card-body strong{color:#25d366;}
-.btn-whatsapp{
-  background:#25d366;color:#fff;border:none;padding:13px 28px;
-  font-family:'Lato',sans-serif;font-size:.82rem;letter-spacing:.12em;
-  text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;
-  display:inline-flex;align-items:center;gap:10px;
-  transition:background .2s;align-self:flex-start;
-}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:13px 28px;font-family:'Lato',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;display:inline-flex;align-items:center;gap:10px;transition:background .2s;align-self:flex-start;}
 .btn-whatsapp:hover{background:#1ebe5d;}
 
-/* ═══════════════════════════════════════
-   TRIBUTES
-═══════════════════════════════════════ */
+/* ─── TRIBUTES ────────────────────────── */
 .tribute-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:52px;}
-.tribute-tab{
-  padding:11px 26px;border:1px solid var(--border);
-  background:var(--ivory);color:var(--text-mid);
-  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;border-radius:2px;transition:all .2s;
-  font-family:'Lato',sans-serif;display:flex;align-items:center;gap:8px;
-}
+.tribute-tab{padding:11px 26px;border:1px solid var(--border);background:var(--ivory);color:var(--text-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;font-family:'Lato',sans-serif;display:flex;align-items:center;gap:8px;}
 .tribute-tab.active,.tribute-tab:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
-.tribute-panel{display:none;}
-.tribute-panel.active{display:block;}
-.tribute-text-block{
-  background:var(--ivory);border:1px solid var(--border);
-  border-left:4px solid var(--gold);border-radius:0 6px 6px 0;
-  padding:40px 44px;position:relative;margin-bottom:40px;
-}
-.tribute-text-block::before{
-  content:"\201C";position:absolute;top:12px;left:22px;
-  font-family:'Playfair Display',serif;font-size:6rem;
-  color:var(--gold);opacity:.09;line-height:1;pointer-events:none;
-}
-.tribute-text-body{
-  font-family:'Cormorant Garamond',serif;font-size:1.22rem;
-  line-height:2;color:var(--text-mid);font-style:italic;
-  padding-left:14px;white-space:pre-line;
-}
-.tribute-signoff{
-  display:flex;align-items:center;gap:16px;margin-top:28px;
-  padding-top:20px;border-top:1px solid var(--border);
-}
-.tribute-signoff-icon{
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(200,168,75,.12);display:flex;align-items:center;
-  justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0;
-}
+.tribute-panel{display:none;}.tribute-panel.active{display:block;}
+.tribute-text-block{background:var(--ivory);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:40px 44px;position:relative;margin-bottom:40px;}
+.tribute-text-block::before{content:"\201C";position:absolute;top:12px;left:22px;font-family:'Playfair Display',serif;font-size:6rem;color:var(--gold);opacity:.09;line-height:1;pointer-events:none;}
+.tribute-text-body{font-family:'Cormorant Garamond',serif;font-size:1.22rem;line-height:2;color:var(--text-mid);font-style:italic;padding-left:14px;white-space:pre-line;}
+.tribute-signoff{display:flex;align-items:center;gap:16px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border);}
+.tribute-signoff-icon{width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0;}
 .tribute-signoff-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);}
 .tribute-signoff-role{font-size:.78rem;color:var(--text-light);margin-top:3px;}
-.tribute-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:18px;margin-bottom:20px;
-}
+.tribute-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:20px;}
 .tribute-page-sub{margin:16px auto 0;color:var(--text-mid);font-size:.9rem;max-width:540px;text-align:center;line-height:1.7;}
-
-/* Member cards */
-.member-card{
-  background:var(--ivory);border:1px solid var(--border);
-  border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-align:center;
-}
+.member-card{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-align:center;}
 .member-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-.member-photo-wrap{
-  position:relative;aspect-ratio:3/4;overflow:hidden;
-  background:var(--charcoal);cursor:pointer;
-}
-.member-photo-wrap img{
-  width:100%;height:100%;object-fit:cover;object-position:top;display:block;
-  transition:transform .4s;
-}
+.member-photo-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--charcoal);cursor:pointer;}
+.member-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s;}
 .member-card:hover .member-photo-wrap img{transform:scale(1.05);}
-.member-photo-placeholder{
-  width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#1e1e18,#2a2a22);
-  color:var(--gold);gap:10px;text-align:center;
-}
+.member-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e1e18,#2a2a22);color:var(--gold);gap:10px;text-align:center;}
 .member-photo-placeholder i{font-size:2.8rem;opacity:.4;}
 .member-photo-placeholder span{font-size:.68rem;letter-spacing:.12em;color:var(--text-light);text-transform:uppercase;}
 .member-info{padding:16px 12px 18px;}
 .member-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:5px;}
 .member-occupation{font-size:.78rem;color:var(--gold);letter-spacing:.05em;line-height:1.4;}
-.photo-zoom-hint{
-  position:absolute;inset:0;background:rgba(0,0,0,.45);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .25s;
-}
+.photo-zoom-hint{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;}
 .photo-zoom-hint i{font-size:1.6rem;color:var(--gold);filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));}
 .member-photo-wrap:hover .photo-zoom-hint{opacity:1;}
+.tribute-section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 24px;}
+.tribute-section-divider span{font-family:'Cormorant Garamond',serif;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.75;white-space:nowrap;}
+.tribute-section-divider::before,.tribute-section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(200,168,75,.3));}
+.tribute-section-divider::after{background:linear-gradient(to left,transparent,rgba(200,168,75,.3));}
+.member-role-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.25);border-radius:2px;padding:3px 9px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:5px;}
+.member-role-badge.member-badge{background:rgba(255,255,255,.05);border-color:rgba(245,233,196,.15);color:rgba(245,233,196,.4);}
 
-/* Church tribute extras — FIXED (was in HTML comment before) */
-.tribute-section-divider{
-  display:flex;align-items:center;gap:14px;
-  margin:32px 0 24px;
-}
-.tribute-section-divider span{
-  font-family:'Cormorant Garamond',serif;
-  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--gold);opacity:.75;white-space:nowrap;
-}
-.tribute-section-divider::before,
-.tribute-section-divider::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(to right,transparent,rgba(200,168,75,.3));
-}
-.tribute-section-divider::after{
-  background:linear-gradient(to left,transparent,rgba(200,168,75,.3));
-}
-.member-role-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.25);
-  border-radius:2px;padding:3px 9px;
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gold);margin-top:5px;
-}
-.member-role-badge.member-badge{
-  background:rgba(255,255,255,.05);
-  border-color:rgba(245,233,196,.15);
-  color:rgba(245,233,196,.4);
-}
+/* ─── GALLERY (auto-slide only) ───────── */
+.gallery-stage{position:relative;width:100%;aspect-ratio:16/7;border-radius:6px;overflow:hidden;background:var(--charcoal);border:1px solid var(--border);}
+.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
+.gallery-slide.active{opacity:1;}
+.gallery-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:48px 24px 18px;background:linear-gradient(transparent,rgba(10,8,4,.72));pointer-events:none;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(245,233,196,.92);letter-spacing:.02em;}
+.gallery-caption-tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-style:normal;display:block;margin-bottom:3px;font-family:'Lato',sans-serif;}
+.gallery-controls-row{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 0 20px;}
+.gallery-dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;}
+.gallery-dot{width:7px;height:7px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:background .25s,transform .25s;}
+.gallery-dot.active{background:var(--gold);transform:scale(1.4);}
+.gallery-counter{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-light);min-width:44px;text-align:center;}
+.gallery-foot{text-align:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);}
+.gallery-foot p{font-size:.8rem;color:var(--text-light);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.gallery-foot code{font-size:.76rem;opacity:.75;}
+@media(max-width:600px){.gallery-stage{aspect-ratio:4/3;}}
 
-/* ═══════════════════════════════════════
-   GALLERY SLIDESHOW
-═══════════════════════════════════════ */
-.slideshow-wrap{position:relative;max-width:720px;margin:0 auto;}
-.slideshow-stage{
-  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
-  border-radius:8px;background:var(--charcoal);border:1px solid var(--border);
-}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
-.slide.active{opacity:1;}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-.slide-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.75));
-  padding:28px 20px 16px;
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  color:var(--gold-pale);font-size:1rem;text-align:center;
-}
-.slide-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;}
-.slide-btn{
-  width:40px;height:40px;border-radius:50%;background:var(--charcoal);
-  border:1px solid var(--border);color:var(--gold);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;transition:all .2s;
-}
-.slide-btn:hover{background:var(--gold);color:var(--dark);}
-.slide-dots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:300px;}
-.slide-dot{
-  width:8px;height:8px;border-radius:50%;background:var(--border);
-  border:none;cursor:pointer;padding:0;transition:background .2s;
-}
-.slide-dot.active{background:var(--gold);}
-.slide-counter{font-size:.78rem;color:var(--text-light);letter-spacing:.1em;min-width:50px;text-align:center;}
-.gallery-placeholder-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:14px;margin-top:32px;
-}
-.gallery-ph-item{
-  aspect-ratio:3/4;background:var(--charcoal);
-  border:1px solid var(--border);border-radius:4px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  color:var(--text-light);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;gap:10px;
-}
-.gallery-ph-item i{font-size:1.8rem;color:var(--gold);opacity:.25;}
-
-/* ═══════════════════════════════════════
-   FAMILY CHAT
-═══════════════════════════════════════ */
+/* ─── CHAT ────────────────────────────── */
 .chat-wrap{display:flex;height:calc(100vh - 64px);overflow:hidden;background:var(--dark);}
-.chat-sidebar{
-  width:280px;flex-shrink:0;background:#161610;
-  border-right:1px solid rgba(200,168,75,.12);
-  display:flex;flex-direction:column;
-}
+.chat-sidebar{width:280px;flex-shrink:0;background:#161610;border-right:1px solid rgba(200,168,75,.12);display:flex;flex-direction:column;}
 .chat-sidebar-head{padding:16px 18px;border-bottom:1px solid rgba(200,168,75,.1);background:#111108;}
 .chat-sidebar-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:.95rem;font-weight:600;}
 .chat-sidebar-sub{font-size:.72rem;color:var(--text-light);margin-top:3px;}
@@ -736,16 +290,10 @@ body{
 .online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
 .online-name{color:var(--gold-pale);}
 .chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-.chat-header{
-  padding:16px 20px;border-bottom:1px solid rgba(200,168,75,.12);
-  background:#111108;display:flex;align-items:center;gap:12px;
-}
+.chat-header{padding:16px 20px;border-bottom:1px solid rgba(200,168,75,.12);background:#111108;display:flex;align-items:center;gap:12px;}
 .chat-header-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1rem;font-weight:600;}
 .chat-header-sub{font-size:.72rem;color:var(--text-light);}
-.chat-messages{
-  flex:1;overflow-y:auto;padding:20px;
-  display:flex;flex-direction:column;gap:14px;
-}
+.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;}
 .chat-messages::-webkit-scrollbar{width:3px;}
 .chat-messages::-webkit-scrollbar-thumb{background:rgba(200,168,75,.2);}
 .chat-bubble{max-width:68%;border-radius:12px;padding:12px 16px;font-size:.9rem;line-height:1.55;}
@@ -753,73 +301,34 @@ body{
 .chat-bubble.mine{background:rgba(200,168,75,.18);color:var(--gold-pale);align-self:flex-end;border-bottom-right-radius:2px;}
 .bubble-name{font-size:.68rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em;}
 .bubble-time{font-size:.65rem;color:var(--text-light);margin-top:5px;text-align:right;}
-.chat-input-bar{
-  padding:14px 16px;border-top:1px solid rgba(200,168,75,.12);
-  background:#111108;display:flex;gap:10px;
-}
-.chat-input-bar input{
-  flex:1;background:rgba(255,255,255,.06);
-  border:1px solid rgba(200,168,75,.2);color:var(--cream);
-  padding:10px 14px;border-radius:20px;font-size:.88rem;
-  outline:none;font-family:'Lato',sans-serif;
-}
+.chat-input-bar{padding:14px 16px;border-top:1px solid rgba(200,168,75,.12);background:#111108;display:flex;gap:10px;}
+.chat-input-bar input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:20px;font-size:.88rem;outline:none;font-family:'Lato',sans-serif;}
 .chat-input-bar input::placeholder{color:rgba(245,233,196,.25);}
 .chat-input-bar input:focus{border-color:rgba(200,168,75,.5);}
-.chat-send-btn{
-  width:40px;height:40px;border-radius:50%;background:var(--gold);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;
-}
+.chat-send-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.9rem;flex-shrink:0;transition:background .2s;}
 .chat-send-btn:hover{background:var(--gold-light);}
-.chat-auth{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:20px;padding:40px;
-}
+.chat-auth{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px;}
 .chat-auth-title{font-family:'Playfair Display',serif;color:var(--gold-pale);font-size:1.4rem;text-align:center;}
 .chat-auth-sub{color:var(--text-light);font-size:.88rem;text-align:center;max-width:320px;line-height:1.7;}
 .chat-auth-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
-.chat-auth-tab{
-  padding:9px 22px;background:transparent;border:none;color:var(--text-mid);
-  font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;
-  text-transform:uppercase;cursor:pointer;transition:all .2s;
-}
+.chat-auth-tab{padding:9px 22px;background:transparent;border:none;color:var(--text-mid);font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .chat-auth-tab.active{background:var(--gold);color:var(--dark);}
 .chat-auth-form{width:100%;max-width:360px;display:flex;flex-direction:column;gap:12px;}
-.chat-auth-input{
-  width:100%;background:rgba(255,255,255,.06);
-  border:1px solid rgba(200,168,75,.2);color:var(--cream);
-  padding:12px 16px;border-radius:2px;font-size:.9rem;
-  outline:none;font-family:'Lato',sans-serif;
-}
+.chat-auth-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:12px 16px;border-radius:2px;font-size:.9rem;outline:none;font-family:'Lato',sans-serif;}
 .chat-auth-input:focus{border-color:var(--gold);}
 .chat-auth-input::placeholder{color:rgba(245,233,196,.3);}
+/* chat notification badge */
+.chat-notif{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:#ef4444;color:#fff;font-size:.65rem;font-weight:700;padding:0 4px;margin-left:5px;vertical-align:middle;}
 
-/* ═══════════════════════════════════════
-   LIVESTREAM
-═══════════════════════════════════════ */
-.livestream-embed{
-  position:relative;padding-bottom:56.25%;height:0;
-  background:#000;border-radius:4px;overflow:hidden;
-  border:1px solid var(--border);margin-bottom:40px;
-}
+/* ─── LIVESTREAM ──────────────────────── */
+.livestream-embed{position:relative;padding-bottom:56.25%;height:0;background:#000;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;}
 .livestream-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
-.livestream-placeholder{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  background:var(--charcoal);color:var(--gold-pale);
-  gap:16px;text-align:center;padding:24px;
-}
+.livestream-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--charcoal);color:var(--gold-pale);gap:16px;text-align:center;padding:24px;}
 .livestream-placeholder i{font-size:3rem;color:var(--gold);opacity:.6;}
 .livestream-placeholder h3{font-family:'Playfair Display',serif;font-size:1.4rem;}
 .livestream-placeholder p{font-size:.88rem;color:var(--text-light);max-width:340px;line-height:1.6;}
 .livestream-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px;}
-.stream-link{
-  display:flex;align-items:center;gap:10px;padding:14px 24px;
-  border:1px solid var(--border);border-radius:4px;color:var(--cream);
-  text-decoration:none;font-size:.88rem;background:var(--charcoal);
-  transition:all .2s;
-}
+.stream-link{display:flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);text-decoration:none;font-size:.88rem;background:var(--charcoal);transition:all .2s;}
 .stream-link:hover{border-color:var(--gold);color:var(--gold);}
 .stream-link i{font-size:1.2rem;}
 .ic-fb{color:#1877f2;}.ic-yt{color:#ff0000;}.ic-zm{color:#2d8cff;}
@@ -828,11 +337,7 @@ body{
 .admin-panel-title{font-family:'Playfair Display',serif;color:var(--gold-pale);margin-bottom:12px;font-size:1rem;display:flex;align-items:center;gap:8px;}
 .admin-panel-title i{color:var(--gold);}
 .admin-panel-note{font-size:.82rem;color:var(--text-light);margin-bottom:16px;}
-.admin-input{
-  width:100%;padding:10px 14px;border:1px solid rgba(200,168,75,.2);
-  border-radius:2px;font-family:'Lato',sans-serif;font-size:.88rem;
-  background:rgba(255,255,255,.05);color:var(--cream);outline:none;
-}
+.admin-input{width:100%;padding:10px 14px;border:1px solid rgba(200,168,75,.2);border-radius:2px;font-family:'Lato',sans-serif;font-size:.88rem;background:rgba(255,255,255,.05);color:var(--cream);outline:none;}
 .admin-input::placeholder{color:rgba(245,233,196,.3);}
 .admin-input:focus{border-color:var(--gold);}
 .admin-row{display:flex;gap:12px;flex-wrap:wrap;}
@@ -841,146 +346,55 @@ body{
 .admin-field-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;font-weight:700;}
 .admin-mt{margin-top:14px;}
 
-/* ═══════════════════════════════════════
-   ATTENDANCE
-═══════════════════════════════════════ */
-.attend-intro{
-  background:var(--charcoal);border:1px solid rgba(200,168,75,.15);
-  border-left:4px solid var(--gold);padding:20px 24px;border-radius:0 4px 4px 0;
-  margin-bottom:36px;color:var(--gold-pale);
-  font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.6;
-}
+/* ─── ATTENDANCE ──────────────────────── */
+.attend-intro{background:var(--charcoal);border:1px solid rgba(200,168,75,.15);border-left:4px solid var(--gold);padding:20px 24px;border-radius:0 4px 4px 0;margin-bottom:36px;color:var(--gold-pale);font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.6;}
 .attend-intro strong{color:var(--gold);}
-.sms-notice{
-  background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);
-  border-radius:4px;padding:14px 18px;margin-top:20px;
-  font-size:.82rem;color:var(--gold-pale);
-  display:flex;gap:10px;align-items:flex-start;
-}
+.sms-notice{background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:14px 18px;margin-top:20px;font-size:.82rem;color:var(--gold-pale);display:flex;gap:10px;align-items:flex-start;}
 .sms-notice i{color:var(--gold);flex-shrink:0;margin-top:2px;}
 .attendees-section{margin-top:48px;}
-.attendees-heading{
-  font-family:'Playfair Display',serif;font-size:1.2rem;
-  margin-bottom:20px;color:var(--text-dark);
-  display:flex;align-items:baseline;gap:10px;
-}
+.attendees-heading{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:20px;color:var(--text-dark);display:flex;align-items:baseline;gap:10px;}
 .attendees-count{font-size:.85rem;font-weight:400;color:var(--text-light);}
 .attendees-table{background:var(--ivory);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .attendees-empty{padding:40px;text-align:center;color:var(--text-light);font-size:.9rem;}
-.attendance-item{
-  display:flex;align-items:center;gap:16px;padding:14px 20px;
-  border-bottom:1px solid var(--border);font-size:.9rem;
-  transition:background .2s;
-}
+.attendance-item{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border);font-size:.9rem;transition:background .2s;}
 .attendance-item:hover{background:rgba(200,168,75,.03);}
 .attendance-item:last-child{border-bottom:none;}
-.attendee-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(200,168,75,.15);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:.85rem;font-weight:700;flex-shrink:0;
-}
+.attendee-avatar{width:36px;height:36px;border-radius:50%;background:rgba(200,168,75,.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.85rem;font-weight:700;flex-shrink:0;}
 .attendee-info{flex:1;min-width:0;}
 .attendee-name{font-weight:700;color:var(--text-dark);}
 .attendee-meta{font-size:.78rem;color:var(--text-light);}
 .attendee-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
-.attendee-badge{
-  font-size:.7rem;padding:3px 9px;background:rgba(200,168,75,.1);
-  color:var(--gold);border-radius:2px;letter-spacing:.08em;text-transform:uppercase;
-}
+.attendee-badge{font-size:.7rem;padding:3px 9px;background:rgba(200,168,75,.1);color:var(--gold);border-radius:2px;letter-spacing:.08em;text-transform:uppercase;}
 
-/* ═══════════════════════════════════════
-   LIGHTBOX
-═══════════════════════════════════════ */
-.lightbox{
-  position:fixed;inset:0;background:rgba(0,0,0,.93);
-  z-index:2000;display:none;
-  align-items:center;justify-content:center;
-  flex-direction:column;gap:14px;
-}
+/* ─── LIGHTBOX ────────────────────────── */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:2000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
 .lightbox.open{display:flex;}
-.lightbox img{
-  max-width:88vw;max-height:74vh;object-fit:contain;
-  border-radius:2px;transition:opacity .15s ease;
-}
-.lightbox-caption{
-  color:var(--gold-pale);font-family:'Cormorant Garamond',serif;
-  font-style:italic;font-size:1rem;opacity:.8;
-  text-align:center;max-width:80vw;
-}
-.lightbox-close{
-  position:absolute;top:24px;right:28px;color:var(--gold);
-  font-size:1.8rem;cursor:pointer;opacity:.7;
-  background:none;border:none;transition:opacity .2s;z-index:10;
-}
+.lightbox img{max-width:88vw;max-height:74vh;object-fit:contain;border-radius:2px;transition:opacity .15s ease;}
+.lightbox-caption{color:var(--gold-pale);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;opacity:.8;text-align:center;max-width:80vw;}
+.lightbox-close{position:absolute;top:24px;right:28px;color:var(--gold);font-size:1.8rem;cursor:pointer;opacity:.7;background:none;border:none;transition:opacity .2s;z-index:10;}
 .lightbox-close:hover{opacity:1;}
-.lightbox-counter{
-  position:absolute;top:28px;left:50%;transform:translateX(-50%);
-  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(245,233,196,.35);
-}
-.lb-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(200,168,75,.15);border:1px solid rgba(200,168,75,.3);
-  color:var(--gold);font-size:1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;z-index:10;
-}
+.lightbox-counter{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,233,196,.35);}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.15);border:1px solid rgba(200,168,75,.3);color:var(--gold);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;}
 .lb-arrow:hover{background:var(--gold);color:var(--dark);}
-#lbPrev{left:20px;}
-#lbNext{right:20px;}
+#lbPrev{left:20px;}#lbNext{right:20px;}
 
-/* ═══════════════════════════════════════
-   INSTALL BANNERS
-═══════════════════════════════════════ */
-.install-banner{
-  position:fixed;bottom:70px;left:50%;transform:translateX(-50%);
-  background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;
-  padding:14px 20px;display:none;align-items:center;gap:14px;
-  z-index:3000;box-shadow:0 8px 32px rgba(0,0,0,.4);
-  max-width:360px;width:90%;
-}
+/* ─── INSTALL BANNERS ─────────────────── */
+.install-banner{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;padding:14px 20px;display:none;align-items:center;gap:14px;z-index:3000;box-shadow:0 8px 32px rgba(0,0,0,.4);max-width:360px;width:90%;}
 .install-banner.show{display:flex;}
 .install-banner-text{flex:1;font-size:.85rem;color:var(--gold-pale);line-height:1.5;}
 .install-banner-text strong{color:var(--gold);display:block;margin-bottom:2px;font-size:.9rem;}
-.install-btn{
-  background:var(--gold);color:var(--dark);border:none;padding:9px 18px;
-  font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;
-  text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;white-space:nowrap;
-}
+.install-btn{background:var(--gold);color:var(--dark);border:none;padding:9px 18px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;white-space:nowrap;}
 .install-close{background:none;border:none;color:var(--text-light);font-size:1.1rem;cursor:pointer;padding:4px;}
 
-/* ═══════════════════════════════════════
-   TOAST
-═══════════════════════════════════════ */
-#toast{
-  position:fixed;bottom:70px;left:28px;
-  background:var(--charcoal);border:1px solid var(--gold);
-  color:var(--cream);padding:14px 22px;border-radius:4px;
-  font-size:.88rem;box-shadow:0 8px 24px rgba(0,0,0,.25);
-  z-index:5000;transform:translateY(80px);opacity:0;
-  transition:all .35s;display:flex;align-items:center;gap:10px;max-width:320px;
-}
+/* ─── TOAST ───────────────────────────── */
+#toast{position:fixed;bottom:70px;left:28px;background:var(--charcoal);border:1px solid var(--gold);color:var(--cream);padding:14px 22px;border-radius:4px;font-size:.88rem;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:5000;transform:translateY(80px);opacity:0;transition:all .35s;display:flex;align-items:center;gap:10px;max-width:320px;}
 #toast.show{transform:translateY(0);opacity:1;}
 #toast i{color:var(--gold);}
 
-/* ═══════════════════════════════════════
-   FOOTER BAR (fixed bottom music bar)
-═══════════════════════════════════════ */
-.footer-bar{
-  position:fixed;bottom:0;left:0;right:0;height:60px;
-  background:rgba(17,17,17,.97);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-top:1px solid var(--border);
-  display:flex;align-items:center;z-index:900;padding:0 16px;gap:12px;
-}
+/* ─── FOOTER BAR ──────────────────────── */
+.footer-bar{position:fixed;bottom:0;left:0;right:0;height:60px;background:rgba(17,17,17,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;align-items:center;z-index:900;padding:0 16px;gap:12px;}
 .fb-music{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
-.fb-music-btn{
-  width:34px;height:34px;border-radius:50%;background:var(--gold);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:var(--dark);font-size:.8rem;flex-shrink:0;transition:background .2s;
-}
+.fb-music-btn{width:34px;height:34px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:.8rem;flex-shrink:0;transition:background .2s;}
 .fb-music-btn:hover{background:var(--gold-light);}
 .fb-music-info{display:flex;flex-direction:column;max-width:160px;}
 .fb-music-title{font-family:'Playfair Display',serif;font-size:.68rem;color:var(--gold-pale);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -991,111 +405,60 @@ body{
 .fb-dev{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
 .fb-dev-label{font-size:.62rem;color:rgba(245,233,196,.3);letter-spacing:.08em;white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;display:none;}
 .fb-dev-socials{display:flex;gap:6px;}
-.fb-dev-socials a{
-  width:26px;height:26px;border-radius:50%;
-  border:1px solid rgba(200,168,75,.2);
-  display:flex;align-items:center;justify-content:center;
-  color:rgba(200,168,75,.5);font-size:.7rem;text-decoration:none;
-  transition:all .2s;
-}
+.fb-dev-socials a{width:26px;height:26px;border-radius:50%;border:1px solid rgba(200,168,75,.2);display:flex;align-items:center;justify-content:center;color:rgba(200,168,75,.5);font-size:.7rem;text-decoration:none;transition:all .2s;}
 .fb-dev-socials a:hover{border-color:var(--gold);color:var(--gold);}
 @media(min-width:600px){.fb-dev-label{display:block;}}
 @media(min-width:900px){.fb-music-info{max-width:200px;}}
 
-/* ═══════════════════════════════════════
-   SITE FOOTER (scrollable)
-═══════════════════════════════════════ */
-.site-footer{
-  background:var(--dark);border-top:1px solid rgba(200,168,75,.18);
-  font-family:'Lato',sans-serif;color:rgba(245,233,196,.4);font-size:.82rem;
-}
-.footer-top{
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  padding:28px 24px 22px;border-bottom:1px solid rgba(200,168,75,.09);
-  flex-wrap:wrap;text-align:center;
-}
-.footer-memorial{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1rem;color:rgba(245,233,196,.5);line-height:1.5;
-}
+/* ─── SITE FOOTER ─────────────────────── */
+.site-footer{background:var(--dark);border-top:1px solid rgba(200,168,75,.18);font-family:'Lato',sans-serif;color:rgba(245,233,196,.4);font-size:.82rem;}
+.footer-top{display:flex;align-items:center;justify-content:center;gap:14px;padding:28px 24px 22px;border-bottom:1px solid rgba(200,168,75,.09);flex-wrap:wrap;text-align:center;}
+.footer-memorial{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(245,233,196,.5);line-height:1.5;}
 .footer-memorial strong{color:var(--gold);font-style:normal;}
 .footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;padding:18px 24px;border-bottom:1px solid rgba(200,168,75,.09);}
-.footer-nav a{
-  color:rgba(245,233,196,.3);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  cursor:pointer;text-decoration:none;padding:5px 11px;border-radius:2px;
-  transition:color .2s,background .2s;
-}
+.footer-nav a{color:rgba(245,233,196,.3);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;padding:5px 11px;border-radius:2px;transition:color .2s,background .2s;}
 .footer-nav a:hover{color:var(--gold);background:rgba(200,168,75,.08);}
 .footer-dev{text-align:center;padding:20px 24px;border-bottom:1px solid rgba(200,168,75,.06);}
 .footer-dev-name{font-family:'Playfair Display',serif;font-size:.9rem;color:rgba(245,233,196,.4);margin-bottom:10px;}
 .footer-dev-name strong{color:var(--gold);}
 .footer-dev-socials{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.footer-dev-socials a{
-  display:flex;align-items:center;gap:6px;padding:6px 14px;
-  border:1px solid rgba(200,168,75,.18);border-radius:3px;
-  color:rgba(245,233,196,.4);font-size:.72rem;text-decoration:none;
-  transition:all .2s;letter-spacing:.06em;
-}
+.footer-dev-socials a{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid rgba(200,168,75,.18);border-radius:3px;color:rgba(245,233,196,.4);font-size:.72rem;text-decoration:none;transition:all .2s;letter-spacing:.06em;}
 .footer-dev-socials a:hover{border-color:var(--gold);color:var(--gold);}
-.footer-bottom{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px 24px;padding:16px 32px;flex-wrap:wrap;
-}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:16px 32px;flex-wrap:wrap;}
 .footer-left{font-size:.76rem;color:rgba(245,233,196,.25);letter-spacing:.04em;}
-.footer-copy{
-  text-align:center;padding:13px 24px 22px;
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:.92rem;color:rgba(245,233,196,.18);letter-spacing:.06em;
-  border-top:1px solid rgba(200,168,75,.06);
-}
+.footer-copy{text-align:center;padding:13px 24px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:rgba(245,233,196,.18);letter-spacing:.06em;border-top:1px solid rgba(200,168,75,.06);}
 
-/* ═══════════════════════════════════════
-   REVEAL ANIMATIONS
-═══════════════════════════════════════ */
+/* ─── REVEAL ──────────────────────────── */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-delay-1{transition-delay:.1s;}
-.reveal-delay-2{transition-delay:.2s;}
-.reveal-delay-3{transition-delay:.3s;}
-.reveal-delay-4{transition-delay:.4s;}
+.reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
+/* ─── RESPONSIVE ──────────────────────── */
 @media(max-width:768px){
-  .nav-links{display:none;}
-  .hamburger{display:block;}
-  .section{padding:60px 16px;}
-  .form-wrap-dark{padding:24px 20px;}
-  .form-row{grid-template-columns:1fr;}
-  .hero-content{padding:40px 16px;}
+  .nav-links{display:none;}.hamburger{display:block;}
+  .section{padding:60px 16px;}.form-wrap-dark{padding:24px 20px;}
+  .form-row{grid-template-columns:1fr;}.hero-content{padding:40px 16px;}
   .admin-links-grid{grid-template-columns:1fr;}
   .tribute-text-block{padding:28px 22px 28px 26px;}
   .tribute-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
   .footer-bottom{flex-direction:column;align-items:center;text-align:center;padding:16px 20px;}
   #condGrid{grid-template-columns:1fr!important;}
-  .chat-sidebar{display:none;}
-  .chat-wrap{height:calc(100vh - 64px);}
+  .chat-sidebar{display:none;}.chat-wrap{height:calc(100vh - 64px);}
 }
-@media(max-width:480px){
-  .tribute-grid{grid-template-columns:1fr 1fr;}
-}
+@media(max-width:480px){.tribute-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     LOADING SCREEN
-═══════════════════════════════════════ -->
+<!-- LOADING -->
 <div id="loading-screen">
   <div class="loading-cross"></div>
   <div class="loading-text">In Loving Memory</div>
   <div class="loading-verse">"I am the resurrection and the life." — John 11:25</div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     NAVIGATION
-═══════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
     <a class="nav-brand" onclick="showPage('home')">
@@ -1107,7 +470,7 @@ body{
       <li><a onclick="showPage('programme')">Programme</a></li>
       <li><a onclick="showPage('condolences')">Condolences</a></li>
       <li><a onclick="showPage('tributes')">Tributes</a></li>
-      <li><a onclick="showPage('chat')">Family Chat</a></li>
+      <li><a onclick="showPage('chat')">Family Chat <span class="chat-notif" id="chatBadge" style="display:none;">0</span></a></li>
       <li><a onclick="showPage('gallery')">Gallery</a></li>
       <li><a onclick="showPage('livestream')">Livestream</a></li>
       <li><a onclick="showPage('attend')">Attend</a></li>
@@ -1129,9 +492,7 @@ body{
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     PAGE: HOME
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: HOME ══════════════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-bg"></div>
@@ -1208,7 +569,7 @@ body{
           <div class="event-card-detail">
             <div><i class="fa-regular fa-calendar"></i> Sunday, 2nd August 2026</div>
             <div><i class="fa-regular fa-clock"></i> 9:00 AM</div>
-            <div><i class="fa-solid fa-location-dot"></i> Church Auditorium &amp; Sankubeenase Presby Park</div>
+            <div><i class="fa-solid fa-location-dot"></i> The Church Of Pentecost – Sankubeenase</div>
           </div>
         </div>
         <div class="event-card reveal reveal-delay-4">
@@ -1251,7 +612,7 @@ body{
         <p style="font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">📱 Install the App</p>
         <p style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin-bottom:10px;">Add to Your Home Screen</p>
         <p style="font-size:.88rem;color:rgba(245,233,196,.5);line-height:1.65;margin-bottom:18px;">Install this memorial as an app on your phone — no App Store required.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
           <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:9px 16px;font-size:.82rem;color:rgba(245,233,196,.7);">
             <i class="fa-brands fa-android" style="color:#3ddc84;font-size:1.1rem;"></i>
             Chrome → <strong style="color:var(--gold);">Add to Home Screen</strong>
@@ -1298,9 +659,7 @@ body{
   </footer>
 </div><!-- /#page-home -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: ANNOUNCEMENTS
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: ANNOUNCEMENTS ══════════════════ -->
 <div class="page" id="page-announcements">
   <div class="section">
     <div class="container-md">
@@ -1318,11 +677,7 @@ body{
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Programme</span><span class="ann-date">July 2026</span></div>
           <div class="ann-title">Funeral Weekend Schedule</div>
-          <div class="ann-body">
-            <strong>Friday, 31st July 2026</strong><br/>Wake Keeping — 8:00 PM<br/><br/>
-            <strong>Saturday, 1st August 2026</strong><br/>Funeral Service, Burial &amp; Final Funeral Rites — 8:00 AM onwards<br/><br/>
-            <strong>Sunday, 2nd August 2026</strong><br/>Thanksgiving Service — 9:00 AM
-          </div>
+          <div class="ann-body"><strong>Friday, 31st July 2026</strong><br/>Wake Keeping — 8:00 PM<br/><br/><strong>Saturday, 1st August 2026</strong><br/>Funeral Service, Burial &amp; Final Funeral Rites — 8:00 AM onwards<br/><br/><strong>Sunday, 2nd August 2026</strong><br/>Thanksgiving Service — 9:00 AM</div>
         </div>
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Attendance</span><span class="ann-date">July 2026</span></div>
@@ -1332,7 +687,7 @@ body{
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Livestream</span><span class="ann-date">July 2026</span></div>
           <div class="ann-title">Funeral Livestream Available Worldwide</div>
-          <div class="ann-body">For relatives and friends who are unable to attend in person, the funeral proceedings will be streamed live online. Facebook Live, YouTube Live, and Zoom access links will be published on the Livestream page before the commencement of the funeral rites.</div>
+          <div class="ann-body">For relatives and friends unable to attend in person, the funeral proceedings will be streamed live online. Facebook Live, YouTube Live, and Zoom access links will be published on the Livestream page before the commencement of the funeral rites.</div>
         </div>
         <div class="announcement-item">
           <div class="ann-meta"><span class="ann-tag">Appreciation</span><span class="ann-date">Family Message</span></div>
@@ -1342,14 +697,10 @@ body{
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-announcements -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: PROGRAMME
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: PROGRAMME ══════════════════ -->
 <div class="page" id="page-programme">
   <div class="section">
     <div class="container-md">
@@ -1364,7 +715,6 @@ body{
         <button class="program-tab" onclick="switchProgram('burial',this)">Burial</button>
         <button class="program-tab" onclick="switchProgram('thanksgiving',this)">Thanksgiving</button>
       </div>
-
       <div class="program-panel active" id="prog-wake">
         <div class="program-day-header"><h3>Wake Keeping</h3><p>Friday, 31st July 2026 &nbsp;·&nbsp; Family Residence</p></div>
         <div class="program-items">
@@ -1375,9 +725,8 @@ body{
           <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Night Vigil</div><div class="program-item-detail">Prayer, fellowship and remembrance</div></div><div class="program-item-time">10:30 PM</div></div>
         </div>
       </div>
-
       <div class="program-panel" id="prog-funeral">
-        <div class="program-day-header"><h3>Funeral Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubenase Presby Park</p></div>
+        <div class="program-day-header"><h3>Funeral Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubeenase Presby Park</p></div>
         <div class="program-items">
           <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Arrival &amp; Seating</div><div class="program-item-detail">Guests take their seats</div></div><div class="program-item-time">7:30 AM</div></div>
           <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Processional Hymn</div><div class="program-item-detail">Arrival of family and clergy</div></div><div class="program-item-time">8:00 AM</div></div>
@@ -1386,18 +735,16 @@ body{
           <div class="program-item"><div class="program-item-num">5</div><div class="program-item-body"><div class="program-item-title">Sermon &amp; Final Blessing</div><div class="program-item-detail">Message of hope and comfort</div></div><div class="program-item-time">10:30 AM</div></div>
         </div>
       </div>
-
       <div class="program-panel" id="prog-burial">
-        <div class="program-day-header"><h3>Burial Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubenase Cemetery</p></div>
+        <div class="program-day-header"><h3>Burial Service</h3><p>Saturday, 1st August 2026 &nbsp;·&nbsp; Sankubeenase Cemetery</p></div>
         <div class="program-items">
           <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Procession to Cemetery</div><div class="program-item-detail">Family and guests proceed to burial grounds</div></div><div class="program-item-time">11:30 AM</div></div>
           <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Committal Service</div><div class="program-item-detail">Scripture reading and prayers</div></div><div class="program-item-time">12:00 PM</div></div>
           <div class="program-item"><div class="program-item-num">3</div><div class="program-item-body"><div class="program-item-title">Final Farewell</div><div class="program-item-detail">Family and friends pay their last respects</div></div><div class="program-item-time">12:30 PM</div></div>
         </div>
       </div>
-
       <div class="program-panel" id="prog-thanksgiving">
-        <div class="program-day-header"><h3>Thanksgiving Service</h3><p>Sunday, 2nd August 2026 &nbsp;·&nbsp; Church Auditorium</p></div>
+        <div class="program-day-header"><h3>Thanksgiving Service</h3><p>Sunday, 2nd August 2026 &nbsp;·&nbsp; The Church Of Pentecost – Central Assembly – Sankubeenase</p></div>
         <div class="program-items">
           <div class="program-item"><div class="program-item-num">1</div><div class="program-item-body"><div class="program-item-title">Opening Worship</div><div class="program-item-detail">Songs of thanksgiving and praise</div></div><div class="program-item-time">9:00 AM</div></div>
           <div class="program-item"><div class="program-item-num">2</div><div class="program-item-body"><div class="program-item-title">Thanksgiving Message</div><div class="program-item-detail">Giving thanks for a life well lived</div></div><div class="program-item-time">10:00 AM</div></div>
@@ -1406,14 +753,10 @@ body{
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-programme -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: CONDOLENCES
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: CONDOLENCES ══════════════════ -->
 <div class="page" id="page-condolences">
   <div class="section">
     <div class="container">
@@ -1423,7 +766,7 @@ body{
         <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" id="condGrid">
-        <!-- LEFT: Submit form -->
+        <!-- LEFT -->
         <div>
           <div class="ai-writer-box reveal">
             <div class="ai-writer-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--gold);"></i> AI Condolence Writer</div>
@@ -1431,19 +774,15 @@ body{
             <div class="form-row">
               <div class="form-group" style="margin-bottom:0;">
                 <label>Your Name</label>
-                <input type="text" id="aiName" placeholder="Your name"
-                  style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
+                <input type="text" id="aiName" placeholder="Your name" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
               </div>
               <div class="form-group" style="margin-bottom:0;">
                 <label>Your Relationship</label>
-                <input type="text" id="aiRel" placeholder="e.g. Church friend"
-                  style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
+                <input type="text" id="aiRel" placeholder="e.g. Church friend" style="background:rgba(255,255,255,.05);border:1px solid rgba(200,168,75,.2);color:var(--cream);padding:10px 14px;border-radius:2px;font-family:'Lato';font-size:.9rem;outline:none;width:100%;"/>
               </div>
             </div>
             <div class="ai-actions" style="margin-top:14px;">
-              <button class="btn-gold btn-gold--sm" onclick="generateAIMessage()" id="aiBtnGen">
-                <i class="fa-solid fa-sparkles"></i> Generate Message
-              </button>
+              <button class="btn-gold btn-gold--sm" onclick="generateAIMessage()" id="aiBtnGen"><i class="fa-solid fa-sparkles"></i> Generate Message</button>
             </div>
             <div class="ai-result-box" id="aiResultBox"></div>
             <div class="ai-actions" id="aiUseActions" style="display:none;">
@@ -1451,7 +790,6 @@ body{
               <button class="btn-secondary" onclick="generateAIMessage()"><i class="fa-solid fa-rotate"></i> Regenerate</button>
             </div>
           </div>
-
           <div class="form-wrap-dark reveal">
             <div class="form-wrap-title">Leave a Condolence</div>
             <div class="form-row">
@@ -1461,40 +799,29 @@ body{
             <div class="form-group"><label>Your Message *</label><textarea id="cMsg" rows="5" placeholder="Share your thoughts, prayers, and memories of Auntie Margie…"></textarea></div>
             <button class="btn-gold" onclick="submitCondolence()"><i class="fa-solid fa-paper-plane"></i> Send Condolence</button>
           </div>
-
           <div class="wa-card" id="condWaCard">
             <div class="wa-card-title"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Message Sent Successfully</div>
             <div class="wa-card-body">Your condolence has been saved. Tap below to send a <strong>free WhatsApp notification</strong> to the family.</div>
             <button class="btn-whatsapp" onclick="notifyFamilyWA('condolence')"><i class="fa-brands fa-whatsapp"></i> Notify Family via WhatsApp</button>
           </div>
         </div>
-
-        <!-- RIGHT: Display messages -->
+        <!-- RIGHT -->
         <div>
           <div class="cond-status-bar offline" id="condStatusBar">
             <div class="live-dot amber"></div>
-            <span class="status-text">Messages are saved locally</span>
+            <span class="status-text">Connecting to Firebase…</span>
             <span class="status-count" id="condCountBadge">0 messages</span>
           </div>
           <div class="condolences-heading">Messages from the Community</div>
-          <div id="condolenceList">
-            <div class="cond-empty">
-              <i class="fa-regular fa-heart"></i>
-              No messages yet. Be the first to share your love for Auntie Margie.
-            </div>
-          </div>
+          <div id="condolenceList"><div class="cond-empty"><i class="fa-regular fa-heart"></i>No messages yet. Be the first to share your love for Auntie Margie.</div></div>
         </div>
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-condolences -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: TRIBUTES
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: TRIBUTES ══════════════════ -->
 <div class="page" id="page-tributes">
   <div class="section">
     <div class="container">
@@ -1504,7 +831,6 @@ body{
         <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
         <p class="tribute-page-sub">Heartfelt tributes from those whose lives were touched by Margaret Darkwaa Owusu — "Auntie Margie".</p>
       </div>
-
       <div class="tribute-tabs">
         <button class="tribute-tab active" onclick="switchTribute('widower',this)"><i class="fa-solid fa-ring"></i> Widower</button>
         <button class="tribute-tab" onclick="switchTribute('children',this)"><i class="fa-solid fa-people-group"></i> Children</button>
@@ -1517,15 +843,29 @@ body{
       <!-- WIDOWER -->
       <div class="tribute-panel active" id="tribute-widower">
         <div class="tribute-text-block">
-          <div class="tribute-text-body">My dearest Margie,
+          <div class="tribute-text-body">"Ɔdɔ nsa da ase da." — 1 Korintofoɔ 13:8
 
-Forty years ago you walked into my life and made it complete. Every morning with you was a blessing I never took for granted. You were not just my wife — you were my prayer partner, my best friend, my home.
+Me yere dɔfo Margie,
 
-Your laughter filled every room. Your faith anchored our family through every storm. You cooked, you prayed, you loved — with everything you had.
+Ɛyɛ den paa sɛ mɛtumi agye adi sɛ wo nni yɛn mu bio. Bere a mekae mfe aduanan (40) a yɛde boom tenaa aware mu no a, me koma hyɛ ma wɔ awerɛhoɔ ne anisɔ mu. Onyankopɔn hyiraa me paa sɛ ɔmaa me ɔbaa pa te sɛ wo sɛ me yere.
 
-They say time heals all things, but how does one heal from losing their very heartbeat? I do not grieve as one without hope, for I know the God you served has received you into His arms. And until we meet again, I will carry you — every single day — in my heart.
+Yɛhyiaa yɛn ho wɔ mmerɛberɛ mu, yɛdɔɔ yɛn ho, yɛkyɛɛ asetena mu anigye ne amanehunu, na yɛtoo abusua a ɔdɔ ne biakoyɛ ahyɛ mu ma. Woyɛɛ me yere, me yɔnko pa, me boafo ne obi a na metumi de me ho ato ne so bere biara.
 
-Rest well, my love. You ran your race faithfully. Well done.</div>
+Margie, woyɛ ɔbaa a na wo koma yɛ fɛ. Wodɔɔ me, wodɔɔ yɛn mma, na wodɔɔ me abusua nso sɛnea wodɔ wo deɛ. Merenntumi nwerɛ ɔhwɛ ne ɔdɔ a wode maa m'agya bere a na ɔyare no. Wo ne no tenaeɛ, hwɛɛ no yie kosii sɛ ɔfaa ne kwan. Saa ara nso na bere a me maame, Auntie Bee, yaree stroke mfe pii no, wo ne no tenaeɛ, hwɛɛ no awia ne anadwo kosii sɛ Awurade frɛɛ no kɔeɛ. Woyɛɛ yeinom nyinaa a woanhwehwɛ ayɛyie biara. Woyɛeɛ efisɛ na ɔdɔ ahyɛ wo koma ma.
+
+Da a wokyaa yɛn hɔ no yɛ da a merentumi nwerɛ da. Me ne yɛn ba Nana Yaw gyinaa wo nkyɛn wɔ Koforidua St. Joseph Hospital. Yɛbɔɔ mpaeɛ, yɛmaa yɛn ani daa wo so, na yɛwɛn sɛ wobɛsan aba yɛn nkyɛn. Nanso Onyankopɔn pɛe sɛ ɔfrɛ wo kɔtena ne nkyɛn. Bere a wohomee wo home a etwa to no, me tee nka sɛ me wiase mu biribi kɛse ayera.
+
+Ɛnnɛ, sɛ mehyɛn fie mu a, mete nka sɛ wobɛfrɛ me anaa wobɛka biribi akyerɛ me. Nanso fie no ayɛ komm. Nea aka ne nkaeɛ a ɛyɛ fɛ na ɛyɛ me yaw nso.
+
+Margie, meda wo ase. Meda wo ase wɔ ɔdɔ a wode maa me. Meda wo ase wɔ sɛnea wohwɛɛ yɛn mma ne me abusua. Meda wo ase wɔ mpaeɛ ne afotu pa a wode kyerɛɛ yɛn kwan. Woayɛ adeɛ ama me ne me abusua a merentumi ntua da.
+
+Woakɔ, nanso wo nkae bɛtena me koma mu daa. Da biara mɛkae wo sereɛ, wo kasa pa ne ɔdɔ a wode maa me.
+
+Kɔ dwoodwoo, me yere dɔfo. Fa asomdwoe kɔ. Sɛ Onyankopɔn pɛ a, da bi yebehyia bio.
+
+Meda wo ase wɔ biribiara. Medɔ wo, na mɛdɔ wo daa.
+
+</div>
           <div class="tribute-signoff">
             <div class="tribute-signoff-icon"><i class="fa-solid fa-ring"></i></div>
             <div><div class="tribute-signoff-name">Mr. Daniel Owusu</div><div class="tribute-signoff-role">Husband — Widower</div></div>
@@ -1546,13 +886,25 @@ Rest well, my love. You ran your race faithfully. Well done.</div>
       <!-- CHILDREN -->
       <div class="tribute-panel" id="tribute-children">
         <div class="tribute-text-block">
-          <div class="tribute-text-body">Mum, you were more than a mother — you were our foundation.
+          <div class="tribute-text-body">"Her children arise and call her blessed." — Proverbs 31:28
 
-You taught us to pray before we knew what prayer meant. You taught us to work hard, love freely, and trust God completely. Every sacrifice you made, every late night, every quiet prayer whispered when you thought we were asleep — we felt it all.
+With heavy hearts, we pay tribute to our beloved mother, whose life was marked by love, sacrifice, kindness, and unwavering devotion to her family.
 
-The world is quieter without your voice. The kitchen feels different without the smell of your cooking. But your love — that is something that does not fade.
+Our mother was blessed with five biological children—Akua Dina, Maame Bee, Sandra, Nyamekye, and Nana Yaw. She also lovingly raised Paa Yaw, Ataa, and Tawiah, the children of her late junior sister, Abena Ataa, treating them with the same love and care as her own.
 
-We carry you forward, Mum. Into everything we do. Forever your children.</div>
+To us, she was more than a mother. She was our guide, protector, teacher, counselor, and greatest source of strength. Through her love and sacrifices, she taught us the values of respect, humility, hard work, honesty, and faith in God.
+
+Each of us remembers her in a special way. Akua Dina remembers her strength and wisdom; Maame Bee remembers her generosity and selflessness; Sandra remembers her comforting words and loving heart; Nyamekye remembers her discipline, integrity, and fear of God.
+
+Nana Yaw fondly remembers his mother's early morning calls and the constant love, prayers, guidance, and encouragement she gave him. He says he deeply misses her voice and the special bond they shared, and he will forever cherish the memories they created together.
+
+Paa Yaw, Ataa, and Tawiah remain forever grateful for the unconditional love she showed them. Though she was their aunt by birth, she became a true mother through her care, sacrifices, and unwavering support.
+
+Mother, thank you for your love, your sacrifices, your prayers, and the values you instilled in us. Though you are no longer with us, your legacy lives on through all the lives you touched.
+
+Rest peacefully in the bosom of the Lord.
+
+Forever loved, forever remembered, forever missed.</div>
           <div class="tribute-signoff">
             <div class="tribute-signoff-icon"><i class="fa-solid fa-people-group"></i></div>
             <div><div class="tribute-signoff-name">The Children of Auntie Margie</div><div class="tribute-signoff-role">Sons &amp; Daughters</div></div>
@@ -1561,7 +913,7 @@ We carry you forward, Mum. Into everything we do. Forever your children.</div>
         <div class="tribute-grid">
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child3.jpg','Akua Diana – Daughter')"><img src="images/child3.jpg" alt="Akua Diana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Akua Diana</div><div class="member-occupation">Trader – Accra</div></div></div>
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child4.jpeg','Beatrice Pomaa – Daughter')"><img src="images/child4.jpeg" alt="Beatrice Pomaa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Beatrice Pomaa</div><div class="member-occupation">Trader – Sankubeenase</div></div></div>
-          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child1.jpg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/child1.jpg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Accountant – Accra</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/Child3.jpeg','Mrs. Sandra Owusua Agyekum – Daughter')"><img src="images/Child3.jpeg" alt="Mrs. Sandra Owusua Agyekum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Mrs. Sandra Owusua Agyekum</div><div class="member-occupation">Accountant – Accra</div></div></div>
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child5.jpeg','Naomi Owusua – Daughter')"><img src="images/child5.jpeg" alt="Naomi Owusua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Naomi Owusua</div><div class="member-occupation">Hair Stylist – Sankubeenase</div></div></div>
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child2.jpg','Engr. Samuel Owusu Frimpong – Son')"><img src="images/child2.jpg" alt="Engr. Samuel Owusu Frimpong" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Engr. Samuel Owusu Frimpong</div><div class="member-occupation">Software Engineer – Accra</div></div></div>
           <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/child6.jpeg','Aikins Ofori – Son')"><img src="images/child6.jpeg" alt="Aikins Ofori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Aikins Ofori</div><div class="member-occupation">Driver – Sankubeenase</div></div></div>
@@ -1594,13 +946,23 @@ We will honour her by loving one another the way she loved us — fiercely, unco
       <!-- GRANDCHILDREN -->
       <div class="tribute-panel" id="tribute-grandchildren">
         <div class="tribute-text-block">
-          <div class="tribute-text-body">Grandma, you smelled like love.
+          <div class="tribute-text-body">"Many women do noble things, but you surpass them all." — Proverbs 31:29
 
-Every time you hugged us, the whole world felt safe. You had a way of making each of us feel like we were your favourite — and somehow, I think we all were.
+With saddened hearts, we pay tribute to our beloved grandmother, whose love, wisdom, and kindness touched each of our lives in a special way.
 
-Your stories, your prayers over us, the way you called our names — we will carry all of it.
+To us, Grandma was more than a grandmother. She was a source of comfort, encouragement, and unconditional love. Her presence brought warmth to every family gathering, and her words of wisdom guided us through life's challenges. She always welcomed us with open arms, prayed for us, celebrated our achievements, and encouraged us to become better people.
 
-Until we meet again, Grandma. Save us a seat.</div>
+Through her life, she taught us the importance of respect, humility, hard work, and faith in God. Her gentle spirit, caring nature, and selfless love left a lasting impression on all of us.
+
+Though it is painful to say goodbye, we take comfort in the beautiful memories we shared with her and the values she instilled in us. Her love will continue to guide us, and her legacy will live on in our hearts forever.
+
+Grandma, thank you for your love, your prayers, your guidance, and the joy you brought into our lives. We are blessed to have called you our grandmother.
+
+May your gentle soul rest peacefully in the bosom of the Lord.
+
+Forever loved, forever cherished, forever missed.
+
+Sadly missed by all your grandchildren.</div>
           <div class="tribute-signoff">
             <div class="tribute-signoff-icon"><i class="fa-solid fa-star"></i></div>
             <div><div class="tribute-signoff-name">The Grandchildren</div><div class="tribute-signoff-role">Loving Grandchildren</div></div>
@@ -1650,128 +1012,28 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
             <div><div class="tribute-signoff-name">The Church Family</div><div class="tribute-signoff-role">Pastor, Elders &amp; Congregation</div></div>
           </div>
         </div>
-
-        <!-- Church Leadership -->
-        <div class="tribute-section-divider">
-          <span><i class="fa-solid fa-cross" style="font-size:.65rem;margin-right:6px;"></i>Church Leadership</span>
-        </div>
+        <div class="tribute-section-divider"><span><i class="fa-solid fa-cross" style="font-size:.65rem;margin-right:6px;"></i>Church Leadership</span></div>
         <div class="tribute-grid">
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/pastor.jpg','Senior Pastor')">
-              <img src="images/church/pastor.jpg" alt="Senior Pastor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Rev. / Pastor</div>
-              <div class="member-occupation">Senior Pastor</div>
-              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/elder1.jpg','Church Elder')">
-              <img src="images/church/elder1.jpg" alt="Elder 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Elder Name 1</div>
-              <div class="member-occupation">Church Elder</div>
-              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/elder2.jpg','Church Elder')">
-              <img src="images/church/elder2.jpg" alt="Elder 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Elder Name 2</div>
-              <div class="member-occupation">Church Elder</div>
-              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/deacon1.jpg','Church Deacon')">
-              <img src="images/church/deacon1.jpg" alt="Deacon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Deacon Name</div>
-              <div class="member-occupation">Church Deacon</div>
-              <div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div>
-            </div>
-          </div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/pastor.jpg','Senior Pastor')"><img src="images/church/pastor.jpg" alt="Senior Pastor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Rev. / Pastor</div><div class="member-occupation">Senior Pastor</div><div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/elder1.jpg','Church Elder')"><img src="images/church/elder1.jpg" alt="Elder 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Elder Name 1</div><div class="member-occupation">Church Elder</div><div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/elder2.jpg','Church Elder')"><img src="images/church/elder2.jpg" alt="Elder 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Elder Name 2</div><div class="member-occupation">Church Elder</div><div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/deacon1.jpg','Church Deacon')"><img src="images/church/deacon1.jpg" alt="Deacon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Deacon Name</div><div class="member-occupation">Church Deacon</div><div class="member-role-badge"><i class="fa-solid fa-cross"></i> Leadership</div></div></div>
         </div>
-
-        <!-- Congregation -->
-        <div class="tribute-section-divider">
-          <span><i class="fa-solid fa-people-group" style="font-size:.65rem;margin-right:6px;"></i>Congregation</span>
-        </div>
+        <div class="tribute-section-divider"><span><i class="fa-solid fa-people-group" style="font-size:.65rem;margin-right:6px;"></i>Congregation</span></div>
         <div class="tribute-grid">
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/member1.jpg','Member Name 1 – Congregation')">
-              <img src="images/church/member1.jpg" alt="Member 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Member Name 1</div>
-              <div class="member-occupation">Congregation</div>
-              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/member2.jpg','Member Name 2 – Congregation')">
-              <img src="images/church/member2.jpg" alt="Member 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Member Name 2</div>
-              <div class="member-occupation">Congregation</div>
-              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/member3.jpg','Member Name 3 – Congregation')">
-              <img src="images/church/member3.jpg" alt="Member 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Member Name 3</div>
-              <div class="member-occupation">Congregation</div>
-              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
-            </div>
-          </div>
-          <div class="member-card">
-            <div class="member-photo-wrap" onclick="openLightbox('images/church/member4.jpg','Member Name 4 – Congregation')">
-              <img src="images/church/member4.jpg" alt="Member 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-              <div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div>
-              <div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="member-info">
-              <div class="member-name">Member Name 4</div>
-              <div class="member-occupation">Congregation</div>
-              <div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div>
-            </div>
-          </div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/member1.jpg','Member Name 1 – Congregation')"><img src="images/church/member1.jpg" alt="Member 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Member Name 1</div><div class="member-occupation">Congregation</div><div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/member2.jpg','Member Name 2 – Congregation')"><img src="images/church/member2.jpg" alt="Member 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Member Name 2</div><div class="member-occupation">Congregation</div><div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/member3.jpg','Member Name 3 – Congregation')"><img src="images/church/member3.jpg" alt="Member 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Member Name 3</div><div class="member-occupation">Congregation</div><div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div></div></div>
+          <div class="member-card"><div class="member-photo-wrap" onclick="openLightbox('images/church/member4.jpg','Member Name 4 – Congregation')"><img src="images/church/member4.jpg" alt="Member 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="member-photo-placeholder" style="display:none;"><i class="fa-solid fa-user"></i><span>Add Photo</span></div><div class="photo-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div><div class="member-info"><div class="member-name">Member Name 4</div><div class="member-occupation">Congregation</div><div class="member-role-badge member-badge"><i class="fa-solid fa-hands-praying"></i> Member</div></div></div>
         </div>
       </div><!-- /#tribute-church -->
 
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-tributes -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: FAMILY CHAT
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: FAMILY CHAT ══════════════════ -->
 <div class="page" id="page-chat">
   <div class="chat-wrap">
     <div class="chat-sidebar">
@@ -1824,9 +1086,7 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
   </div>
 </div><!-- /#page-chat -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: GALLERY
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: GALLERY ══════════════════ -->
 <div class="page" id="page-gallery">
   <div class="section">
     <div class="container-md">
@@ -1835,43 +1095,101 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
         <h2 class="section-title">Photo Gallery</h2>
         <div class="section-ornament"><span></span><i class="fa-solid fa-cross"></i><span></span></div>
       </div>
-      <div class="slideshow-wrap reveal">
-        <div class="slideshow-stage" id="slideshowStage">
-          <div class="slide active" style="display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;color:var(--text-light);">
-              <i class="fa-solid fa-images" style="font-size:3rem;color:var(--gold);opacity:.3;display:block;margin-bottom:12px;"></i>
-              <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;">Photos will appear here as they are added by the family.</p>
-            </div>
+
+      <!--
+        HOW TO ADD YOUR PHOTOS
+        ──────────────────────────────────────────────────────
+        1. Create folder:  images/
+        2. Copy your photos in and update each src="images/…"
+        3. Update data-cap with a caption for each photo
+        4. To add more slides, duplicate any .gallery-slide block
+        5. The slideshow auto-advances every 5.5 seconds
+        No onerror handlers — just make sure your filenames match.
+        ──────────────────────────────────────────────────────
+      -->
+
+      <div class="gallery-stage reveal" id="galStage">
+
+        <div class="gallery-slide active" data-cap="A smile that lit every room she walked into">
+          <img src="images/portrait1.jpg" alt="Portrait of Auntie Margie" loading="eager"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Portrait</span>
+            A smile that lit every room she walked into
           </div>
         </div>
-        <div class="slide-controls">
-          <button class="slide-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
-          <div class="slide-dots" id="slideDots"></div>
-          <span class="slide-counter" id="slideCounter">1 / 1</span>
-          <button class="slide-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="gallery-slide" data-cap="Surrounded by those she loved most">
+          <img src="images/family1.jpg" alt="Family gathering" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Family</span>
+            Surrounded by those she loved most
+          </div>
         </div>
+
+        <div class="gallery-slide" data-cap="Her faith — unwavering, living and eternal">
+          <img src="images/church1.jpg" alt="Church service" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Church</span>
+            Her faith — unwavering, living and eternal
+          </div>
+        </div>
+
+        <div class="gallery-slide" data-cap="Living life with joy and deep purpose">
+          <img src="images/celebration1.jpg" alt="Celebration" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Celebration</span>
+            Living life with joy and deep purpose
+          </div>
+        </div>
+
+        <div class="gallery-slide" data-cap="Full of dreams and boundless laughter">
+          <img src="images/youth1.jpg" alt="Youth portrait" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Youth</span>
+            Full of dreams and boundless laughter
+          </div>
+        </div>
+
+        <div class="gallery-slide" data-cap="A life beautifully and faithfully lived">
+          <img src="images/golden1.jpg" alt="Golden years" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Golden Years</span>
+            A life beautifully and faithfully lived
+          </div>
+        </div>
+
+        <div class="gallery-slide" data-cap="The thread woven through the family tapestry">
+          <img src="images/family2.jpg" alt="Family moments" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Family</span>
+            The thread woven through the family tapestry
+          </div>
+        </div>
+
+        <div class="gallery-slide" data-cap="Grace, warmth and quiet strength">
+          <img src="images/portrait2.jpg" alt="Portrait" loading="lazy"/>
+          <div class="gallery-caption">
+            <span class="gallery-caption-tag">Portrait</span>
+            Grace, warmth and quiet strength
+          </div>
+        </div>
+
+      </div><!-- /#galStage -->
+
+      <div class="gallery-controls-row">
+        <div class="gallery-dots" id="galDots"></div>
+        <span class="gallery-counter" id="galCounter"></span>
       </div>
-      <div class="gallery-placeholder-grid reveal" style="margin-top:40px;">
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Portrait</div>
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Family</div>
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Church</div>
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Celebration</div>
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Youth</div>
-        <div class="gallery-ph-item"><i class="fa-solid fa-image"></i>Golden Years</div>
-      </div>
-      <div style="text-align:center;margin-top:32px;" class="reveal">
-        <p style="color:var(--text-light);font-size:.85rem;">Family members can upload photos to be displayed here. Contact the family admin to add photos.</p>
+
+      <div class="gallery-foot reveal">
+        <p>Place your photos in the <code>images/</code> folder and update the <code>src</code> paths in the slides above.</p>
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-gallery -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: LIVESTREAM
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: LIVESTREAM ══════════════════ -->
 <div class="page" id="page-livestream">
   <div class="section section-dark">
     <div class="container-md">
@@ -1913,14 +1231,10 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-livestream -->
 
-<!-- ═══════════════════════════════════════
-     PAGE: ATTEND
-═══════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: ATTEND ══════════════════ -->
 <div class="page" id="page-attend">
   <div class="section">
     <div class="container-md">
@@ -1970,14 +1284,10 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       </div>
     </div>
   </div>
-  <footer class="site-footer">
-    <div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div>
-  </footer>
+  <footer class="site-footer"><div class="footer-copy">In Loving Memory of <strong style="color:var(--gold);font-style:normal;">Margaret Darkwaa Owusu</strong> · "Auntie Margie" · 1966 – 2026</div></footer>
 </div><!-- /#page-attend -->
 
-<!-- ═══════════════════════════════════════
-     LIGHTBOX
-═══════════════════════════════════════ -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
   <span class="lightbox-counter" id="lbCounter"></span>
@@ -1990,7 +1300,7 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
 <!-- TOAST -->
 <div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
 
-<!-- INSTALL BANNER (Android/Chrome) -->
+<!-- INSTALL BANNER (Android) -->
 <div class="install-banner" id="installBanner">
   <div class="install-banner-text"><strong>📱 Install App</strong>Add Auntie Margie's memorial to your home screen.</div>
   <button class="install-btn" id="installBtn">Install</button>
@@ -2015,8 +1325,7 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
       <div class="fb-music-title">God Be With You Till We Meet Again</div>
       <div class="fb-music-sub">LDS Hymn #152 · In Memory of Auntie Margie</div>
     </div>
-    <input class="fb-music-vol" type="range" min="0" max="1" step=".05" value=".6"
-           oninput="setVol(this.value)" title="Volume"/>
+    <input class="fb-music-vol" type="range" min="0" max="1" step=".05" value=".6" oninput="setVol(this.value)" title="Volume"/>
   </div>
   <div class="fb-center">
     <div class="fb-center-text">Margaret Darkwaa Owusu · "Auntie Margie" · 1966 – 2026</div>
@@ -2032,16 +1341,15 @@ The Church has lost a warrior, but heaven has gained a saint. We are grateful to
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     FIREBASE SDK
-═══════════════════════════════════════ -->
+<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
+'use strict';
 /* ═══════════════════════════════════════
-   FIREBASE CONFIG
+   CONFIG
 ═══════════════════════════════════════ */
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyAqWq_-JMCrktHBTQ-h64vUw_p_-z6xpKo",
@@ -2063,7 +1371,19 @@ try {
   auth = firebase.auth();
   db   = firebase.database();
   fbReady = true;
-} catch(e) { console.warn('Firebase init failed:', e.message); }
+} catch(e) { console.warn('Firebase init:', e.message); }
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let condolences   = [];
+let attendees     = [];
+let lastCondolence = null;
+let lastAttendee   = null;
+let chatUser       = null;
+let chatUnread     = 0;
+let chatPageOpen   = false;
+let chatLastTs     = 0;   // timestamp of last seen message
 
 /* ═══════════════════════════════════════
    PAGE LOAD
@@ -2072,29 +1392,25 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loading-screen').classList.add('fade-out');
     startCountdown();
-    loadCondolences();
-    loadAttendees();
     initReveal();
-    updateStats();
-    initSlideshow();
+    initGallery();
     loadStreamSettings();
     if (fbReady) {
       setupFirebaseAuth();
-      listenChatMessages();
+      subscribeCondolences();
+      subscribeAttendees();
+      subscribeChatMessages();
     }
   }, 1800);
 });
 
 /* ═══════════════════════════════════════
-   PWA / INSTALL
+   PWA
 ═══════════════════════════════════════ */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
-}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
 let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
+  e.preventDefault(); deferredPrompt = e;
   setTimeout(() => document.getElementById('installBanner').classList.add('show'), 4000);
 });
 document.getElementById('installBtn').addEventListener('click', async () => {
@@ -2106,10 +1422,9 @@ document.getElementById('installBtn').addEventListener('click', async () => {
   if (outcome === 'accepted') showToast('App installed! 🎉');
 });
 (function checkiOS() {
-  const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-  const isStandalone = window.navigator.standalone === true;
-  const dismissed = localStorage.getItem('margie_ios_dismissed');
-  if (isIOS && !isStandalone && !dismissed) {
+  if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())
+      && !window.navigator.standalone
+      && !localStorage.getItem('margie_ios_dismissed')) {
     setTimeout(() => document.getElementById('iosInstallBanner').classList.add('show'), 5000);
   }
 })();
@@ -2122,19 +1437,16 @@ function showPage(id) {
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
-  const links = document.querySelectorAll('.nav-links a');
-  links.forEach(a => {
-    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'")) {
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'"))
       a.classList.add('active');
-    }
   });
+  chatPageOpen = (id === 'chat');
+  if (chatPageOpen) { chatUnread = 0; updateChatBadge(); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(initReveal, 100);
 }
-
-function toggleMobile() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
+function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
 /* ═══════════════════════════════════════
    COUNTDOWN
@@ -2145,7 +1457,7 @@ function startCountdown() {
     const diff = target - new Date();
     if (diff <= 0) {
       document.getElementById('cdGrid').innerHTML =
-        '<p class="countdown-done">🙏 Funeral Service has begun. Thank you for joining us in honouring her memory.</p>';
+        '<p class="countdown-done">🙏 Funeral Service has begun. Thank you for joining us.</p>';
       document.getElementById('cdLabel').textContent = '';
       return;
     }
@@ -2158,8 +1470,7 @@ function startCountdown() {
     document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
     document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
   }
-  tick();
-  setInterval(tick, 1000);
+  tick(); setInterval(tick, 1000);
 }
 
 /* ═══════════════════════════════════════
@@ -2182,90 +1493,62 @@ function switchTribute(id, btn) {
   const panel = document.getElementById('tribute-' + id);
   if (panel) panel.classList.add('active');
   if (btn) btn.classList.add('active');
-  if (panel && window.innerWidth < 768) {
-    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-  }
+  if (panel && window.innerWidth < 768)
+    setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
 }
 
 /* ═══════════════════════════════════════
-   LIGHTBOX (with prev/next navigation)
+   LIGHTBOX
 ═══════════════════════════════════════ */
 let _lbImages = [], _lbIndex = 0;
-
 function openLightbox(src, caption) {
   _buildLightboxList(src);
-  const img = document.getElementById('lightboxImg');
-  img.src = src;
+  document.getElementById('lightboxImg').src = src;
   document.getElementById('lightboxCaption').textContent = caption || '';
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
   _updateLbArrows();
 }
-
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
   setTimeout(() => { document.getElementById('lightboxImg').src = ''; }, 300);
 }
-
-function lbNext() {
-  if (_lbIndex < _lbImages.length - 1) { _lbIndex++; _lbGoTo(_lbIndex); }
-}
-function lbPrev() {
-  if (_lbIndex > 0) { _lbIndex--; _lbGoTo(_lbIndex); }
-}
-
+function lbNext() { if (_lbIndex < _lbImages.length - 1) { _lbIndex++; _lbGoTo(_lbIndex); } }
+function lbPrev() { if (_lbIndex > 0) { _lbIndex--; _lbGoTo(_lbIndex); } }
 function _lbGoTo(i) {
-  const entry = _lbImages[i];
-  if (!entry) return;
+  const entry = _lbImages[i]; if (!entry) return;
   const img = document.getElementById('lightboxImg');
   img.style.opacity = '0';
-  setTimeout(() => {
-    img.src = entry.src;
-    document.getElementById('lightboxCaption').textContent = entry.caption;
-    img.style.opacity = '1';
-  }, 150);
+  setTimeout(() => { img.src = entry.src; document.getElementById('lightboxCaption').textContent = entry.caption; img.style.opacity = '1'; }, 150);
   _updateLbArrows();
 }
-
 function _updateLbArrows() {
-  const prev = document.getElementById('lbPrev');
-  const next = document.getElementById('lbNext');
-  const counter = document.getElementById('lbCounter');
   const show = _lbImages.length > 1;
+  const prev = document.getElementById('lbPrev'), next = document.getElementById('lbNext'), counter = document.getElementById('lbCounter');
   if (prev) { prev.style.display = show ? 'flex' : 'none'; prev.style.opacity = _lbIndex === 0 ? '.3' : '1'; }
   if (next) { next.style.display = show ? 'flex' : 'none'; next.style.opacity = _lbIndex === _lbImages.length - 1 ? '.3' : '1'; }
   if (counter) counter.textContent = show ? (_lbIndex + 1) + ' / ' + _lbImages.length : '';
 }
-
 function _buildLightboxList(currentSrc) {
   _lbImages = []; _lbIndex = 0;
   document.querySelectorAll('.tribute-panel.active .member-photo-wrap img').forEach(imgEl => {
     if (!imgEl.src || imgEl.style.display === 'none') return;
-    const card   = imgEl.closest('.member-card');
-    const nameEl = card ? card.querySelector('.member-name') : null;
-    const roleEl = card ? card.querySelector('.member-occupation') : null;
-    const caption = nameEl ? (nameEl.textContent + (roleEl ? ' – ' + roleEl.textContent : '')) : '';
-    _lbImages.push({ src: imgEl.src, caption });
-    if (imgEl.src === currentSrc || imgEl.getAttribute('src') === currentSrc) {
-      _lbIndex = _lbImages.length - 1;
-    }
+    const card = imgEl.closest('.member-card');
+    const n = card ? card.querySelector('.member-name') : null;
+    const r = card ? card.querySelector('.member-occupation') : null;
+    const cap = n ? (n.textContent + (r ? ' – ' + r.textContent : '')) : '';
+    _lbImages.push({ src: imgEl.src, caption: cap });
+    if (imgEl.src === currentSrc || imgEl.getAttribute('src') === currentSrc) _lbIndex = _lbImages.length - 1;
   });
-  // fallback: single image mode
-  if (!_lbImages.length) {
-    _lbImages = [{ src: currentSrc, caption: '' }];
-  }
+  if (!_lbImages.length) _lbImages = [{ src: currentSrc, caption: '' }];
 }
-
-document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
-});
+document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
 document.addEventListener('keydown', e => {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape')     closeLightbox();
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowRight') lbNext();
-  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowLeft') lbPrev();
 });
 
 /* ═══════════════════════════════════════
@@ -2277,39 +1560,27 @@ async function generateAIMessage() {
   const box  = document.getElementById('aiResultBox');
   const acts = document.getElementById('aiUseActions');
   const btn  = document.getElementById('aiBtnGen');
-
-  box.className = 'ai-result-box show';
-  box.style.fontStyle = 'normal';
+  box.className = 'ai-result-box show'; box.style.fontStyle = 'normal';
   box.innerHTML = '<span style="font-size:.85rem;color:var(--text-light);">✦ Crafting your message…</span>';
-  acts.style.display = 'none';
-  btn.disabled = true;
-
+  acts.style.display = 'none'; btn.disabled = true;
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `Write a heartfelt, sincere condolence message for the family of Margaret Darkwaa Owusu, affectionately known as "Auntie Margie". She was a 60-year-old Ghanaian woman of great Christian faith who has passed away. The message is written from the perspective of ${name}, who is ${rel}. Write in first person. Keep it between 60–90 words. Make it warm, comforting, and faith-filled. Reference her warmth, grace, or her love for God and family in a natural way. No quotation marks around the message. Just the plain message text.`
-        }]
+        model: 'claude-sonnet-4-20250514', max_tokens: 1000,
+        messages:[{ role:'user', content:`Write a heartfelt, sincere condolence message for the family of Margaret Darkwaa Owusu, affectionately known as "Auntie Margie". She was a 60-year-old Ghanaian woman of great Christian faith who has passed away. The message is written from the perspective of ${name}, who is ${rel}. Write in first person. Keep it between 60–90 words. Make it warm, comforting, and faith-filled. Reference her warmth, grace, or her love for God and family in a natural way. No quotation marks around the message. Just the plain message text.` }]
       })
     });
     const data = await res.json();
     const text = data.content?.[0]?.text || 'Unable to generate message. Please write your own heartfelt words.';
-    box.style.fontStyle = 'italic';
-    box.textContent = text;
-    acts.style.display = 'flex';
+    box.style.fontStyle = 'italic'; box.textContent = text; acts.style.display = 'flex';
   } catch(e) {
     box.innerHTML = '<span style="font-size:.85rem;color:#ef4444;">Could not generate message. Please check your connection and try again.</span>';
   }
   btn.disabled = false;
 }
-
 function useAIMessage() {
-  const msg  = document.getElementById('aiResultBox').textContent;
+  const msg = document.getElementById('aiResultBox').textContent;
   const name = document.getElementById('aiName').value.trim();
   const rel  = document.getElementById('aiRel').value.trim();
   if (name) document.getElementById('cName').value = name;
@@ -2319,13 +1590,29 @@ function useAIMessage() {
 }
 
 /* ═══════════════════════════════════════
-   CONDOLENCES
+   CONDOLENCES — Firebase real-time
 ═══════════════════════════════════════ */
-let condolences = [];
-let lastCondolence = null;
-
-// Safe load from localStorage
-try { condolences = JSON.parse(localStorage.getItem('margie_cond') || '[]'); } catch(e) { condolences = []; }
+function subscribeCondolences() {
+  /* Live subscription — all new & existing messages arrive here */
+  db.ref('condolences').orderByChild('ts').on('value', snap => {
+    condolences = [];
+    snap.forEach(c => condolences.unshift(c.val()));
+    renderCondolences();
+    updateStats();
+    /* Update status bar to green once connected */
+    const bar = document.getElementById('condStatusBar');
+    if (bar) {
+      bar.className = 'cond-status-bar live';
+      bar.innerHTML = '<div class="live-dot green"></div><span class="status-text">Live — Firebase connected</span><span class="status-count" id="condCountBadge">' + condolences.length + ' message' + (condolences.length !== 1 ? 's' : '') + '</span>';
+    }
+  }, err => {
+    console.warn('Condolences read error:', err.message);
+    /* Fall back to offline mode */
+    const bar = document.getElementById('condStatusBar');
+    if (bar) { bar.className = 'cond-status-bar offline'; bar.innerHTML = '<div class="live-dot amber"></div><span class="status-text">Offline – messages saved locally</span><span class="status-count" id="condCountBadge">' + condolences.length + ' messages</span>'; }
+    renderCondolences();
+  });
+}
 
 function submitCondolence() {
   const name = document.getElementById('cName').value.trim();
@@ -2333,48 +1620,19 @@ function submitCondolence() {
   const msg  = document.getElementById('cMsg').value.trim();
   if (!name) { showToast('Please enter your name.'); return; }
   if (!msg)  { showToast('Please write a message.'); return; }
-
-  const entry = {
-    name, rel, msg,
-    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
-    ts: Date.now()
-  };
-  condolences.unshift(entry);
-  try { localStorage.setItem('margie_cond', JSON.stringify(condolences)); } catch(e) {}
+  const entry = { name, rel, msg, date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}), ts: Date.now() };
   lastCondolence = entry;
-
   if (fbReady) {
-    db.ref('condolences').push(entry).catch(err => console.warn('FB condolence push:', err));
-    const bar = document.getElementById('condStatusBar');
-    bar.className = 'cond-status-bar live';
-    bar.innerHTML = '<div class="live-dot green"></div><span class="status-text">Synced to Firebase</span><span class="status-count" id="condCountBadge">' + condolences.length + ' messages</span>';
+    db.ref('condolences').push(entry)
+      .then(() => { showToast('Condolence saved to Firebase! 🙏'); })
+      .catch(err => { showToast('Saved locally (offline). 🙏'); console.warn(err); condolences.unshift(entry); renderCondolences(); updateStats(); });
+  } else {
+    condolences.unshift(entry); renderCondolences(); updateStats(); showToast('Condolence saved! 🙏');
   }
-
   document.getElementById('cName').value = '';
   document.getElementById('cRel').value  = '';
   document.getElementById('cMsg').value  = '';
-  renderCondolences();
   document.getElementById('condWaCard').classList.add('show');
-  showToast('Condolence sent! 🙏');
-  updateStats();
-}
-
-function loadCondolences() {
-  if (fbReady) {
-    db.ref('condolences').orderByChild('ts').on('value', snap => {
-      const items = [];
-      snap.forEach(c => items.unshift(c.val()));
-      condolences = items;
-      try { localStorage.setItem('margie_cond', JSON.stringify(condolences)); } catch(e) {}
-      renderCondolences();
-      updateStats();
-    }, err => {
-      console.warn('Firebase condolences read error:', err);
-      renderCondolences();
-    });
-  } else {
-    renderCondolences();
-  }
 }
 
 function renderCondolences() {
@@ -2386,136 +1644,89 @@ function renderCondolences() {
     return;
   }
   list.innerHTML = '<div class="condolence-cards">' +
-    condolences.slice(0, 20).map(c => `
+    condolences.slice(0,20).map(c => `
       <div class="condolence-card">
         <div class="condolence-header">
-          <div>
-            <div class="condolence-name">${esc(c.name)}</div>
-            <div class="condolence-relation">${esc(c.rel || 'Family &amp; Friends')}</div>
-          </div>
+          <div><div class="condolence-name">${esc(c.name)}</div><div class="condolence-relation">${esc(c.rel||'Family &amp; Friends')}</div></div>
           <div class="condolence-date">${esc(c.date)}</div>
         </div>
         <div class="condolence-msg">${esc(c.msg)}</div>
-      </div>`).join('') +
-  '</div>';
+      </div>`).join('') + '</div>';
 }
 
 /* ═══════════════════════════════════════
-   ATTENDANCE
+   ATTENDANCE — Firebase real-time
 ═══════════════════════════════════════ */
-let attendees = [];
-let lastAttendee = null;
-
-try { attendees = JSON.parse(localStorage.getItem('margie_att') || '[]'); } catch(e) { attendees = []; }
+function subscribeAttendees() {
+  db.ref('attendees').orderByChild('ts').on('value', snap => {
+    attendees = [];
+    snap.forEach(a => attendees.unshift(a.val()));
+    renderAttendees(); updateStats();
+  }, err => { console.warn('Attendees read error:', err.message); renderAttendees(); });
+}
 
 function submitAttendance() {
   const name = document.getElementById('aName').value.trim();
   if (!name) { showToast('Please enter your name.'); return; }
   const events = [...document.querySelectorAll('.evtChk:checked')].map(c => c.value);
   if (!events.length) { showToast('Please select at least one event.'); return; }
-
   const entry = {
-    name,
-    phone:    document.getElementById('aPhone').value.trim(),
+    name, phone: document.getElementById('aPhone').value.trim(),
     location: document.getElementById('aLocation').value.trim(),
-    rel:      document.getElementById('aRel').value.trim(),
-    notes:    document.getElementById('aNotes').value.trim(),
-    events,
-    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }),
-    ts: Date.now()
+    rel: document.getElementById('aRel').value.trim(),
+    notes: document.getElementById('aNotes').value.trim(),
+    events, date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}), ts: Date.now()
   };
-  attendees.unshift(entry);
-  try { localStorage.setItem('margie_att', JSON.stringify(attendees)); } catch(e) {}
   lastAttendee = entry;
-
-  if (fbReady) db.ref('attendees').push(entry).catch(err => console.warn('FB attendees push:', err));
-
-  ['aName','aPhone','aLocation','aRel','aNotes'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
-  });
-  document.querySelectorAll('.evtChk').forEach(c => c.checked = false);
-  renderAttendees();
-  document.getElementById('attendWaCard').classList.add('show');
-  showToast('Registration saved! 🙏');
-  updateStats();
-}
-
-function loadAttendees() {
   if (fbReady) {
-    db.ref('attendees').orderByChild('ts').on('value', snap => {
-      const items = [];
-      snap.forEach(a => items.unshift(a.val()));
-      attendees = items;
-      try { localStorage.setItem('margie_att', JSON.stringify(attendees)); } catch(e) {}
-      renderAttendees();
-      updateStats();
-    }, err => {
-      console.warn('Firebase attendees read error:', err);
-      renderAttendees();
-    });
+    db.ref('attendees').push(entry)
+      .then(() => showToast('Registration saved to Firebase! 🙏'))
+      .catch(err => { showToast('Saved (offline). 🙏'); console.warn(err); attendees.unshift(entry); renderAttendees(); updateStats(); });
   } else {
-    renderAttendees();
+    attendees.unshift(entry); renderAttendees(); updateStats(); showToast('Registration saved! 🙏');
   }
+  ['aName','aPhone','aLocation','aRel','aNotes'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  document.querySelectorAll('.evtChk').forEach(c => c.checked = false);
+  document.getElementById('attendWaCard').classList.add('show');
 }
 
 function renderAttendees() {
   const cnt = document.getElementById('attCountLabel');
   const tbl = document.getElementById('attendeeTable');
   if (cnt) cnt.textContent = '(' + attendees.length + ')';
-  if (!attendees.length) {
-    tbl.innerHTML = '<div class="attendees-empty">No registrations yet. Be the first to register!</div>';
-    return;
-  }
-  tbl.innerHTML = attendees.slice(0, 30).map(a => `
+  if (!attendees.length) { tbl.innerHTML = '<div class="attendees-empty">No registrations yet. Be the first to register!</div>'; return; }
+  tbl.innerHTML = attendees.slice(0,30).map(a => `
     <div class="attendance-item">
       <div class="attendee-avatar">${esc(a.name[0].toUpperCase())}</div>
-      <div class="attendee-info">
-        <div class="attendee-name">${esc(a.name)}</div>
-        <div class="attendee-meta">${esc(a.location || 'Location not specified')}${a.rel ? ' · ' + esc(a.rel) : ''}</div>
-      </div>
-      <div class="attendee-badges">
-        ${(a.events || []).map(e => `<span class="attendee-badge">${esc(e)}</span>`).join('')}
-      </div>
+      <div class="attendee-info"><div class="attendee-name">${esc(a.name)}</div><div class="attendee-meta">${esc(a.location||'Location not specified')}${a.rel?' · '+esc(a.rel):''}</div></div>
+      <div class="attendee-badges">${(a.events||[]).map(e=>'<span class="attendee-badge">'+esc(e)+'</span>').join('')}</div>
     </div>`).join('');
 }
 
 function updateStats() {
-  const s1 = document.getElementById('statCond');
-  const s2 = document.getElementById('statAtt');
+  const s1 = document.getElementById('statCond'), s2 = document.getElementById('statAtt');
   if (s1) s1.textContent = condolences.length;
   if (s2) s2.textContent = attendees.length;
 }
 
 /* ═══════════════════════════════════════
-   WHATSAPP SHARING
+   WHATSAPP
 ═══════════════════════════════════════ */
 function notifyFamilyWA(type) {
   let msg = '';
   if (type === 'condolence' && lastCondolence) {
-    msg = `🙏 *New Condolence – Auntie Margie Memorial*\n\n*From:* ${lastCondolence.name}\n*Relationship:* ${lastCondolence.rel || 'Not specified'}\n\n"${lastCondolence.msg}"`;
+    msg = `🙏 *New Condolence – Auntie Margie Memorial*\n\n*From:* ${lastCondolence.name}\n*Relationship:* ${lastCondolence.rel||'Not specified'}\n\n"${lastCondolence.msg}"`;
   } else if (type === 'attendance' && lastAttendee) {
-    msg = `✅ *New Attendance – Auntie Margie Memorial*\n\n*Name:* ${lastAttendee.name}\n*Phone:* ${lastAttendee.phone || 'Not provided'}\n*Location:* ${lastAttendee.location || 'Not specified'}\n*Events:* ${lastAttendee.events.join(', ')}\n*Notes:* ${lastAttendee.notes || 'None'}`;
-  } else {
-    msg = '🙏 A message was submitted on the Auntie Margie Memorial page.';
-  }
+    msg = `✅ *New Attendance – Auntie Margie Memorial*\n\n*Name:* ${lastAttendee.name}\n*Phone:* ${lastAttendee.phone||'Not provided'}\n*Location:* ${lastAttendee.location||'Not specified'}\n*Events:* ${lastAttendee.events.join(', ')}\n*Notes:* ${lastAttendee.notes||'None'}`;
+  } else { msg = '🙏 A message was submitted on the Auntie Margie Memorial page.'; }
   window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
 function shareWA() {
   const msg = `🕊️ In Loving Memory of Margaret Darkwaa Owusu "Auntie Margie" (1966–2026)\n\nView the memorial, leave condolences, and register:\n${window.location.href}`;
   window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
-function shareFB() {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-}
-
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href)
-    .then(() => showToast('Link copied! 🔗'))
-    .catch(() => showToast('Copy failed. Please copy the URL manually.'));
-}
+function shareFB() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); }
+function copyLink() { navigator.clipboard.writeText(window.location.href).then(() => showToast('Link copied! 🔗')).catch(() => showToast('Copy the URL from your browser bar.')); }
 
 /* ═══════════════════════════════════════
    LIVESTREAM
@@ -2524,22 +1735,16 @@ function activateStream() {
   const url = document.getElementById('streamEmbedUrl').value.trim();
   if (!url) { showToast('Please paste a stream embed URL.'); return; }
   document.getElementById('streamPlaceholder').style.display = 'none';
-  const frame = document.getElementById('streamFrame');
-  frame.src = url;
-  frame.style.display = 'block';
+  const fr = document.getElementById('streamFrame'); fr.src = url; fr.style.display = 'block';
   if (fbReady) db.ref('stream/embedUrl').set(url).catch(() => {});
   showToast('Livestream activated! ▶');
 }
-
 function deactivateStream() {
   document.getElementById('streamPlaceholder').style.display = 'flex';
-  const frame = document.getElementById('streamFrame');
-  frame.src = '';
-  frame.style.display = 'none';
+  const fr = document.getElementById('streamFrame'); fr.src = ''; fr.style.display = 'none';
   if (fbReady) db.ref('stream/embedUrl').remove().catch(() => {});
   showToast('Livestream deactivated.');
 }
-
 function saveStreamLinks() {
   const fb = document.getElementById('fbLink').value.trim();
   const yt = document.getElementById('ytLink').value.trim();
@@ -2550,57 +1755,46 @@ function saveStreamLinks() {
   if (fbReady) db.ref('stream/links').set({ fb, yt, zm }).catch(() => {});
   showToast('Stream links saved!');
 }
-
 function loadStreamSettings() {
   const fb = localStorage.getItem('margie_fb'); if (fb) document.getElementById('fbStreamLink').href = fb;
   const yt = localStorage.getItem('margie_yt'); if (yt) document.getElementById('ytStreamLink').href = yt;
   const zm = localStorage.getItem('margie_zm'); if (zm) document.getElementById('zmStreamLink').href = zm;
-  if (fbReady) {
-    db.ref('stream/embedUrl').get().then(snap => {
-      const url = snap.val();
-      if (url) {
-        document.getElementById('streamPlaceholder').style.display = 'none';
-        const frame = document.getElementById('streamFrame');
-        frame.src = url;
-        frame.style.display = 'block';
-      }
-    }).catch(() => {});
-  }
+  if (!fbReady) return;
+  db.ref('stream/embedUrl').get().then(snap => {
+    const url = snap.val();
+    if (url) {
+      document.getElementById('streamPlaceholder').style.display = 'none';
+      const fr = document.getElementById('streamFrame'); fr.src = url; fr.style.display = 'block';
+    }
+  }).catch(() => {});
+  db.ref('stream/links').get().then(snap => {
+    const lnk = snap.val();
+    if (!lnk) return;
+    if (lnk.fb) document.getElementById('fbStreamLink').href = lnk.fb;
+    if (lnk.yt) document.getElementById('ytStreamLink').href = lnk.yt;
+    if (lnk.zm) document.getElementById('zmStreamLink').href = lnk.zm;
+  }).catch(() => {});
 }
 
 /* ═══════════════════════════════════════
-   FAMILY CHAT
+   FAMILY CHAT — Firebase real-time with
+   push notifications to all users
 ═══════════════════════════════════════ */
-let chatUser = null;
-
 function setupFirebaseAuth() {
   auth.onAuthStateChanged(async user => {
     chatUser = user;
     if (user) {
-      let userName = user.email;
-      let userRel = '';
+      let userName = user.email, userRel = '';
       try {
         const snap = await db.ref('users/' + user.uid).get();
         const info = snap.val() || {};
-        userName = info.name || user.email;
-        userRel  = info.rel  || '';
+        userName = info.name || user.email; userRel = info.rel || '';
       } catch(e) {}
-      chatUser._name = userName;
-      chatUser._rel  = userRel;
-
-      // Save/update profile
-      db.ref('users/' + user.uid).update({
-        email: user.email,
-        lastSeen: firebase.database.ServerValue.TIMESTAMP
-      }).catch(() => {});
-
+      chatUser._name = userName; chatUser._rel = userRel;
+      db.ref('users/' + user.uid).update({ email: user.email, lastSeen: firebase.database.ServerValue.TIMESTAMP }).catch(() => {});
       document.getElementById('chatAuth').style.display = 'none';
       const cs = document.getElementById('chatScreen');
-      cs.style.display = 'flex';
-      cs.style.flexDirection = 'column';
-      cs.style.flex = '1';
-      cs.style.overflow = 'hidden';
-
+      cs.style.display = 'flex'; cs.style.flexDirection = 'column'; cs.style.flex = '1'; cs.style.overflow = 'hidden';
       db.ref('online/' + user.uid).set({ name: chatUser._name, ts: Date.now() });
       db.ref('online/' + user.uid).onDisconnect().remove();
       listenOnline();
@@ -2611,61 +1805,40 @@ function setupFirebaseAuth() {
   });
 }
 
-function switchAuthTab(tab, btn) {
-  document.querySelectorAll('.chat-auth-tab').forEach(t => t.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  document.getElementById('signinForm').style.display   = tab === 'signin'   ? 'flex' : 'none';
-  document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
-}
-
-async function chatSignIn() {
-  if (!fbReady) { showToast('Firebase not configured.'); return; }
-  const email = document.getElementById('signEmail').value.trim();
-  const pass  = document.getElementById('signPass').value;
-  if (!email || !pass) { showToast('Please enter email and password.'); return; }
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-  } catch(e) {
-    showToast('Sign in failed: ' + e.message);
-  }
-}
-
-async function chatRegister() {
-  if (!fbReady) { showToast('Firebase not configured.'); return; }
-  const name  = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass  = document.getElementById('regPass').value;
-  const rel   = document.getElementById('regRel').value.trim();
-  if (!name || !email || !pass) { showToast('Please fill all required fields.'); return; }
-  if (pass.length < 6) { showToast('Password must be at least 6 characters.'); return; }
-  try {
-    const cred = await auth.createUserWithEmailAndPassword(email, pass);
-    await db.ref('users/' + cred.user.uid).set({
-      name, rel, email,
-      createdAt: firebase.database.ServerValue.TIMESTAMP
-    });
-    showToast('Account created! Welcome, ' + name + '.');
-  } catch(e) {
-    showToast('Registration failed: ' + e.message);
-  }
-}
-
-function chatSignOut() {
-  if (auth) auth.signOut().catch(() => {});
-}
-
-function listenChatMessages() {
-  if (!fbReady) return;
-  db.ref('chat').orderByChild('ts').limitToLast(60).on('value', snap => {
+function subscribeChatMessages() {
+  /* Subscribe to all messages. This fires for every connected user,
+     so every user gets the message in real time automatically. */
+  db.ref('chat').orderByChild('ts').limitToLast(80).on('value', snap => {
     const msgs = [];
     snap.forEach(m => msgs.push(m.val()));
+    if (!msgs.length) return;
+    /* Count unread: messages newer than chatLastTs that aren't mine */
+    const latestTs = msgs[msgs.length - 1].ts;
+    if (chatLastTs > 0) {
+      const newMsgs = msgs.filter(m => m.ts > chatLastTs && (!chatUser || m.uid !== chatUser.uid));
+      if (newMsgs.length > 0 && !chatPageOpen) {
+        chatUnread += newMsgs.length;
+        updateChatBadge();
+        /* In-page toast notification for new messages */
+        const latest = newMsgs[newMsgs.length - 1];
+        showToast('💬 ' + esc(latest.name) + ': ' + esc(latest.text.substring(0, 60)) + (latest.text.length > 60 ? '…' : ''));
+      }
+    }
+    chatLastTs = latestTs;
     renderChatMessages(msgs);
-  }, err => console.warn('Chat listen error:', err));
+  }, err => console.warn('Chat listen error:', err.message));
+}
+
+function updateChatBadge() {
+  const badge = document.getElementById('chatBadge');
+  if (!badge) return;
+  if (chatUnread > 0) { badge.textContent = chatUnread > 9 ? '9+' : chatUnread; badge.style.display = 'inline-flex'; }
+  else badge.style.display = 'none';
 }
 
 function renderChatMessages(msgs) {
   const box = document.getElementById('chatMessages');
-  if (!msgs.length) return;
+  if (!box || !msgs.length) return;
   box.innerHTML = msgs.map(m => {
     const mine = chatUser && m.uid === chatUser.uid;
     return `<div style="display:flex;flex-direction:column;">
@@ -2686,15 +1859,11 @@ async function sendChatMsg() {
   if (!text) return;
   input.value = '';
   try {
-    await db.ref('chat').push({
-      uid: chatUser.uid,
-      name: chatUser._name,
-      text,
-      ts: Date.now()
-    });
+    await db.ref('chat').push({ uid: chatUser.uid, name: chatUser._name, text, ts: Date.now() });
+    /* Firebase real-time listener on subscribeChatMessages() handles delivery
+       to all connected users automatically — no extra push needed. */
   } catch(e) {
-    showToast('Message not sent. Please try again.');
-    input.value = text; // restore
+    showToast('Message not sent. Please try again.'); input.value = text;
   }
 }
 
@@ -2706,106 +1875,115 @@ function listenOnline() {
     const el = document.getElementById('chatOnlineCount');
     if (el) el.textContent = members.length + ' online now';
     const ol = document.getElementById('onlineList');
-    if (ol) {
-      ol.innerHTML = members.length
-        ? members.map(n => `<div class="online-item"><div class="online-dot"></div><div class="online-name">${esc(n)}</div></div>`).join('')
-        : '<p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>';
-    }
-  }, err => console.warn('Online listen error:', err));
+    if (ol) ol.innerHTML = members.length
+      ? members.map(n => `<div class="online-item"><div class="online-dot"></div><div class="online-name">${esc(n)}</div></div>`).join('')
+      : '<p style="color:var(--text-light);font-size:.76rem;padding:8px 4px;">No members online</p>';
+  }, err => console.warn('Online listen:', err.message));
 }
+
+function switchAuthTab(tab, btn) {
+  document.querySelectorAll('.chat-auth-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('signinForm').style.display   = tab === 'signin'   ? 'flex' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
+}
+async function chatSignIn() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const email = document.getElementById('signEmail').value.trim();
+  const pass  = document.getElementById('signPass').value;
+  if (!email || !pass) { showToast('Please enter email and password.'); return; }
+  try { await auth.signInWithEmailAndPassword(email, pass); }
+  catch(e) { showToast('Sign in failed: ' + e.message); }
+}
+async function chatRegister() {
+  if (!fbReady) { showToast('Firebase not configured.'); return; }
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  const rel   = document.getElementById('regRel').value.trim();
+  if (!name || !email || !pass) { showToast('Please fill all required fields.'); return; }
+  if (pass.length < 6) { showToast('Password must be at least 6 characters.'); return; }
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await db.ref('users/' + cred.user.uid).set({ name, rel, email, createdAt: firebase.database.ServerValue.TIMESTAMP });
+    showToast('Account created! Welcome, ' + name + '.');
+  } catch(e) { showToast('Registration failed: ' + e.message); }
+}
+function chatSignOut() { if (auth) auth.signOut().catch(() => {}); }
 
 /* ═══════════════════════════════════════
-   GALLERY SLIDESHOW
+   GALLERY — auto-slide only, no onerror
 ═══════════════════════════════════════ */
-let slides = [], slideIdx = 0, slideTimer;
+let galSlides = [], galIdx = 0, galTimer;
 
-function initSlideshow() {
-  const stage = document.getElementById('slideshowStage');
+function initGallery() {
+  const stage = document.getElementById('galStage');
   if (!stage) return;
-  const dots = document.getElementById('slideDots');
-  slides = Array.from(stage.querySelectorAll('.slide'));
-  if (slides.length <= 1) return;
-  // Clear existing dots
-  dots.innerHTML = '';
-  slides.forEach((_, i) => {
+  galSlides = Array.from(stage.querySelectorAll('.gallery-slide'));
+  if (!galSlides.length) return;
+
+  /* Build dot indicators */
+  const dotsWrap = document.getElementById('galDots');
+  dotsWrap.innerHTML = '';
+  galSlides.forEach((_, i) => {
     const d = document.createElement('button');
-    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => goSlide(i);
-    dots.appendChild(d);
+    d.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Photo ' + (i + 1));
+    d.addEventListener('click', () => galGoTo(i));
+    dotsWrap.appendChild(d);
   });
-  updateSlideCounter();
-  slideTimer = setInterval(nextSlide, 5000);
+
+  updateGalCounter();
+  galTimer = setInterval(() => galGoTo((galIdx + 1) % galSlides.length), 5500);
 }
 
-function goSlide(i) {
-  if (!slides.length) return;
-  slides[slideIdx].classList.remove('active');
-  const dotEls = document.querySelectorAll('.slide-dot');
-  if (dotEls[slideIdx]) dotEls[slideIdx].classList.remove('active');
-  slideIdx = ((i % slides.length) + slides.length) % slides.length;
-  slides[slideIdx].classList.add('active');
-  if (dotEls[slideIdx]) dotEls[slideIdx].classList.add('active');
-  updateSlideCounter();
+function galGoTo(i) {
+  if (!galSlides.length) return;
+  galSlides[galIdx].classList.remove('active');
+  document.querySelectorAll('.gallery-dot')[galIdx]?.classList.remove('active');
+  galIdx = ((i % galSlides.length) + galSlides.length) % galSlides.length;
+  galSlides[galIdx].classList.add('active');
+  document.querySelectorAll('.gallery-dot')[galIdx]?.classList.add('active');
+  updateGalCounter();
 }
-
-function nextSlide() { goSlide(slideIdx + 1); }
-function prevSlide() { clearInterval(slideTimer); goSlide(slideIdx - 1); }
-
-function updateSlideCounter() {
-  const el = document.getElementById('slideCounter');
-  if (el) el.textContent = (slideIdx + 1) + ' / ' + slides.length;
+function updateGalCounter() {
+  const el = document.getElementById('galCounter');
+  if (el) el.textContent = galSlides.length ? (galIdx + 1) + ' / ' + galSlides.length : '';
 }
 
 /* ═══════════════════════════════════════
    MUSIC PLAYER
 ═══════════════════════════════════════ */
 const audio = new Audio('audio/god-be-with-you.mp3');
-audio.loop = true;
-audio.volume = 0.6;
-audio.preload = 'metadata';
+audio.loop = true; audio.volume = 0.6; audio.preload = 'metadata';
 let playing = false;
-
 function toggleMusic() {
   playing = !playing;
   document.getElementById('musicIcon').className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
-  if (playing) {
-    audio.play().catch(() => {
-      playing = false;
-      document.getElementById('musicIcon').className = 'fa-solid fa-play';
-      showToast('Place the MP3 at: audio/god-be-with-you.mp3');
-    });
-  } else {
-    audio.pause();
-  }
+  if (playing) audio.play().catch(() => { playing = false; document.getElementById('musicIcon').className = 'fa-solid fa-play'; showToast('Place the MP3 at: audio/god-be-with-you.mp3'); });
+  else audio.pause();
 }
-
-function setVol(v) {
-  audio.volume = parseFloat(v);
-}
+function setVol(v) { audio.volume = parseFloat(v); }
 
 /* ═══════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════ */
-let revealObserver = null;
-
+let revealObs = null;
 function initReveal() {
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    return;
-  }
-  if (revealObserver) revealObserver.disconnect();
-  revealObserver = new IntersectionObserver(entries => {
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')); return; }
+  if (revealObs) revealObs.disconnect();
+  revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObs.observe(el));
 }
 
 /* ═══════════════════════════════════════
-   CONDOLENCE GRID — RESPONSIVE
+   CONDOLENCE GRID RESPONSIVE
 ═══════════════════════════════════════ */
 function checkCondGrid() {
-  const grid = document.getElementById('condGrid');
-  if (grid) grid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+  const g = document.getElementById('condGrid');
+  if (g) g.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
 }
 window.addEventListener('resize', checkCondGrid);
 checkCondGrid();
@@ -2819,19 +1997,15 @@ function showToast(msg) {
   document.getElementById('toastMsg').textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
 /* ═══════════════════════════════════════
-   HTML ESCAPE HELPER
+   HTML ESCAPE
 ═══════════════════════════════════════ */
 function esc(s) {
-  return String(s || '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
 </body>
-</html>
+</html
